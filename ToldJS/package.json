@@ -12,6 +12,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "@tsconfig/svelte": "^3.0.0",
+    "@types/cors": "^2.8.13",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "svelte": "^3.55.1",
@@ -23,6 +24,15 @@
   },
   "dependencies": {
     "daisyui": "^2.50.1",
-    "pdf-lib": "^1.17.1"
-  }
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^2.9.359",
+    "puppeteer": "^19.7.1",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
+  },
+  "main": "svelte.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
