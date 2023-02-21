@@ -1,0 +1,79 @@
+7.
+Afsender = Paragraph-XBmZnk_Srq
+Angivelse 1 = Text-_i-Ij4vfm-
+Angivelse 2 = Text-2m6m5775oA
+Vareposter = Text-hiwAnkNgDZ
+Kolli i alt = Text-rbiHV68ups
+Referencenummer = Text-02TY0aFaWt
+Modtager = Paragraph-i50fqh2_X4
+Oprindelsesland = Text-Cplh5EoNhS
+Bestemmelsesland = Text-RrwGZzfWmv
+Værdioplysninger = Text-3fGwFJumdT
+Indgangstoldsted = Text-Rb17xzYIWg
+Fakturaens møntsort og beløb 2 = Text-8W0o1rIqF- 
+Fakturaens møntsort og beløb 1 = Text-Qu44ql-9Yf
+Vekselkurs = Text-vcYrmOBi0r
+Mærke og nummer = Paragraph-GrfeejCUP0
+Varepost = Text-PiYzs293Y0
+Statistisk værdi = Text-y37_GgETGg
+Varens Pris = Text-LETnSee-lw
+Summarisk angivelse = Text-NgQNGtR0ye
+Supplerende enheder = Text-XU7AzmPVOB
+Oprindelses lande kode = Text-iSgQu01Q22
+Bruttomasse = Text-Z-0qnHPoNw
+Varekode = Text-lIGpxzVG9K
+Procedure 1 = Text-VCTP6H0oqb
+Procedure 2 = Text-ZMQQaEnH75
+Klarerens navn/underksrift = Text-Nk4H6gS4bF
+Klarer/Repræsentant = Paragraph-XV11j-QheT
+
+6.
+Afsender = Paragraph-gkNPApzl3u
+Modtager = Paragraph-e5q0m4rY8T
+Klarer/Repræsentant = Paragraph-wGaObkhsZx
+Angivelse 1 = Text-48HtIw2mbQ
+Angivelse 2 = Text-ie8YPD_3Cp
+Vareposter = Text-krZIKZ8C1L
+Kolli i alt = Text-5OZwfBKoeQ
+Referencenummer = Text-UCJBLkBrFr
+Værdioplysninger = Text-2OaVb3yIok
+Oprindelsesland = Text-Hhm7UHiU_i
+Bestemmelsesland = Text-E2Pi5dt9Lo
+Fakturaens møntsort og beløb 1 = Text-BdBAFlOpad
+Fakturaens møntsort og beløb 2 = Text-zSF-wJqykx
+Vekselkurs = Text-Ig2RP-DMyu
+Indgangstoldsted = Text-vD8yKdSlxp
+Mærke og nummer = Paragraph-SiTU2MooOi
+Varepost = Text-Rw3KyxekGY
+Varekode = Text-MZHN36Cq6o
+Oprindelses lande kode = Text-JpYnmqUvjD
+Bruttomasse = Text-bNe-IGw-2l
+Procedure 1 = Text-rmaLuaF7fc
+Procedure 2 = Text-DELFVaUWwe
+Summarisk angivelse = Text-96-U3OZmv7
+Supplerende enheder = Text-KVhDze4ayt
+Varens Pris = Text-SmAH_sbVkX
+Statistisk værdi = Text-I7K5ODHj6N
+Klarerens navn/underksrift = Text--uoJu5kXaW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
