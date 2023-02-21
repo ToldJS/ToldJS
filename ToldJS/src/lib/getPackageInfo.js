@@ -16,13 +16,13 @@ async function parsePDF(pdfBuffer) {
     });
     text += pageText + ' ';
   }
-  let packageInfo = [];
-  packageInfo[0] = text.match(/Sender\s+(.*?)\s+From/)?.[1] ?? 'null';
-  packageInfo[1] = text.match(/Origin\s+(.*?)\s+Destination/)?.[1] ?? 'null';
-  packageInfo[2] = text.match(/Destination\s+(.*?)\s+Weight/)?.[1] ?? 'null';
-  packageInfo[3] = text.match(/Weight\s+(\d+(?:\.\d+)?)\s+(g(?:rams)?|kg(?:ilograms)?|lbs?(?:\s+pounds)?)/i)?.[1] ?? 'null';
-  packageInfo[4] = text.match(/Weight\s+\d+(?:\.\d+)?\s+((?:g(?:rams)?|kg(?:ilograms)?|lbs?(?:\s+pounds)?))/i)?.[1] ?? 'null';
-  packageInfo[5] = text.match(/Sender reference\s+(\S+)/)?.[1] ?? 'null';
+  console.log(text);
+  let packageInfo = {};
+  packageInfo["Sender"] = text.match(/Sender\s+(.*?)\s+From/)?.[1] ?? 'null';
+  packageInfo["Origin"] = text.match(/Origin\s+(.*?)\s+Destination/)?.[1] ?? 'null';
+  packageInfo["Destination"] = text.match(/Destination\s+(.*?)\s+Weight/)?.[1] ?? 'null';
+  packageInfo["Weight"] = text.match(/Weight\s+(\d+(?:\.\d+)?)\s+(g(?:rams)?|kg(?:ilograms)?|lbs?(?:\s+pounds)?)/i)?.[1] ?? 'null';
+  packageInfo["Unit"] = text.match(/Weight\s+\d+(?:\.\d+)?\s+((?:g(?:rams)?|kg(?:ilograms)?|lbs?(?:\s+pounds)?))/i)?.[1] ?? 'null';
 
   return packageInfo;
 }
@@ -45,13 +45,17 @@ async function run(tracking_url) {
   
   const page = await browser.newPage();
   await page.goto("https://parcelsapp.com/en/tracking/" + tracking_url);
-  await page.waitForSelector('.parcel-attributes', { timeout: 20000 });
+  let parsedData;
+  try {
+    await page.waitForSelector('.parcel-attributes', { timeout: 10000 });
+    // Generate PDF and save it to disk
+    const pdfBuffer = await page.pdf({ format: 'A4' });
 
-  // Generate PDF and save it to disk
-  const pdfBuffer = await page.pdf({ format: 'A4' });
-
-  // Parse PDF content
-  const parsedData = await parsePDF(pdfBuffer);
+    // Parse PDF content
+    parsedData = await parsePDF(pdfBuffer);
+  } catch (error) {
+    parsedData = { error: error.message };
+  }
 
   await browser.close();
 
@@ -59,7 +63,7 @@ async function run(tracking_url) {
 }
 
 async function main() {
-  let data = await run("LW479465004DE");
+  let data = await run("asd");
   console.log(data);
 }
 
