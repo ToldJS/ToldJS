@@ -1,10 +1,8 @@
 <script lang="ts">
-	// import { fillPdf } from '$lib/fillPdf';
 	import { createPackageInfo } from '$lib/packageInfo';
 	import type { IApiResult } from '../types/web';
 	import type { PageData } from './$types';
 	import { LANDEKODER } from '../data/landekoder';
-	import { onMount } from 'svelte';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data);
@@ -15,6 +13,7 @@
 	let error: string | undefined = undefined;
 	let trackingNumber: string;
 	let apiResult: IApiResult | undefined = undefined;
+	let finalPdf: { url: string; size: string } | undefined = undefined;
 
 	let modtager_navn = '';
 	let modtager_adresse = '';
@@ -29,9 +28,21 @@
 	let transport_pris = '';
 	let gave: boolean = false;
 	let vaegt = '';
-	let unit: "kg" | "lb" = 'kg';
+	let unit: 'kg' | 'lb' = 'kg';
 
-	$: allFieldsFilled = valuta && modtager_navn && modtager_adresse && afsender_navn && afsender_adresse && afsender_land && varekode && antal_pakker && antal_varer && pakke_pris && transport_pris && vaegt;
+	$: allFieldsFilled =
+		valuta &&
+		modtager_navn &&
+		modtager_adresse &&
+		afsender_navn &&
+		afsender_adresse &&
+		afsender_land &&
+		varekode &&
+		antal_pakker &&
+		antal_varer &&
+		pakke_pris &&
+		transport_pris &&
+		vaegt;
 
 	async function parseTracking() {
 		isLoadingTracking = true;
@@ -78,7 +89,7 @@
 
 		isLoadingTracking = false;
 	}
-	
+
 	async function createPdf() {
 		isLoadingPdf = true;
 		const packageInfo = await createPackageInfo({
@@ -96,7 +107,7 @@
 			fragtPris: transport_pris,
 			gave, // same key / value
 			vaegtEnhed: unit,
-			vaegt, // same key / value
+			vaegt // same key / value
 		});
 
 		const data = await fetch('Enhedsdokument_6_7.pdf').then((res) => res.arrayBuffer());
@@ -114,7 +125,7 @@
 		var blob = new Blob([pdfBytes], { type: 'application/pdf' });
 		var link = document.createElement('a');
 		link.href = window.URL.createObjectURL(blob);
-		link.download = "Enhedsdokument.pdf";
+		link.download = 'Enhedsdokument.pdf';
 		link.click();
 
 		isLoadingPdf = false;
@@ -217,10 +228,13 @@
 			/>
 		</div>
 		<div class="m-2 max-w-md">
-			<select bind:value={afsender_land} class="select select-bordered {afsender_land ? 'select-success' : ''} w-full max-w-xs">
+			<select
+				bind:value={afsender_land}
+				class="select select-bordered {afsender_land ? 'select-success' : ''} w-full max-w-xs"
+			>
 				<option value="" disabled selected>Vælg afsender landet</option>
 				{#each LANDEKODER as country}
-					<option value={country["Kode"] + "__" + country["Navn"]}>{country["Navn"]}</option>
+					<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
 				{/each}
 			</select>
 			<!-- <input
@@ -279,10 +293,10 @@
 			/>
 		</div>
 		<div class="m-2 max-w-md">
-			<select bind:value={valuta} class="select select-bordered {valuta ? "select-success" : ""}">
+			<select bind:value={valuta} class="select select-bordered {valuta ? 'select-success' : ''}">
 				<option value="" disabled selected>Vælg valutaen for transport og pakke prisen</option>
 				{#each CURRENCIES as currency}
-					<option value={currency} selected={currency == "USD"}>{currency}</option>
+					<option value={currency} selected={currency == 'USD'}>{currency}</option>
 				{/each}
 			</select>
 		</div>
@@ -301,16 +315,19 @@
 					type="text"
 					placeholder="Vægt"
 					class="input input-bordered {vaegt
-						? (/^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
+						? /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
 							? 'input-success'
-							: 'input-error')
+							: 'input-error'
 						: ''} max-w-xs"
 				/>
-				<select bind:value={unit} class="select select-bordered input input-bordered {vaegt
-					? (/^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
-						? 'select-success'
-						: 'select-error')
-					: ''}">
+				<select
+					bind:value={unit}
+					class="select select-bordered input input-bordered {vaegt
+						? /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
+							? 'select-success'
+							: 'select-error'
+						: ''}"
+				>
 					<option value="kg" selected>KG</option>
 					<option value="lb">LB</option>
 				</select>
@@ -322,7 +339,11 @@
 				<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary" />
 			</label>
 		</div>
-		<button on:click={createPdf} disabled={!allFieldsFilled} class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button>
+		<button
+			on:click={createPdf}
+			disabled={!allFieldsFilled}
+			class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button
+		>
 		{#if finalPdf}
 			<div class="m-2 max-w-md">
 				<a href={finalPdf} download="label.pdf" class="btn btn-primary">Download PDF</a>
