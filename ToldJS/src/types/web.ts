@@ -3,5 +3,5 @@ export interface IApiResult {
     Origin?: string;
     Destination?: string;
     Weight?: number;
-    Unit?: string;
+    Unit?: "kg" | "lb";
 }

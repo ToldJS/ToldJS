@@ -37,6 +37,9 @@
 	"type": "module",
 	"dependencies": {
 		"daisyui": "^2.50.2",
-		"pdf-lib": "^1.17.1"
+		"pako": "^2.1.0",
+		"pdf-lib": "^1.17.1",
+		"puppeteer-extra": "^3.3.4",
+		"puppeteer-extra-plugin-stealth": "^2.11.1"
 	}
 }
