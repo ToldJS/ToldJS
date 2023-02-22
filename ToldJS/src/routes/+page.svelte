@@ -3,6 +3,7 @@
 	import type { IApiResult } from '../types/web';
 	import type { PageData } from './$types';
 	import { LANDEKODER } from '../data/landekoder';
+	import { formatBytes } from '$lib/format';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data);
@@ -92,6 +93,8 @@
 
 	async function createPdf() {
 		isLoadingPdf = true;
+		finalPdf = undefined;
+
 		const packageInfo = await createPackageInfo({
 			trackingNumber, // same key / value
 			modtagerNavn: modtager_navn,
@@ -117,17 +120,16 @@
 
 		let key: keyof typeof packageInfo;
 		for (key in packageInfo) {
-			const value = packageInfo[key];
+			const value = String(packageInfo[key]);
 			form.getTextField(key).setText(value);
 		}
 
 		const pdfBytes = await doc.save();
 		var blob = new Blob([pdfBytes], { type: 'application/pdf' });
-		var link = document.createElement('a');
-		link.href = window.URL.createObjectURL(blob);
-		link.download = 'Enhedsdokument.pdf';
-		link.click();
-
+		finalPdf = {
+			url: window.URL.createObjectURL(blob),
+			size: formatBytes(blob.size)
+		};
 		isLoadingPdf = false;
 	}
 </script>
@@ -322,7 +324,7 @@
 				/>
 				<select
 					bind:value={unit}
-					class="select select-bordered input input-bordered {vaegt
+					class="select select-bordered {vaegt
 						? /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
 							? 'select-success'
 							: 'select-error'
@@ -345,9 +347,45 @@
 			class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button
 		>
 		{#if finalPdf}
-			<div class="m-2 max-w-md">
-				<a href={finalPdf} download="label.pdf" class="btn btn-primary">Download PDF</a>
-			</div>
+			<a
+				class="mt-4 face-button border-2 text-black border-primary"
+				href={finalPdf.url}
+				download="Enhedsdokument.pdf"
+			>
+				<div class="face-primary bg-primary">
+					<span class="icon fa fa-cloud" />
+					Download PDF
+				</div>
+				<div class="face-secondary text-primary">
+					<span class="icon fa fa-hdd-o" />
+					Size: {finalPdf.size}
+				</div>
+			</a>
 		{/if}
 	</div>
 </main>
+
+<style>
+	.face-button {
+		height: 50px;
+		display: inline-block;
+		font-size: 20px;
+		font-weight: 500;
+		text-align: center;
+		text-decoration: none;
+		overflow: hidden;
+	}
+	.face-button .icon {
+		margin-right: 5px;
+	}
+	.face-button .face-primary,
+	.face-button .face-secondary {
+		display: block;
+		padding: 0 25px;
+		line-height: 50px;
+		transition: margin 0.4s;
+	}
+	.face-button:hover .face-primary {
+		margin-top: -50px;
+	}
+</style>
