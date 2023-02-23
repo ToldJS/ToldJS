@@ -2,25 +2,16 @@ import { getCurrencyRate } from '$lib/currencyRates.js'
 
 /**
  * @param {string} str
- * @returns {number}
  */
 const toNum = (str) => Number(str.replace(",", "."));
-/**
- * @param {string} str
- * @returns {string}
- */
-const toKomma = (str) => str.replace(".", ",");
 
 /**
  * @param {import("../types/package").IUserPackageInfo} userInfo
- * @returns {Promise<[import("../types/package").IReturnPackageInfo, Error | null]>}
  */
 export async function createPackageInfo(userInfo) {
   let packageInfo = {};
   let procedureKode2;
-  let [vekselKurs, errors] = await getCurrencyRate(userInfo.valuta);
-  // @ts-ignore
-  if (errors) return [null, errors];
+  let vekselKurs = await getCurrencyRate(userInfo.valuta);
 
   // Afsender
   packageInfo["Paragraph-XBmZnk_Srq"] = userInfo.afsenderNavn + "\n" + userInfo.afsenderAdresse;
@@ -49,12 +40,12 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-5OZwfBKoeQ"] = userInfo.pakkerIAlt.toString();
 
   // Værdioplysninger
-  packageInfo["Text-3fGwFJumdT"] = toKomma(userInfo.fragtPris.toString() + " " + userInfo.valuta.toString());
-  packageInfo["Text-2OaVb3yIok"] = toKomma(userInfo.fragtPris.toString() + " " + userInfo.valuta.toString());
+  packageInfo["Text-3fGwFJumdT"] = userInfo.fragtPris.toString() + " " + userInfo.valuta.toString();
+  packageInfo["Text-2OaVb3yIok"] = userInfo.fragtPris.toString() + " " + userInfo.valuta.toString();
 
   // Vekselkurs
-  packageInfo["Text-vcYrmOBi0r"] = toKomma(vekselKurs.toString().substring(0, 7));
-  packageInfo["Text-Ig2RP-DMyu"] = toKomma(vekselKurs.toString().substring(0, 7));
+  packageInfo["Text-vcYrmOBi0r"] = vekselKurs.toString().substring(0, 7);
+  packageInfo["Text-Ig2RP-DMyu"] = vekselKurs.toString().substring(0, 7);
 
   // Varebeskrivelse
  /* const vareBeskrivelse = userInfo.vareBeskrivelse.split(", ");
@@ -73,8 +64,8 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-MZHN36Cq6o"] = userInfo.vareKode;
 
   // Vægt
-  packageInfo["Text-Z-0qnHPoNw"] = toKomma(userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924);
-  packageInfo["Text-bNe-IGw-2l"] = toKomma(userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924);
+  packageInfo["Text-Z-0qnHPoNw"] = userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924;
+  packageInfo["Text-bNe-IGw-2l"] = userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924;
 
   // Procedure koder
   packageInfo["Text-VCTP6H0oqb"] = "4000";
@@ -92,11 +83,11 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-DELFVaUWwe"] = procedureKode2;
 
   // Statistisk værdi og varepris
-  packageInfo["Text-y37_GgETGg"] = toKomma(Math.round(((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs)).toString() + " DKK");
-  packageInfo["Text-I7K5ODHj6N"] = toKomma(Math.round(((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs)).toString() + " DKK");
+  packageInfo["Text-y37_GgETGg"] = Math.round(((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs)).toString() + " DKK";
+  packageInfo["Text-I7K5ODHj6N"] = Math.round(((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs)).toString() + " DKK";
 
-  packageInfo["Text-LETnSee-lw"] = toKomma((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
-  packageInfo["Text-SmAH_sbVkX"] = toKomma((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
+  packageInfo["Text-LETnSee-lw"] = (toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta;
+  packageInfo["Text-SmAH_sbVkX"] = (toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta;
 
   // Navn til underskrift
   packageInfo["Text-Nk4H6gS4bF"] = userInfo.modtagerNavn;
@@ -106,8 +97,8 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-Qu44ql-9Yf"] = userInfo.valuta;
   packageInfo["Text-BdBAFlOpad"] = userInfo.valuta;
 
-  packageInfo["Text-8W0o1rIqF-"] = toKomma(userInfo.pakkePris.toString());
-  packageInfo["Text-zSF-wJqykx"] = toKomma(userInfo.pakkePris.toString());
+  packageInfo["Text-LETnSee-lw"] = userInfo.pakkePris.toString();
+  packageInfo["Text-SmAH_sbVkX"] = userInfo.pakkePris.toString();
   
   // lande
   const afsenderLand = userInfo.afsenderLand.split("__")[1]; // afsenderLand er i formatet Kode__Navn
@@ -121,5 +112,5 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-RrwGZzfWmv"] = "Danmark";
   packageInfo["Text-E2Pi5dt9Lo"] = "Danmark";
 
-  return [packageInfo, null];
+  return packageInfo;
 }

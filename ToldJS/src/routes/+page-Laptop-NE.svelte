@@ -11,26 +11,10 @@
 
 	let isLoadingTracking: boolean = false;
 	let isLoadingPdf: boolean = false;
-	let error: string | undefined = "Test";
+	let error: string | undefined = undefined;
 	let trackingNumber: string;
 	let apiResult: IApiResult | undefined = undefined;
 	let finalPdf: { url: string; size: string } | undefined = undefined;
-	let downloadBtn: HTMLAnchorElement | undefined = undefined;
-
-	let vareBeskrivelseData = [
-  {
-    "Name" : "Maria",
-    "Favorite Subject" : "Math",
-    "Age" : 14
-  },
-  {
-    "Name" : "Jose",
-    "Favorite Subject" : "Science",
-    "Age" : 13
-  },
-];
-
-	let beskrivelseHtml = '<div class="m-2 max-w-md"><inputbind:value={modtager_adresse}type="text"placeholder="Modtager adresse"class="input input-bordered {modtager_adresse ? "input-success" : ""} w-full max-w-xs"/></div>'
 
 	let modtager_navn = '';
 	let modtager_adresse = '';
@@ -40,7 +24,6 @@
 	let varekode = '';
 	let antal_pakker = '';
 	let antal_varer = '';
-	let vareBeskrivelse = '';
 	let valuta = '';
 	let pakke_pris = '';
 	let transport_pris = '';
@@ -112,7 +95,7 @@
 		isLoadingPdf = true;
 		finalPdf = undefined;
 
-		const [packageInfo, errors] = await createPackageInfo({
+		const packageInfo = await createPackageInfo({
 			trackingNumber, // same key / value
 			modtagerNavn: modtager_navn,
 			modtagerAdresse: modtager_adresse,
@@ -129,16 +112,9 @@
 			vaegtEnhed: unit,
 			vaegt // same key / value
 		});
-		// @ts-ignore
-		if (errors) {
-			error = errors.message;
-			isLoadingPdf = false;
-			return;
-		}
 
 		const data = await fetch('Enhedsdokument_6_7.pdf').then((res) => res.arrayBuffer());
 
-		// @ts-ignore
 		const doc = await window.PDFLib.PDFDocument.load(data);
 		const form = doc.getForm();
 
@@ -154,7 +130,6 @@
 			url: window.URL.createObjectURL(blob),
 			size: formatBytes(blob.size)
 		};
-		downloadBtn?.scroll({ top: downloadBtn.scrollHeight, behavior: 'smooth' });
 		isLoadingPdf = false;
 	}
 </script>
@@ -164,13 +139,12 @@
 </svelte:head>
 
 <main>
-	<div class="flex flex-col min-w-330 items-center mb-10">
+	<!-- <button on:click={do_stuff}>Click me (if you dare) ((to be disappointed))</button> -->
+	<div class="flex flex-col min-w-330 items-center">
 		{#if error}
 			<div class="alert alert-error shadow-lg">
 				<div>
-					<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-					<span>{error}</span>
-					<button on:click={() => {error = undefined}}><svg
+					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="stroke-current flex-shrink-0 h-6 w-6"
 						fill="none"
@@ -181,7 +155,8 @@
 							stroke-width="2"
 							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
 						/></svg
-					></button>
+					>
+					<span>{error}</span>
 				</div>
 			</div>
 		{/if}
@@ -295,30 +270,6 @@
 					: ''} w-full max-w-xs"
 			/>
 		</div>
-		<div class="m-2 flex flex-row">
-			<div class="overflow-x-auto flex-col">
-				<table class="table w-full">
-					<!-- head -->
-					<thead>
-						<tr class="flex flex-row">
-							<th />
-							<th>Vare beskrivelse</th>
-							<button class="m-2 justify-end"><i class="text-xl text-primary fa-solid fa-circle-plus"></i></button>
-						</tr>
-					</thead>
-					<tbody>
-						{#each Object.values(vareBeskrivelseData) as row}
-							<tr>
-								{#each Object.values(row) as cell}
-									<td>{@html beskrivelseHtml}</td>
-								{/each}
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-			
-		</div>
 		<div class="m-2 max-w-md">
 			<input
 				bind:value={pakke_pris}
@@ -385,9 +336,9 @@
 			</label>
 		</div>
 		<div class="form-contro max-w-md">
-			<label class="label cursor-pointer flex-row items-center">
-				<span class="label-text mb-1">Gave: </span>
-				<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary m-1" />
+			<label class="label cursor-pointer">
+				<span class="label-text">Gave: </span>
+				<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary" />
 			</label>
 		</div>
 		<button
@@ -397,17 +348,16 @@
 		>
 		{#if finalPdf}
 			<a
-				bind:this={downloadBtn}
 				class="mt-4 face-button border-2 text-black border-primary"
 				href={finalPdf.url}
 				download="Enhedsdokument.pdf"
 			>
 				<div class="face-primary bg-primary">
-					<span class="fa-solid fa-cloud" />
+					<span class="icon fa fa-cloud" />
 					Download PDF
 				</div>
 				<div class="face-secondary text-primary">
-					<span class="fa-solid fa-hdd-o" />
+					<span class="icon fa fa-hdd-o" />
 					Size: {finalPdf.size}
 				</div>
 			</a>
