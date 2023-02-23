@@ -19,19 +19,11 @@
 
 	let vareBeskrivelseData = [
 		{
-			Name: 'Maria',
-			'Favorite Subject': 'Math',
-			Age: 14
-		},
-		{
-			Name: 'Jose',
-			'Favorite Subject': 'Science',
-			Age: 13
+			antal: 1,
+			beskrivelse: '',
+			pris: ''
 		}
 	];
-
-	let beskrivelseHtml =
-		'<div class="m-2 max-w-md"><inputbind:value={modtager_adresse}type="text"placeholder="Modtager adresse"class="input input-bordered {modtager_adresse ? "input-success" : ""} w-full max-w-xs"/></div>';
 
 	let modtager_navn = '';
 	let modtager_adresse = '';
@@ -41,7 +33,6 @@
 	let varekode = '';
 	let antal_pakker = '';
 	let antal_varer = '';
-	let vareBeskrivelse = '';
 	let valuta = '';
 	let pakke_pris = '';
 	let transport_pris = '';
@@ -128,7 +119,8 @@
 			fragtPris: transport_pris,
 			gave, // same key / value
 			vaegtEnhed: unit,
-			vaegt // same key / value
+			vaegt, // same key / value
+			varer: vareBeskrivelseData
 		});
 		// @ts-ignore
 		if (errors) {
@@ -312,10 +304,9 @@
 					: ''} w-full max-w-xs"
 			/>
 		</div>
-		<div class="m-2 overflow-x-auto">
+		<div class="prose m-2 overflow-x-auto">
 			<h2>Varer</h2>
 			<table class="table table-compact w-full">
-				<!-- head -->
 				<thead>
 					<tr>
 						<th>Antal</th>
@@ -324,12 +315,61 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1x</td>
-						<td>Et eller andet</td>
-						<td>100 DKK</td>
-					</tr>
+					{#each [...Array(Object.keys(vareBeskrivelseData).length).keys()] as index}
+						<tr>
+							<td
+								><input
+									bind:value={vareBeskrivelseData[index]['antal']}
+									type="number"
+									class="input input-bordered w-24"
+								/></td
+							>
+							<td
+								><input
+									bind:value={vareBeskrivelseData[index]['beskrivelse']}
+									type="text"
+									class="input input-bordered"
+								/></td
+							>
+							<td
+								><input
+									bind:value={vareBeskrivelseData[index]['pris']}
+									type="text"
+									class="input input-bordered w-24"
+								/>
+								{#if Object.keys(vareBeskrivelseData).length > 1}
+									<button
+										on:click={() => {
+											vareBeskrivelseData.splice(index, 1);
+											vareBeskrivelseData = vareBeskrivelseData;
+										}}
+										on:keypress={() => {}}
+										class="ml-4 btn cursor-pointer"><i class="fa-solid fa-close" /></button
+									>
+								{/if}
+							</td>
+						</tr>
+					{/each}
 				</tbody>
+				<tfoot>
+					<tr>
+						<td />
+						<td>
+							<button
+								on:click={() => {
+									vareBeskrivelseData.push({ antal: 1, beskrivelse: '', pris: '' });
+									vareBeskrivelseData = vareBeskrivelseData;
+								}}
+								on:keypress={() => {}}
+								class="btn gap-2"
+							>
+								<i class="text-xl text-primary fa-solid fa-circle-plus" />
+								Tilføj vare
+							</button>
+						</td>
+						<td />
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 		<div class="m-2 max-w-md">

@@ -12,6 +12,4 @@
 	<div class="navbar-end" />
 </div>
 
-<div class="prose">
-	<slot />
-</div>
+<slot />
