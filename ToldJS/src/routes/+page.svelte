@@ -312,30 +312,25 @@
 					: ''} w-full max-w-xs"
 			/>
 		</div>
-		<div class="m-2 flex flex-row">
-			<div class="overflow-x-auto flex-col">
-				<table class="table w-full">
-					<!-- head -->
-					<thead>
-						<tr class="flex flex-row">
-							<th />
-							<th>Vare beskrivelse</th>
-							<button class="m-2 justify-end"
-								><i class="text-xl text-primary fa-solid fa-circle-plus" /></button
-							>
-						</tr>
-					</thead>
-					<tbody>
-						{#each Object.values(vareBeskrivelseData) as row}
-							<tr>
-								{#each Object.values(row) as cell}
-									<td>{@html beskrivelseHtml}</td>
-								{/each}
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
+		<div class="m-2 overflow-x-auto">
+			<h2>Varer</h2>
+			<table class="table table-compact w-full">
+				<!-- head -->
+				<thead>
+					<tr>
+						<th>Antal</th>
+						<th>Vare beskrivelse</th>
+						<th>Vare pris</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1x</td>
+						<td>Et eller andet</td>
+						<td>100 DKK</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="m-2 max-w-md">
 			<input
@@ -442,9 +437,6 @@
 		text-align: center;
 		text-decoration: none;
 		overflow: hidden;
-	}
-	.face-button .icon {
-		margin-right: 5px;
 	}
 	.face-button .face-primary,
 	.face-button .face-secondary {
