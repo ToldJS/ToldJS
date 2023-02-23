@@ -19,7 +19,7 @@ export async function createPackageInfo(userInfo) {
   let packageInfo = {};
   let procedureKode2;
   let [vekselKurs, errors] = await getCurrencyRate(userInfo.valuta);
-  // @ts-ignore
+
   if (errors) return [null, errors];
 
   // Afsender
@@ -57,16 +57,16 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-Ig2RP-DMyu"] = toKomma(vekselKurs.toString().substring(0, 7));
 
   // Varebeskrivelse
- /* const vareBeskrivelse = userInfo.vareBeskrivelse.split(", ");
-  const space = " ";
-  packageInfo[14] = varebeskrivelse[0] + "\n";
-  packageInfo[15] = "1";
-  if (vareBeskrivelse[1]){vareBeskrivelse + "${((space*varebeskrivelse[1].length)-1)}" + "2";}
-  if (vareBeskrivelse[2]){vareBeskrivelse + "${((space*varebeskrivelse[2].length)-1)}" + "3";}
-  packageInfo[42] = varebeskrivelse[0];
-  packageInfo[43] = "1";
-  if (vareBeskrivelse[1]){vareBeskrivelse + "${((space*varebeskrivelse[1].length)-1)}" + "2";}
-  if (vareBeskrivelse[2]){vareBeskrivelse + "${((space*varebeskrivelse[2].length)-1)}" + "3";}*/
+  /* const vareBeskrivelse = userInfo.vareBeskrivelse.split(", ");
+   const space = " ";
+   packageInfo[14] = varebeskrivelse[0] + "\n";
+   packageInfo[15] = "1";
+   if (vareBeskrivelse[1]){vareBeskrivelse + "${((space*varebeskrivelse[1].length)-1)}" + "2";}
+   if (vareBeskrivelse[2]){vareBeskrivelse + "${((space*varebeskrivelse[2].length)-1)}" + "3";}
+   packageInfo[42] = varebeskrivelse[0];
+   packageInfo[43] = "1";
+   if (vareBeskrivelse[1]){vareBeskrivelse + "${((space*varebeskrivelse[1].length)-1)}" + "2";}
+   if (vareBeskrivelse[2]){vareBeskrivelse + "${((space*varebeskrivelse[2].length)-1)}" + "3";}*/
 
   // Varekode
   packageInfo["Text-lIGpxzVG9K"] = userInfo.vareKode;
@@ -80,23 +80,23 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-VCTP6H0oqb"] = "4000";
   packageInfo["Text-rmaLuaF7fc"] = "4000";
 
-  if (!userInfo.gave && (toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs > 1150){
+  if (!userInfo.gave && (toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs > 1150) {
     procedureKode2 = "C07";
-  } else if (!userInfo.gave){
+  } else if (!userInfo.gave) {
     procedureKode2 = "";
   } else {
     procedureKode2 = "C08";
   }
-  
+
   packageInfo["Text-ZMQQaEnH75"] = procedureKode2;
   packageInfo["Text-DELFVaUWwe"] = procedureKode2;
 
   // Statistisk værdi og varepris
-  packageInfo["Text-y37_GgETGg"] = toKomma(Math.round(((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs)).toString() + " DKK");
-  packageInfo["Text-I7K5ODHj6N"] = toKomma(Math.round(((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs)).toString() + " DKK");
+  packageInfo["Text-y37_GgETGg"] = toKomma(Math.round(((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs)).toString() + " DKK");
+  packageInfo["Text-I7K5ODHj6N"] = toKomma(Math.round(((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs)).toString() + " DKK");
 
-  packageInfo["Text-LETnSee-lw"] = toKomma((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
-  packageInfo["Text-SmAH_sbVkX"] = toKomma((toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
+  packageInfo["Text-LETnSee-lw"] = toKomma((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
+  packageInfo["Text-SmAH_sbVkX"] = toKomma((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
 
   // Navn til underskrift
   packageInfo["Text-Nk4H6gS4bF"] = userInfo.modtagerNavn;
@@ -108,13 +108,13 @@ export async function createPackageInfo(userInfo) {
 
   packageInfo["Text-8W0o1rIqF-"] = toKomma(userInfo.pakkePris.toString());
   packageInfo["Text-zSF-wJqykx"] = toKomma(userInfo.pakkePris.toString());
-  
+
   // lande
   const afsenderLand = userInfo.afsenderLand.split("__")[1]; // afsenderLand er i formatet Kode__Navn
   const afsenderLandKode = userInfo.afsenderLand.split("__")[0];
   packageInfo["Text-Cplh5EoNhS"] = afsenderLand;
   packageInfo["Text-Hhm7UHiU_i"] = afsenderLand;
-  
+
   packageInfo["Text-iSgQu01Q22"] = afsenderLandKode;
   packageInfo["Text-JpYnmqUvjD"] = afsenderLandKode;
 

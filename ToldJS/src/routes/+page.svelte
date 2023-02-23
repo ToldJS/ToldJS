@@ -11,26 +11,27 @@
 
 	let isLoadingTracking: boolean = false;
 	let isLoadingPdf: boolean = false;
-	let error: string | undefined = "Test";
+	let error: string | undefined = 'Test';
 	let trackingNumber: string;
 	let apiResult: IApiResult | undefined = undefined;
 	let finalPdf: { url: string; size: string } | undefined = undefined;
 	let downloadBtn: HTMLAnchorElement | undefined = undefined;
 
 	let vareBeskrivelseData = [
-  {
-    "Name" : "Maria",
-    "Favorite Subject" : "Math",
-    "Age" : 14
-  },
-  {
-    "Name" : "Jose",
-    "Favorite Subject" : "Science",
-    "Age" : 13
-  },
-];
+		{
+			Name: 'Maria',
+			'Favorite Subject': 'Math',
+			Age: 14
+		},
+		{
+			Name: 'Jose',
+			'Favorite Subject': 'Science',
+			Age: 13
+		}
+	];
 
-	let beskrivelseHtml = '<div class="m-2 max-w-md"><inputbind:value={modtager_adresse}type="text"placeholder="Modtager adresse"class="input input-bordered {modtager_adresse ? "input-success" : ""} w-full max-w-xs"/></div>'
+	let beskrivelseHtml =
+		'<div class="m-2 max-w-md"><inputbind:value={modtager_adresse}type="text"placeholder="Modtager adresse"class="input input-bordered {modtager_adresse ? "input-success" : ""} w-full max-w-xs"/></div>';
 
 	let modtager_navn = '';
 	let modtager_adresse = '';
@@ -168,9 +169,7 @@
 		{#if error}
 			<div class="alert alert-error shadow-lg">
 				<div>
-					<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-					<span>{error}</span>
-					<button on:click={() => {error = undefined}}><svg
+					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="stroke-current flex-shrink-0 h-6 w-6"
 						fill="none"
@@ -179,9 +178,27 @@
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							stroke-width="2"
-							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+							d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
 						/></svg
-					></button>
+					>
+					<span>{error}</span>
+					<button
+						on:click={() => {
+							error = undefined;
+						}}
+						><svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="stroke-current flex-shrink-0 h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+							/></svg
+						></button
+					>
 				</div>
 			</div>
 		{/if}
@@ -303,7 +320,9 @@
 						<tr class="flex flex-row">
 							<th />
 							<th>Vare beskrivelse</th>
-							<button class="m-2 justify-end"><i class="text-xl text-primary fa-solid fa-circle-plus"></i></button>
+							<button class="m-2 justify-end"
+								><i class="text-xl text-primary fa-solid fa-circle-plus" /></button
+							>
 						</tr>
 					</thead>
 					<tbody>
@@ -317,7 +336,6 @@
 					</tbody>
 				</table>
 			</div>
-			
 		</div>
 		<div class="m-2 max-w-md">
 			<input
