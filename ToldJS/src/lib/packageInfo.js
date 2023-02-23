@@ -18,6 +18,7 @@ const toKomma = (str) => str.replace(".", ",");
 export async function createPackageInfo(userInfo) {
   let packageInfo = {};
   let procedureKode2;
+  let fakturaPris = 0;
   let [vekselKurs, errors] = await getCurrencyRate(userInfo.valuta);
 
   if (errors) return [null, errors];
@@ -41,8 +42,8 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-ie8YPD_3Cp"] = "A";
 
   // Vareposter
-  packageInfo["Text-hiwAnkNgDZ"] = userInfo.varerIAlt.toString();
-  packageInfo["Text-krZIKZ8C1L"] = userInfo.varerIAlt.toString();
+  packageInfo["Text-hiwAnkNgDZ"] = userInfo.varer.length.toString();
+  packageInfo["Text-krZIKZ8C1L"] = userInfo.varer.length.toString();
 
   // Kolli i alt
   packageInfo["Text-rbiHV68ups"] = userInfo.pakkerIAlt.toString();
@@ -56,17 +57,12 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-vcYrmOBi0r"] = toKomma(vekselKurs.toString().substring(0, 7));
   packageInfo["Text-Ig2RP-DMyu"] = toKomma(vekselKurs.toString().substring(0, 7));
 
-  // Varebeskrivelse
-  /* const vareBeskrivelse = userInfo.vareBeskrivelse.split(", ");
-   const space = " ";
-   packageInfo[14] = varebeskrivelse[0] + "\n";
-   packageInfo[15] = "1";
-   if (vareBeskrivelse[1]){vareBeskrivelse + "${((space*varebeskrivelse[1].length)-1)}" + "2";}
-   if (vareBeskrivelse[2]){vareBeskrivelse + "${((space*varebeskrivelse[2].length)-1)}" + "3";}
-   packageInfo[42] = varebeskrivelse[0];
-   packageInfo[43] = "1";
-   if (vareBeskrivelse[1]){vareBeskrivelse + "${((space*varebeskrivelse[1].length)-1)}" + "2";}
-   if (vareBeskrivelse[2]){vareBeskrivelse + "${((space*varebeskrivelse[2].length)-1)}" + "3";}*/
+  // Varebeskrivelse og vareposter
+  packageInfo["Paragraph-GrfeejCUP0"] = userInfo.varer[0].antal.toString() + "x " + userInfo.varer[0].beskrivelse;
+  packageInfo["Paragraph-SiTU2MooOi"] = userInfo.varer[0].antal.toString() + "x " + userInfo.varer[0].beskrivelse;
+
+  packageInfo["Text-PiYzs293Y0"] = "1";
+  packageInfo["Text-Rw3KyxekGY"] = "1";
 
   // Varekode
   packageInfo["Text-lIGpxzVG9K"] = userInfo.vareKode;
@@ -102,14 +98,16 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-Nk4H6gS4bF"] = userInfo.modtagerNavn;
   packageInfo["Text--uoJu5kXaW"] = userInfo.modtagerNavn;
 
-  // Beløb og møntsort
+  // Møntsort og beløb
   packageInfo["Text-Qu44ql-9Yf"] = userInfo.valuta;
   packageInfo["Text-BdBAFlOpad"] = userInfo.valuta;
 
-  packageInfo["Text-8W0o1rIqF-"] = toKomma(userInfo.pakkePris.toString());
-  packageInfo["Text-zSF-wJqykx"] = toKomma(userInfo.pakkePris.toString());
+  fakturaPris = fakturaPris + toNum(userInfo.varer[0].pris);
 
-  // lande
+  packageInfo["Text-8W0o1rIqF-"] = toKomma(fakturaPris.toString());
+  packageInfo["Text-zSF-wJqykx"] = toKomma(fakturaPris.toString());
+
+  // Lande
   const afsenderLand = userInfo.afsenderLand.split("__")[1]; // afsenderLand er i formatet Kode__Navn
   const afsenderLandKode = userInfo.afsenderLand.split("__")[0];
   packageInfo["Text-Cplh5EoNhS"] = afsenderLand;
