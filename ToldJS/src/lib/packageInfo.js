@@ -73,17 +73,17 @@ export async function createPackageInfo(userInfo) {
   packageInfo["Text-MZHN36Cq6o"] = userInfo.vareKode;
 
   // Vægt
-  packageInfo["Text-Z-0qnHPoNw"] = toKomma(userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924);
-  packageInfo["Text-bNe-IGw-2l"] = toKomma(userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924);
+  packageInfo["Text-Z-0qnHPoNw"] = toKomma((userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924).toString());
+  packageInfo["Text-bNe-IGw-2l"] = toKomma((userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924).toString());
 
   // Procedure koder
   packageInfo["Text-VCTP6H0oqb"] = "4000";
   packageInfo["Text-rmaLuaF7fc"] = "4000";
 
-  if (!userInfo.gave && (toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs > 1150) {
-    procedureKode2 = "C07";
-  } else if (!userInfo.gave) {
+  if (!userInfo.gave && (toNum(userInfo.fragtPris)+toNum(userInfo.pakkePris))*vekselKurs > 1150){
     procedureKode2 = "";
+  } else if (!userInfo.gave){
+    procedureKode2 = "C07";
   } else {
     procedureKode2 = "C08";
   }
