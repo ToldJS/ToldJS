@@ -12,4 +12,6 @@
 	<div class="navbar-end" />
 </div>
 
-<slot />
+<div class="container mx-auto prose">
+	<slot />
+</div>

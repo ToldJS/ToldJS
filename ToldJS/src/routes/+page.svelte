@@ -11,11 +11,10 @@
 
 	let isLoadingTracking: boolean = false;
 	let isLoadingPdf: boolean = false;
-	let error: string | undefined = 'Test';
+	let error: string | undefined = undefined;
 	let trackingNumber: string;
 	let apiResult: IApiResult | undefined = undefined;
-	let finalPdf: { url: string; size: string } | undefined = undefined;
-	let downloadBtn: HTMLAnchorElement | undefined = undefined;
+	let finalPdfs: { item: string; url: string; size: string }[] | undefined = undefined;
 
 	let vareBeskrivelseData = [
 		{
@@ -102,7 +101,7 @@
 
 	async function createPdf() {
 		isLoadingPdf = true;
-		finalPdf = undefined;
+		finalPdfs = undefined;
 
 		const [packageInfo, errors] = await createPackageInfo({
 			trackingNumber, // same key / value
@@ -112,7 +111,6 @@
 			afsenderAdresse: afsender_adresse,
 			afsenderLand: afsender_land,
 			vareKode: varekode,
-			pakkerIAlt: antal_pakker,
 			varerIAlt: antal_varer,
 			valuta, // same key / value
 			pakkePris: pakke_pris,
@@ -129,25 +127,32 @@
 			return;
 		}
 
+		let pdfs = [];
 		const data = await fetch('Enhedsdokument_6_7.pdf').then((res) => res.arrayBuffer());
 
-		// @ts-ignore
-		const doc = await window.PDFLib.PDFDocument.load(data);
-		const form = doc.getForm();
+		for (let i = 0; i < packageInfo.length; i++) {
+			const packageInfoNth = packageInfo[i];
+			const actualInfo = packageInfoNth['packageInfo'];
 
-		let key: keyof typeof packageInfo;
-		for (key in packageInfo) {
-			const value = String(packageInfo[key]);
-			form.getTextField(key).setText(value);
+			// @ts-ignore
+			const doc = await window.PDFLib.PDFDocument.load(data);
+			const form = doc.getForm();
+
+			let key: keyof typeof actualInfo;
+			for (key in actualInfo) {
+				const value = String(actualInfo[key]);
+				form.getTextField(key).setText(value);
+			}
+
+			const pdfBytes = await doc.save();
+			var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+			pdfs.push({
+				item: packageInfoNth['desc'],
+				url: window.URL.createObjectURL(blob),
+				size: formatBytes(blob.size)
+			});
 		}
-
-		const pdfBytes = await doc.save();
-		var blob = new Blob([pdfBytes], { type: 'application/pdf' });
-		finalPdf = {
-			url: window.URL.createObjectURL(blob),
-			size: formatBytes(blob.size)
-		};
-		downloadBtn?.scroll({ top: downloadBtn.scrollHeight, behavior: 'smooth' });
+		finalPdfs = pdfs;
 		isLoadingPdf = false;
 	}
 </script>
@@ -157,7 +162,7 @@
 </svelte:head>
 
 <main>
-	<div class="flex flex-col min-w-330 items-center mb-10">
+	<div class="mb-10">
 		{#if error}
 			<div class="alert alert-error shadow-lg">
 				<div>
@@ -304,7 +309,7 @@
 					: ''} w-full max-w-xs"
 			/>
 		</div>
-		<div class="prose m-2 overflow-x-auto">
+		<div class="m-2 overflow-x-auto">
 			<h2>Varer</h2>
 			<table class="table table-compact w-full">
 				<thead>
@@ -344,7 +349,7 @@
 											vareBeskrivelseData = vareBeskrivelseData;
 										}}
 										on:keypress={() => {}}
-										class="ml-4 btn cursor-pointer"><i class="fa-solid fa-close" /></button
+										class="ml-4 btn cursor-pointer"><i class="bi bi-x-lg" /></button
 									>
 								{/if}
 							</td>
@@ -363,7 +368,7 @@
 								on:keypress={() => {}}
 								class="btn gap-2"
 							>
-								<i class="text-xl text-primary fa-solid fa-circle-plus" />
+								<i class="text-xl text-primary bi bi-plus-circle" />
 								Tilføj vare
 							</button>
 						</td>
@@ -448,22 +453,24 @@
 			disabled={!allFieldsFilled}
 			class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button
 		>
-		{#if finalPdf}
-			<a
-				bind:this={downloadBtn}
-				class="mt-4 face-button border-2 text-black border-primary"
-				href={finalPdf.url}
-				download="Enhedsdokument.pdf"
-			>
-				<div class="face-primary bg-primary">
-					<span class="fa-solid fa-cloud" />
-					Download PDF
-				</div>
-				<div class="face-secondary text-primary">
-					<span class="fa-solid fa-hdd-o" />
-					Size: {finalPdf.size}
-				</div>
-			</a>
+		{#if finalPdfs}
+			{#each finalPdfs as pdf}
+				<h3 class="mb-2">{pdf.item}</h3>
+				<a
+					class="face-button border-2 text-black border-primary"
+					href={pdf.url}
+					download="Enhedsdokument.pdf"
+				>
+					<div class="face-primary bg-primary">
+						<span class="bi bi-cloud-arrow-down" />
+						Download PDF
+					</div>
+					<div class="face-secondary text-primary">
+						<span class="bi bi-download" />
+						Size: {pdf.size}
+					</div>
+				</a>
+			{/each}
 		{/if}
 	</div>
 </main>

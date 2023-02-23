@@ -5,7 +5,6 @@ export interface IUserPackageInfo {
   modtagerNavn: string;
   modtagerAdresse: string;
   varerIAlt: string;
-  pakkerIAlt: string;
   valuta: string;
   vareBeskrivelse?: string;
   vareKode: string;
@@ -25,6 +24,10 @@ export interface IReturnPackageInfo {
   "Paragraph-e5q0m4rY8T": string,
   "Paragraph-XV11j-QheT": string,
   "Paragraph-wGaObkhsZx": string,
+  "Paragraph-GrfeejCUP0": string,
+  "Paragraph-SiTU2MooOi": string,
+  "Text-PiYzs293Y0": string,
+  "Text-Rw3KyxekGY": string,
   "Text-_i-Ij4vfm-": string,
   "Text-2m6m5775oA": string,
   "Text-48HtIw2mbQ": string,
@@ -59,4 +62,9 @@ export interface IReturnPackageInfo {
   "Text-JpYnmqUvjD": string,
   "Text-RrwGZzfWmv": string,
   "Text-E2Pi5dt9Lo": string,
+}
+
+export interface IReturnInfo {
+  desc: string,
+  packageInfo: IReturnPackageInfo,
 }
