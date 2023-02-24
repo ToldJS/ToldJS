@@ -12,7 +12,7 @@ export interface IUserPackageInfo {
   gave: boolean;
   trackingNumber: string;
   fragtPris: string;
-  varer: { antal: number, beskrivelse: string, pris: string }[]
+  varer: { antal: {value: number, valid: boolean, hasValue: boolean}, beskrivelse: {value: string, valid: boolean, hasValue: boolean}, pris: {value: string, valid: boolean, hasValue: boolean} }[]
 }
 
 export interface IReturnPackageInfo {

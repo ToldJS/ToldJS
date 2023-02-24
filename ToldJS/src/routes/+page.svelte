@@ -377,7 +377,7 @@
 						<td>
 							<button
 								on:click={() => {
-									vareBeskrivelseData.push({ antal: 1, beskrivelse: '', pris: '' });
+									vareBeskrivelseData.push({ antal: {value: 1, valid: true, hasValue: true}, beskrivelse: {value: '', valid: false, hasValue: false}, pris: {value: '', valid: false, hasValue: false} });
 									vareBeskrivelseData = vareBeskrivelseData;
 								}}
 								on:keypress={() => {}}

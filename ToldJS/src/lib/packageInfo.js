@@ -19,6 +19,8 @@ export async function createPackageInfo(userInfo) {
   let templatePackageInfo = {};
   let procedureKode2;
   let [vekselKurs, errors] = await getCurrencyRate(userInfo.valuta);
+  // sum all varepriser
+  let pakkePris = userInfo.varer.reduce((sum, vare) => sum + toNum(vare.pris.value), 0);
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -70,7 +72,7 @@ export async function createPackageInfo(userInfo) {
   templatePackageInfo["Text-VCTP6H0oqb"] = "4000";
   templatePackageInfo["Text-rmaLuaF7fc"] = "4000";
 
-  if (!userInfo.gave && (toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs > 1150) {
+  if (!userInfo.gave && (toNum(userInfo.fragtPris) + pakkePris) * vekselKurs > 1150) {
     procedureKode2 = "";
   } else if (!userInfo.gave) {
     procedureKode2 = "C07";
@@ -81,12 +83,9 @@ export async function createPackageInfo(userInfo) {
   templatePackageInfo["Text-ZMQQaEnH75"] = procedureKode2;
   templatePackageInfo["Text-DELFVaUWwe"] = procedureKode2;
 
-  // Statistisk værdi og varepris
-  templatePackageInfo["Text-y37_GgETGg"] = toKomma(Math.round(((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs)).toString() + " DKK");
-  templatePackageInfo["Text-I7K5ODHj6N"] = toKomma(Math.round(((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)) * vekselKurs)).toString() + " DKK");
-
-  templatePackageInfo["Text-LETnSee-lw"] = toKomma((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
-  templatePackageInfo["Text-SmAH_sbVkX"] = toKomma((toNum(userInfo.fragtPris) + toNum(userInfo.pakkePris)).toString() + " " + userInfo.valuta);
+  // Statistisk værdi
+  templatePackageInfo["Text-y37_GgETGg"] = toKomma(Math.round(((toNum(userInfo.fragtPris) + pakkePris) * vekselKurs)).toString() + " DKK");
+  templatePackageInfo["Text-I7K5ODHj6N"] = toKomma(Math.round(((toNum(userInfo.fragtPris) + pakkePris) * vekselKurs)).toString() + " DKK");
 
   // Navn til underskrift
   templatePackageInfo["Text-Nk4H6gS4bF"] = userInfo.modtagerNavn;
@@ -96,7 +95,7 @@ export async function createPackageInfo(userInfo) {
   templatePackageInfo["Text-Qu44ql-9Yf"] = userInfo.valuta;
   templatePackageInfo["Text-BdBAFlOpad"] = userInfo.valuta;
 
-  const fakturaPris = userInfo.varer.map(vare => toNum(vare.pris)).reduce((a, b) => a + b, 0);
+  const fakturaPris = userInfo.varer.map(vare => toNum(vare.pris.value)).reduce((a, b) => a + b, 0);
   templatePackageInfo["Text-8W0o1rIqF-"] = toKomma(fakturaPris.toString());
   templatePackageInfo["Text-zSF-wJqykx"] = toKomma(fakturaPris.toString());
 
@@ -124,14 +123,17 @@ export async function createPackageInfo(userInfo) {
     const tempPackageInfo = structuredClone(templatePackageInfo);
     const vare = userInfo.varer[i];
     // Varebeskrivelse og vareposter
-    tempPackageInfo["Paragraph-GrfeejCUP0"] = vare.antal.toString() + "x " + vare.beskrivelse;
-    tempPackageInfo["Paragraph-SiTU2MooOi"] = vare.antal.toString() + "x " + vare.beskrivelse;
+    tempPackageInfo["Paragraph-GrfeejCUP0"] = vare.antal.value.toString() + "x " + vare.beskrivelse.value;
+    tempPackageInfo["Paragraph-SiTU2MooOi"] = vare.antal.value.toString() + "x " + vare.beskrivelse.value;
+
+    tempPackageInfo["Text-LETnSee-lw"] = toKomma(vare.pris.value + " " + userInfo.valuta);
+    tempPackageInfo["Text-SmAH_sbVkX"] = toKomma(vare.pris.value + " " + userInfo.valuta);
 
     tempPackageInfo["Text-PiYzs293Y0"] = (i + 1).toString();
     tempPackageInfo["Text-Rw3KyxekGY"] = (i + 1).toString();
 
     packageInfo.push({
-      desc: vare.beskrivelse,
+      desc: vare.beskrivelse.value,
       packageInfo: tempPackageInfo
     });
   }
