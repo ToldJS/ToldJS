@@ -18,40 +18,65 @@
 
 	let vareBeskrivelseData = [
 		{
-			antal: 1,
-			beskrivelse: '',
-			pris: ''
+			antal: {
+				value: 1,
+				valid: true,
+				hasValue: true
+			},
+			beskrivelse: {
+				value: '',
+				valid: false,
+				hasValue: false
+			},
+			pris: {
+				value: '',
+				valid: false,
+				hasValue: false
+			},
 		}
 	];
+	
+	$: vareBeskrivelseData.forEach((item) => {
+		item.antal.valid = !isNaN(+item.antal.value) && item.antal.value > 0;
+		item.beskrivelse.valid = item.beskrivelse.value.length > 0; item.beskrivelse.hasValue = item.beskrivelse.value.length > 0;
+		item.pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(item.pris.value); item.pris.hasValue = item.pris.value.length > 0;
+	});
 
-	let modtager_navn = '';
-	let modtager_adresse = '';
-	let afsender_navn = '';
-	let afsender_adresse = '';
-	let afsender_land = '';
-	let varekode = '';
-	let antal_pakker = '';
-	let antal_varer = '';
-	let valuta = '';
-	let pakke_pris = '';
-	let transport_pris = '';
+	let modtager_navn = {value: '', valid: false, hasValue: false};
+	$: {modtager_navn.valid = modtager_navn.value.length > 0; modtager_navn.hasValue = modtager_navn.value.length > 0};
+	let modtager_adresse = {value: '', valid: false, hasValue: false};
+	$: {modtager_adresse.valid = modtager_adresse.value.length > 0; modtager_adresse.hasValue = modtager_adresse.value.length > 0};
+	let afsender_navn = {value: '', valid: false, hasValue: false};
+	$: {afsender_navn.valid = afsender_navn.value.length > 0; afsender_navn.hasValue = afsender_navn.value.length > 0};
+	let afsender_adresse = {value: '', valid: false, hasValue: false};
+	$: {afsender_adresse.valid = afsender_adresse.value.length > 0; afsender_adresse.hasValue = afsender_adresse.value.length > 0};
+	let afsender_land = {value: '', valid: false, hasValue: false};
+	$: {afsender_land.valid = afsender_land.value.length > 0; afsender_land.hasValue = afsender_land.value.length > 0};
+	let varekode = {value: '', valid: false, hasValue: false};
+	$: {varekode.valid = varekode.value.length > 0; varekode.hasValue = varekode.value.length > 0};
+	let antal_pakker = {value: '1', valid: true, hasValue: true};
+	$: {antal_pakker.valid = /^[\d]+$/.test(antal_pakker.value); antal_pakker.hasValue = antal_pakker.value.length > 0};
+	let valuta = {value: '', valid: false, hasValue: false};
+	$: {valuta.valid = valuta.value.length > 0; valuta.hasValue = valuta.value.length > 0};
+	let transport_pris = {value: '', valid: false, hasValue: false};
+	$: {transport_pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(transport_pris.value); transport_pris.hasValue = transport_pris.value.length > 0};
 	let gave: boolean = false;
-	let vaegt = '';
+	let vaegt = {value: '', valid: false, hasValue: false};
+	$: {vaegt.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt.value); vaegt.hasValue = vaegt.value.length > 0};
 	let unit: 'kg' | 'lb' = 'kg';
 
 	$: allFieldsFilled =
-		valuta &&
-		modtager_navn &&
-		modtager_adresse &&
-		afsender_navn &&
-		afsender_adresse &&
-		afsender_land &&
-		varekode &&
-		antal_pakker &&
-		antal_varer &&
-		pakke_pris &&
-		transport_pris &&
-		vaegt;
+		modtager_navn.valid &&
+		modtager_adresse.valid &&
+		afsender_navn.valid &&
+		afsender_adresse.valid &&
+		afsender_land.valid &&
+		varekode.valid &&
+		antal_pakker.valid &&
+		valuta.valid &&
+		transport_pris.valid &&
+		vaegt.valid &&
+		vareBeskrivelseData.every((item) => item.antal.valid && item.beskrivelse.valid && item.pris.valid);
 
 	async function parseTracking() {
 		isLoadingTracking = true;
@@ -78,7 +103,7 @@
 			}
 			apiResult = data as IApiResult;
 			if (apiResult.Sender) {
-				afsender_navn = apiResult.Sender;
+				afsender_navn['value'] = apiResult.Sender;
 			}
 			// if (apiResult.Origin) {
 			// 	afsender_land = apiResult.Origin;
@@ -87,7 +112,7 @@
 			// 	modtager_land = apiResult.Destination;
 			// }
 			if (apiResult.Weight) {
-				vaegt = apiResult.Weight.toString();
+				vaegt['value'] = apiResult.Weight.toString();
 			}
 			if (apiResult.Unit) {
 				unit = apiResult.Unit;
@@ -105,19 +130,17 @@
 
 		const [packageInfo, errors] = await createPackageInfo({
 			trackingNumber, // same key / value
-			modtagerNavn: modtager_navn,
-			modtagerAdresse: modtager_adresse,
-			afsenderNavn: afsender_navn,
-			afsenderAdresse: afsender_adresse,
-			afsenderLand: afsender_land,
-			vareKode: varekode,
-			varerIAlt: antal_varer,
-			valuta, // same key / value
-			pakkePris: pakke_pris,
-			fragtPris: transport_pris,
+			modtagerNavn: modtager_navn.value,
+			modtagerAdresse: modtager_adresse.value,
+			afsenderNavn: afsender_navn.value,
+			afsenderAdresse: afsender_adresse.value,
+			afsenderLand: afsender_land.value,
+			vareKode: varekode.value,
+			valuta: valuta.value, // same key / value
+			fragtPris: transport_pris.value,
 			gave, // same key / value
 			vaegtEnhed: unit,
-			vaegt, // same key / value
+			vaegt: vaegt.value, // same key / value
 			varer: vareBeskrivelseData
 		});
 		// @ts-ignore
@@ -240,72 +263,54 @@
 		</div>
 		<div class="m-2 max-w-md">
 			<input
-				bind:value={modtager_navn}
+				bind:value={modtager_navn['value']}
 				type="text"
 				placeholder="Modtager navn"
-				class="input input-bordered {modtager_navn ? 'input-success' : ''} w-full max-w-xs"
+				class="input input-bordered {modtager_navn.hasValue ? 'input-success' : ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
 			<input
-				bind:value={modtager_adresse}
+				bind:value={modtager_adresse['value']}
 				type="text"
 				placeholder="Modtager adresse"
-				class="input input-bordered {modtager_adresse ? 'input-success' : ''} w-full max-w-xs"
+				class="input input-bordered {modtager_adresse.hasValue ? 'input-success' : ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
 			<input
-				bind:value={afsender_navn}
+				bind:value={afsender_navn['value']}
 				type="text"
 				placeholder="Afsender navn"
-				class="input input-bordered {afsender_navn ? 'input-success' : ''} w-full max-w-xs"
+				class="input input-bordered {afsender_navn.hasValue ? 'input-success' : ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
 			<input
-				bind:value={afsender_adresse}
+				bind:value={afsender_adresse['value']}
 				type="text"
 				placeholder="Afsender adresse"
-				class="input input-bordered {afsender_adresse ? 'input-success' : ''} w-full max-w-xs"
+				class="input input-bordered {afsender_adresse.hasValue ? 'input-success' : ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
 			<select
-				bind:value={afsender_land}
-				class="select select-bordered {afsender_land ? 'select-success' : ''} w-full max-w-xs"
+				bind:value={afsender_land['value']}
+				class="select select-bordered {afsender_land.hasValue ? 'select-success' : ''} w-full max-w-xs"
 			>
 				<option value="" disabled selected>Vælg afsender landet</option>
 				{#each LANDEKODER as country}
 					<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
 				{/each}
 			</select>
-			<!-- <input
-				bind:value={afsender_land}
-				type="text"
-				placeholder="Afsender land"
-				class="input input-bordered {afsender_land ? 'input-success' : ''} w-full max-w-xs"
-			/> -->
 		</div>
 		<div class="m-2 max-w-md">
 			<input
-				bind:value={antal_varer}
-				type="text"
-				placeholder="Antal varer"
-				class="input input-bordered {antal_varer
-					? /^[\d]+$/.test(antal_varer)
-						? 'input-success'
-						: 'input-error'
-					: ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={antal_pakker}
+				bind:value={antal_pakker['value']}
 				type="text"
 				placeholder="Antal pakker"
-				class="input input-bordered {antal_pakker
-					? /^[\d]+$/.test(antal_pakker)
+				class="input input-bordered {antal_pakker.hasValue
+					? antal_pakker.valid
 						? 'input-success'
 						: 'input-error'
 					: ''} w-full max-w-xs"
@@ -326,23 +331,31 @@
 						<tr>
 							<td
 								><input
-									bind:value={vareBeskrivelseData[index]['antal']}
+									bind:value={vareBeskrivelseData[index]['antal']['value']}
 									type="number"
-									class="input input-bordered w-24"
+									class="input input-bordered {vareBeskrivelseData[index]['antal'].hasValue
+									? vareBeskrivelseData[index]['antal'].valid
+										? 'input-success'
+										: 'input-error'
+									: ''} w-24"
 								/></td
 							>
 							<td
 								><input
-									bind:value={vareBeskrivelseData[index]['beskrivelse']}
+									bind:value={vareBeskrivelseData[index]['beskrivelse']['value']}
 									type="text"
-									class="input input-bordered"
+									class="input input-bordered {vareBeskrivelseData[index]['beskrivelse'].hasValue ? 'input-success' : ''}"
 								/></td
 							>
 							<td
 								><input
-									bind:value={vareBeskrivelseData[index]['pris']}
+									bind:value={vareBeskrivelseData[index]['pris']['value']}
 									type="text"
-									class="input input-bordered w-24"
+									class="input input-bordered {vareBeskrivelseData[index]['pris'].hasValue
+										? vareBeskrivelseData[index]['pris'].valid
+											? 'input-success'
+											: 'input-error'
+										: ''} w-24"
 								/>
 								{#if Object.keys(vareBeskrivelseData).length > 1}
 									<button
@@ -381,30 +394,18 @@
 		</div>
 		<div class="m-2 max-w-md">
 			<input
-				bind:value={pakke_pris}
-				type="text"
-				placeholder="Pakke værdi"
-				class="input input-bordered {pakke_pris
-					? /^[+-]?(\d*(\.|,))?\d+$/.test(pakke_pris)
-						? 'input-success'
-						: 'input-error'
-					: ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={transport_pris}
+				bind:value={transport_pris['value']}
 				type="text"
 				placeholder="Transport værdi"
-				class="input input-bordered {transport_pris
-					? /^[+-]?(\d*(\.|,))?\d+$/.test(transport_pris)
+				class="input input-bordered {transport_pris.hasValue
+					? transport_pris.valid
 						? 'input-success'
 						: 'input-error'
 					: ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
-			<select bind:value={valuta} class="select select-bordered {valuta ? 'select-success' : ''}">
+			<select bind:value={valuta['value']} class="select select-bordered {valuta.hasValue ? 'select-success' : ''}">
 				<option value="" disabled selected>Vælg valutaen for transport og pakke prisen</option>
 				{#each CURRENCIES as currency}
 					<option value={currency} selected={currency == 'USD'}>{currency}</option>
@@ -413,28 +414,28 @@
 		</div>
 		<div class="m-2 min-w-md">
 			<input
-				bind:value={varekode}
+				bind:value={varekode['value']}
 				type="text"
 				placeholder="Varekode"
-				class="input input-bordered {varekode ? 'input-success' : ''} w-full max-w-md min-w-330"
+				class="input input-bordered {varekode.hasValue ? 'input-success' : ''} w-full max-w-md min-w-330"
 			/>
 		</div>
 		<div class="form-control m-2 max-w-md">
 			<label class="input-group w-full justify-mid">
 				<input
-					bind:value={vaegt}
+					bind:value={vaegt['value']}
 					type="text"
 					placeholder="Vægt"
-					class="input input-bordered {vaegt
-						? /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
+					class="input input-bordered {vaegt.hasValue
+						? vaegt.valid
 							? 'input-success'
 							: 'input-error'
 						: ''} max-w-xs"
 				/>
 				<select
 					bind:value={unit}
-					class="select select-bordered {vaegt
-						? /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt)
+					class="select select-bordered {vaegt.hasValue
+						? vaegt.valid
 							? 'select-success'
 							: 'select-error'
 						: ''}"

@@ -4,7 +4,6 @@ export interface IUserPackageInfo {
   afsenderLand: string;
   modtagerNavn: string;
   modtagerAdresse: string;
-  varerIAlt: string;
   valuta: string;
   vareBeskrivelse?: string;
   vareKode: string;
@@ -12,7 +11,6 @@ export interface IUserPackageInfo {
   vaegtEnhed: "kg" | "lb";
   gave: boolean;
   trackingNumber: string;
-  pakkePris: string;
   fragtPris: string;
   varer: { antal: number, beskrivelse: string, pris: string }[]
 }
