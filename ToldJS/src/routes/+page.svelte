@@ -259,16 +259,19 @@
 			</div>
 		{/if}
 
-		<div class="flex flex-row items-center">
-			<div class="flex flex-row items-center">
+		<h1 class="text-3xl font-bold">Toldpapirgenerator</h1>
+		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
+			<div class="md:col-span-6">
+				<label for="tracking_number" class="label">Tracking nummer</label>
 				<input
 					on:keydown={(e) => {
 						if (trackingNumber && e.code == 'Enter') parseTracking();
 					}}
 					bind:value={trackingNumber}
 					type="text"
+					id="tracking_number"
 					placeholder="Tracking number"
-					class="input input-bordered {trackingNumber ? 'input-success' : ''} w-full max-w-xs"
+					class="input input-bordered {trackingNumber ? 'input-success' : ''}"
 				/>
 				<button
 					on:click={() => parseTracking()}
@@ -276,256 +279,250 @@
 					class="btn btn-primary {isLoadingTracking ? 'loading' : ''}">Get info</button
 				>
 			</div>
-		</div>
-		<div class="m-2 max-w-md">
-			{#if apiResult}
-				<div class="stats">
-					<div class="stat">
-						<div class="stat-title">Sender</div>
-						<div class="stat-value text-primary">{apiResult.Sender}</div>
-					</div>
-					<div class="stat">
-						<div class="stat-title">Origin</div>
-						<div class="stat-value text-primary">{apiResult.Origin}</div>
-					</div>
-					<div class="stat">
-						<div class="stat-title">Destination</div>
-						<div class="stat-value text-primary">{apiResult.Destination}</div>
-					</div>
-				</div>
-			{/if}
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={modtager_navn['value']}
-				type="text"
-				placeholder="Modtager navn"
-				class="input input-bordered {modtager_navn.hasValue ? 'input-success' : ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={modtager_adresse['value']}
-				type="text"
-				placeholder="Modtager adresse"
-				class="input input-bordered {modtager_adresse.hasValue
-					? 'input-success'
-					: ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={afsender_navn['value']}
-				type="text"
-				placeholder="Afsender navn"
-				class="input input-bordered {afsender_navn.hasValue ? 'input-success' : ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={afsender_adresse['value']}
-				type="text"
-				placeholder="Afsender adresse"
-				class="input input-bordered {afsender_adresse.hasValue
-					? 'input-success'
-					: ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<select
-				bind:value={afsender_land['value']}
-				class="select select-bordered {afsender_land.hasValue
-					? 'select-success'
-					: ''} w-full max-w-xs"
-			>
-				<option value="" disabled selected>Vælg afsender landet</option>
-				{#each LANDEKODER as country}
-					<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
-				{/each}
-			</select>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={antal_pakker['value']}
-				type="text"
-				placeholder="Antal pakker"
-				class="input input-bordered {antal_pakker.hasValue
-					? antal_pakker.valid
+			<div class="md:col-span-3">
+				<label for="modtager_navn" class="label">Modtager navn</label>
+				<input
+					bind:value={modtager_navn['value']}
+					type="text"
+					id="modtager_navn"
+					placeholder="Modtager navn"
+					class="input input-bordered {modtager_navn.hasValue
 						? 'input-success'
-						: 'input-error'
-					: ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 overflow-x-auto">
-			<h2>Varer</h2>
-			<table class="table table-compact w-full">
-				<thead>
-					<tr>
-						<th>Antal</th>
-						<th>Vare beskrivelse</th>
-						<th>Vare pris</th>
-					</tr>
-				</thead>
-				<tbody>
-					{#each [...Array(Object.keys(vareBeskrivelseData).length).keys()] as index}
+						: ''} w-full max-w-xs"
+				/>
+			</div>
+			<div class="md:col-span-3">
+				<label for="modtager_adresse" class="label">Modtager addresse</label>
+				<input
+					bind:value={modtager_adresse['value']}
+					type="text"
+					id="modtager_adresse"
+					placeholder="Modtager adresse"
+					class="input input-bordered {modtager_adresse.hasValue
+						? 'input-success'
+						: ''} w-full max-w-xs"
+				/>
+			</div>
+			<div class="md:col-span-2">
+				<label for="afsender_navn" class="label">Afsender navn</label>
+				<input
+					bind:value={afsender_navn['value']}
+					type="text"
+					id="afsender_navn"
+					placeholder="Afsender navn"
+					class="input input-bordered {afsender_navn.hasValue
+						? 'input-success'
+						: ''} w-full max-w-xs"
+				/>
+			</div>
+			<div class="md:col-span-2">
+				<label for="afsender_adresse" class="label">Afsender adresse</label>
+				<input
+					bind:value={afsender_adresse['value']}
+					type="text"
+					id="afsender_adresse"
+					placeholder="Afsender adresse"
+					class="input input-bordered {afsender_adresse.hasValue
+						? 'input-success'
+						: ''} w-full max-w-xs"
+				/>
+			</div>
+			<div class="md:col-span-2">
+				<label for="afsender_land" class="label">Afsender land</label>
+				<select
+					bind:value={afsender_land['value']}
+					id="afsender_land"
+					class="select select-bordered {afsender_land.hasValue
+						? 'select-success'
+						: ''} w-full max-w-xs"
+				>
+					<option value="" disabled selected>Vælg afsender landet</option>
+					{#each LANDEKODER as country}
+						<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
+					{/each}
+				</select>
+			</div>
+			<div class="md:col-span-6">
+				<h2>Varer</h2>
+				<table class="table table-compact w-full">
+					<thead>
 						<tr>
-							<td
-								><input
-									bind:value={vareBeskrivelseData[index]['antal']['value']}
-									type="number"
-									class="input input-bordered {vareBeskrivelseData[index]['antal'].hasValue
-										? vareBeskrivelseData[index]['antal'].valid
+							<th>Antal</th>
+							<th>Vare beskrivelse</th>
+							<th>Vare pris</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each [...Array(Object.keys(vareBeskrivelseData).length).keys()] as index}
+							<tr>
+								<td
+									><input
+										bind:value={vareBeskrivelseData[index]['antal']['value']}
+										type="number"
+										class="input input-bordered {vareBeskrivelseData[index]['antal'].hasValue
+											? vareBeskrivelseData[index]['antal'].valid
+												? 'input-success'
+												: 'input-error'
+											: ''} w-24"
+									/></td
+								>
+								<td
+									><input
+										bind:value={vareBeskrivelseData[index]['beskrivelse']['value']}
+										type="text"
+										class="input input-bordered {vareBeskrivelseData[index]['beskrivelse'].hasValue
 											? 'input-success'
-											: 'input-error'
-										: ''} w-24"
-								/></td
-							>
-							<td
-								><input
-									bind:value={vareBeskrivelseData[index]['beskrivelse']['value']}
-									type="text"
-									class="input input-bordered {vareBeskrivelseData[index]['beskrivelse'].hasValue
-										? 'input-success'
-										: ''}"
-								/></td
-							>
-							<td
-								><input
-									bind:value={vareBeskrivelseData[index]['pris']['value']}
-									type="text"
-									class="input input-bordered {vareBeskrivelseData[index]['pris'].hasValue
-										? vareBeskrivelseData[index]['pris'].valid
-											? 'input-success'
-											: 'input-error'
-										: ''} w-24"
-								/>
-								{#if Object.keys(vareBeskrivelseData).length > 1}
+											: ''}"
+									/></td
+								>
+								<td
+									><input
+										bind:value={vareBeskrivelseData[index]['pris']['value']}
+										type="text"
+										class="input input-bordered {vareBeskrivelseData[index]['pris'].hasValue
+											? vareBeskrivelseData[index]['pris'].valid
+												? 'input-success'
+												: 'input-error'
+											: ''} w-24"
+									/>
 									<button
 										on:click={() => {
 											vareBeskrivelseData.splice(index, 1);
 											vareBeskrivelseData = vareBeskrivelseData;
 										}}
 										on:keypress={() => {}}
+										disabled={!(Object.keys(vareBeskrivelseData).length > 1)}
 										class="ml-4 btn cursor-pointer"><i class="bi bi-x-lg" /></button
 									>
-								{/if}
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td />
+							<td>
+								<button
+									on:click={() => {
+										vareBeskrivelseData.push({
+											antal: { value: 1, valid: true, hasValue: true },
+											beskrivelse: { value: '', valid: false, hasValue: false },
+											pris: { value: '', valid: false, hasValue: false }
+										});
+										vareBeskrivelseData = vareBeskrivelseData;
+									}}
+									on:keypress={() => {}}
+									class="btn gap-2"
+								>
+									<i class="text-xl text-primary bi bi-plus-circle" />
+									Tilføj vare
+								</button>
 							</td>
+							<td />
 						</tr>
-					{/each}
-				</tbody>
-				<tfoot>
-					<tr>
-						<td />
-						<td>
-							<button
-								on:click={() => {
-									vareBeskrivelseData.push({
-										antal: { value: 1, valid: true, hasValue: true },
-										beskrivelse: { value: '', valid: false, hasValue: false },
-										pris: { value: '', valid: false, hasValue: false }
-									});
-									vareBeskrivelseData = vareBeskrivelseData;
-								}}
-								on:keypress={() => {}}
-								class="btn gap-2"
-							>
-								<i class="text-xl text-primary bi bi-plus-circle" />
-								Tilføj vare
-							</button>
-						</td>
-						<td />
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-		<div class="m-2 max-w-md">
-			<input
-				bind:value={transport_pris['value']}
-				type="text"
-				placeholder="Transport værdi"
-				class="input input-bordered {transport_pris.hasValue
-					? transport_pris.valid
-						? 'input-success'
-						: 'input-error'
-					: ''} w-full max-w-xs"
-			/>
-		</div>
-		<div class="m-2 max-w-md">
-			<select
-				bind:value={valuta['value']}
-				class="select select-bordered {valuta.hasValue ? 'select-success' : ''}"
-			>
-				<option value="" disabled selected>Vælg valutaen for transport og pakke prisen</option>
-				{#each CURRENCIES as currency}
-					<option value={currency} selected={currency == 'USD'}>{currency}</option>
-				{/each}
-			</select>
-		</div>
-		<div class="m-2 min-w-md">
-			<input
-				bind:value={varekode['value']}
-				type="text"
-				placeholder="Varekode"
-				class="input input-bordered {varekode.hasValue
-					? 'input-success'
-					: ''} w-full max-w-md min-w-330"
-			/>
-		</div>
-		<div class="form-control m-2 max-w-md">
-			<label class="input-group w-full justify-mid">
+					</tfoot>
+				</table>
+			</div>
+			<div class="md:col-span-4">
+				<label for="transport_pris" class="label">Transport pris</label>
 				<input
-					bind:value={vaegt['value']}
+					bind:value={transport_pris['value']}
 					type="text"
-					placeholder="Vægt"
-					class="input input-bordered {vaegt.hasValue
-						? vaegt.valid
+					id="transport_pris"
+					placeholder="Transport værdi"
+					class="input input-bordered {transport_pris.hasValue
+						? transport_pris.valid
 							? 'input-success'
 							: 'input-error'
-						: ''} max-w-xs"
+						: ''} w-full max-w-xs"
 				/>
+			</div>
+			<div class="md:col-span-2">
+				<label for="valuta" class="label">Valuta af priserne</label>
 				<select
-					bind:value={unit}
-					class="select select-bordered {vaegt.hasValue
-						? vaegt.valid
-							? 'select-success'
-							: 'select-error'
-						: ''}"
+					bind:value={valuta['value']}
+					id="valuta"
+					class="select select-bordered {valuta.hasValue ? 'select-success' : ''} w-full "
 				>
-					<option value="kg" selected>KG</option>
-					<option value="lb">LB</option>
+					<option value="" disabled selected>Vælg valuta...</option>
+					{#each CURRENCIES as currency}
+						<option value={currency} selected={currency == 'USD'}>{currency}</option>
+					{/each}
 				</select>
-			</label>
-		</div>
-		<div class="form-contro max-w-md">
-			<label class="label cursor-pointer flex-row items-center">
-				<span class="label-text mb-1">Gave: </span>
-				<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary m-1" />
-			</label>
-		</div>
-		<button
-			on:click={createPdf}
-			disabled={!allFieldsFilled}
-			class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button
-		>
-		{#if finalPdfs}
-			{#each finalPdfs as pdf}
-				<h3 class="mb-2">{pdf.item}</h3>
-				<a
-					class="face-button border-2 text-black border-primary"
-					href={pdf.url}
-					download="Enhedsdokument.pdf"
+			</div>
+			<div class="md:col-span-3">
+				<label for="varekode" class="label">Varekode</label>
+				<input
+					bind:value={varekode['value']}
+					type="text"
+					id="varekode"
+					placeholder="Varekode"
+					class="input input-bordered {varekode.hasValue ? 'input-success' : ''} w-full"
+				/>
+			</div>
+			<div class="md:col-span-3">
+				<label for="vaegt" class="label">Vægt</label>
+				<label class="input-group justify-mid">
+					<input
+						bind:value={vaegt['value']}
+						type="text"
+						id="vaegt"
+						placeholder="Vægt"
+						class="input input-bordered {vaegt.hasValue
+							? vaegt.valid
+								? 'input-success'
+								: 'input-error'
+							: ''}"
+					/>
+					<select
+						bind:value={unit}
+						class="select select-bordered {vaegt.hasValue
+							? vaegt.valid
+								? 'select-success'
+								: 'select-error'
+							: ''}"
+					>
+						<option value="kg" selected>KG</option>
+						<option value="lb">LB</option>
+					</select>
+				</label>
+			</div>
+			<div class="md:col-span-3">
+				<label class="label cursor-pointer flex-row items-center">
+					<span class="label-text mb-1">Gave: </span>
+					<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary m-1" />
+				</label>
+			</div>
+			<div class="md:col-span-6">
+				<button
+					on:click={createPdf}
+					disabled={!allFieldsFilled}
+					class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button
 				>
-					<div class="face-primary bg-primary">
-						<span class="bi bi-cloud-arrow-down" />
-						Download PDF
-					</div>
-					<div class="face-secondary text-primary">
-						<span class="bi bi-download" />
-						Size: {pdf.size}
-					</div>
-				</a>
-			{/each}
-		{/if}
+				<h1 class="mt-8 text-3xl font-bold">Enhedsdokumenter</h1>
+				{#if finalPdfs}
+					{#each finalPdfs as pdf}
+						<h3 class="mb-2">{pdf.item}</h3>
+						<a
+							class="face-button border-2 text-black border-primary"
+							href={pdf.url}
+							download="Enhedsdokument.pdf"
+						>
+							<div class="face-primary bg-primary">
+								<span class="bi bi-cloud-arrow-down" />
+								Download PDF
+							</div>
+							<div class="face-secondary text-primary">
+								<span class="bi bi-download" />
+								Size: {pdf.size}
+							</div>
+						</a>
+					{/each}
+				{:else}
+					<p class="text-gray-500">Ingen enhedsdukumenter endnu. Udfyld felterne og tryk "Opret PDF".</p>
+				{/if}
+			</div>
+		</div>
 	</div>
 </main>
 
