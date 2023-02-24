@@ -32,37 +32,69 @@
 				value: '',
 				valid: false,
 				hasValue: false
-			},
+			}
 		}
 	];
-	
+
 	$: vareBeskrivelseData.forEach((item) => {
 		item.antal.valid = !isNaN(+item.antal.value) && item.antal.value > 0;
-		item.beskrivelse.valid = item.beskrivelse.value.length > 0; item.beskrivelse.hasValue = item.beskrivelse.value.length > 0;
-		item.pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(item.pris.value); item.pris.hasValue = item.pris.value.length > 0;
+		item.beskrivelse.valid = item.beskrivelse.value.length > 0;
+		item.beskrivelse.hasValue = item.beskrivelse.value.length > 0;
+		item.pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(item.pris.value);
+		item.pris.hasValue = item.pris.value.length > 0;
 	});
 
-	let modtager_navn = {value: '', valid: false, hasValue: false};
-	$: {modtager_navn.valid = modtager_navn.value.length > 0; modtager_navn.hasValue = modtager_navn.value.length > 0};
-	let modtager_adresse = {value: '', valid: false, hasValue: false};
-	$: {modtager_adresse.valid = modtager_adresse.value.length > 0; modtager_adresse.hasValue = modtager_adresse.value.length > 0};
-	let afsender_navn = {value: '', valid: false, hasValue: false};
-	$: {afsender_navn.valid = afsender_navn.value.length > 0; afsender_navn.hasValue = afsender_navn.value.length > 0};
-	let afsender_adresse = {value: '', valid: false, hasValue: false};
-	$: {afsender_adresse.valid = afsender_adresse.value.length > 0; afsender_adresse.hasValue = afsender_adresse.value.length > 0};
-	let afsender_land = {value: '', valid: false, hasValue: false};
-	$: {afsender_land.valid = afsender_land.value.length > 0; afsender_land.hasValue = afsender_land.value.length > 0};
-	let varekode = {value: '', valid: false, hasValue: false};
-	$: {varekode.valid = varekode.value.length > 0; varekode.hasValue = varekode.value.length > 0};
-	let antal_pakker = {value: '1', valid: true, hasValue: true};
-	$: {antal_pakker.valid = /^[\d]+$/.test(antal_pakker.value); antal_pakker.hasValue = antal_pakker.value.length > 0};
-	let valuta = {value: '', valid: false, hasValue: false};
-	$: {valuta.valid = valuta.value.length > 0; valuta.hasValue = valuta.value.length > 0};
-	let transport_pris = {value: '', valid: false, hasValue: false};
-	$: {transport_pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(transport_pris.value); transport_pris.hasValue = transport_pris.value.length > 0};
+	let modtager_navn = { value: '', valid: false, hasValue: false };
+	$: {
+		modtager_navn.valid = modtager_navn.value.length > 0;
+		modtager_navn.hasValue = modtager_navn.value.length > 0;
+	}
+	let modtager_adresse = { value: '', valid: false, hasValue: false };
+	$: {
+		modtager_adresse.valid = modtager_adresse.value.length > 0;
+		modtager_adresse.hasValue = modtager_adresse.value.length > 0;
+	}
+	let afsender_navn = { value: '', valid: false, hasValue: false };
+	$: {
+		afsender_navn.valid = afsender_navn.value.length > 0;
+		afsender_navn.hasValue = afsender_navn.value.length > 0;
+	}
+	let afsender_adresse = { value: '', valid: false, hasValue: false };
+	$: {
+		afsender_adresse.valid = afsender_adresse.value.length > 0;
+		afsender_adresse.hasValue = afsender_adresse.value.length > 0;
+	}
+	let afsender_land = { value: '', valid: false, hasValue: false };
+	$: {
+		afsender_land.valid = afsender_land.value.length > 0;
+		afsender_land.hasValue = afsender_land.value.length > 0;
+	}
+	let varekode = { value: '', valid: false, hasValue: false };
+	$: {
+		varekode.valid = varekode.value.length > 0;
+		varekode.hasValue = varekode.value.length > 0;
+	}
+	let antal_pakker = { value: '1', valid: true, hasValue: true };
+	$: {
+		antal_pakker.valid = /^[\d]+$/.test(antal_pakker.value);
+		antal_pakker.hasValue = antal_pakker.value.length > 0;
+	}
+	let valuta = { value: '', valid: false, hasValue: false };
+	$: {
+		valuta.valid = valuta.value.length > 0;
+		valuta.hasValue = valuta.value.length > 0;
+	}
+	let transport_pris = { value: '', valid: false, hasValue: false };
+	$: {
+		transport_pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(transport_pris.value);
+		transport_pris.hasValue = transport_pris.value.length > 0;
+	}
 	let gave: boolean = false;
-	let vaegt = {value: '', valid: false, hasValue: false};
-	$: {vaegt.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt.value); vaegt.hasValue = vaegt.value.length > 0};
+	let vaegt = { value: '', valid: false, hasValue: false };
+	$: {
+		vaegt.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(vaegt.value);
+		vaegt.hasValue = vaegt.value.length > 0;
+	}
 	let unit: 'kg' | 'lb' = 'kg';
 
 	$: allFieldsFilled =
@@ -76,7 +108,9 @@
 		valuta.valid &&
 		transport_pris.valid &&
 		vaegt.valid &&
-		vareBeskrivelseData.every((item) => item.antal.valid && item.beskrivelse.valid && item.pris.valid);
+		vareBeskrivelseData.every(
+			(item) => item.antal.valid && item.beskrivelse.valid && item.pris.valid
+		);
 
 	async function parseTracking() {
 		isLoadingTracking = true;
@@ -274,7 +308,9 @@
 				bind:value={modtager_adresse['value']}
 				type="text"
 				placeholder="Modtager adresse"
-				class="input input-bordered {modtager_adresse.hasValue ? 'input-success' : ''} w-full max-w-xs"
+				class="input input-bordered {modtager_adresse.hasValue
+					? 'input-success'
+					: ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
@@ -290,13 +326,17 @@
 				bind:value={afsender_adresse['value']}
 				type="text"
 				placeholder="Afsender adresse"
-				class="input input-bordered {afsender_adresse.hasValue ? 'input-success' : ''} w-full max-w-xs"
+				class="input input-bordered {afsender_adresse.hasValue
+					? 'input-success'
+					: ''} w-full max-w-xs"
 			/>
 		</div>
 		<div class="m-2 max-w-md">
 			<select
 				bind:value={afsender_land['value']}
-				class="select select-bordered {afsender_land.hasValue ? 'select-success' : ''} w-full max-w-xs"
+				class="select select-bordered {afsender_land.hasValue
+					? 'select-success'
+					: ''} w-full max-w-xs"
 			>
 				<option value="" disabled selected>Vælg afsender landet</option>
 				{#each LANDEKODER as country}
@@ -334,17 +374,19 @@
 									bind:value={vareBeskrivelseData[index]['antal']['value']}
 									type="number"
 									class="input input-bordered {vareBeskrivelseData[index]['antal'].hasValue
-									? vareBeskrivelseData[index]['antal'].valid
-										? 'input-success'
-										: 'input-error'
-									: ''} w-24"
+										? vareBeskrivelseData[index]['antal'].valid
+											? 'input-success'
+											: 'input-error'
+										: ''} w-24"
 								/></td
 							>
 							<td
 								><input
 									bind:value={vareBeskrivelseData[index]['beskrivelse']['value']}
 									type="text"
-									class="input input-bordered {vareBeskrivelseData[index]['beskrivelse'].hasValue ? 'input-success' : ''}"
+									class="input input-bordered {vareBeskrivelseData[index]['beskrivelse'].hasValue
+										? 'input-success'
+										: ''}"
 								/></td
 							>
 							<td
@@ -377,7 +419,11 @@
 						<td>
 							<button
 								on:click={() => {
-									vareBeskrivelseData.push({ antal: {value: 1, valid: true, hasValue: true}, beskrivelse: {value: '', valid: false, hasValue: false}, pris: {value: '', valid: false, hasValue: false} });
+									vareBeskrivelseData.push({
+										antal: { value: 1, valid: true, hasValue: true },
+										beskrivelse: { value: '', valid: false, hasValue: false },
+										pris: { value: '', valid: false, hasValue: false }
+									});
 									vareBeskrivelseData = vareBeskrivelseData;
 								}}
 								on:keypress={() => {}}
@@ -405,7 +451,10 @@
 			/>
 		</div>
 		<div class="m-2 max-w-md">
-			<select bind:value={valuta['value']} class="select select-bordered {valuta.hasValue ? 'select-success' : ''}">
+			<select
+				bind:value={valuta['value']}
+				class="select select-bordered {valuta.hasValue ? 'select-success' : ''}"
+			>
 				<option value="" disabled selected>Vælg valutaen for transport og pakke prisen</option>
 				{#each CURRENCIES as currency}
 					<option value={currency} selected={currency == 'USD'}>{currency}</option>
@@ -417,7 +466,9 @@
 				bind:value={varekode['value']}
 				type="text"
 				placeholder="Varekode"
-				class="input input-bordered {varekode.hasValue ? 'input-success' : ''} w-full max-w-md min-w-330"
+				class="input input-bordered {varekode.hasValue
+					? 'input-success'
+					: ''} w-full max-w-md min-w-330"
 			/>
 		</div>
 		<div class="form-control m-2 max-w-md">
