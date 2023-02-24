@@ -164,7 +164,7 @@
 <main>
 	<div class="mb-10">
 		{#if error}
-			<div class="alert alert-error shadow-lg">
+			<div class="mb-8 alert alert-error shadow-lg">
 				<div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -179,6 +179,8 @@
 						/></svg
 					>
 					<span>{error}</span>
+				</div>
+				<div class="flex-none">
 					<button
 						on:click={() => {
 							error = undefined;
