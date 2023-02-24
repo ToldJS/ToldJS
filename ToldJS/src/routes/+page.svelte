@@ -28,6 +28,11 @@
 				valid: false,
 				hasValue: false
 			},
+			varekode: {
+				value: '',
+				valid: false,
+				hasValue: false
+			},
 			pris: {
 				value: '',
 				valid: false,
@@ -40,6 +45,8 @@
 		item.antal.valid = !isNaN(+item.antal.value) && item.antal.value > 0;
 		item.beskrivelse.valid = item.beskrivelse.value.length > 0;
 		item.beskrivelse.hasValue = item.beskrivelse.value.length > 0;
+		item.varekode.valid = item.varekode.value.length > 0;
+		item.varekode.hasValue = item.varekode.value.length > 0;
 		item.pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(item.pris.value);
 		item.pris.hasValue = item.pris.value.length > 0;
 	});
@@ -68,11 +75,6 @@
 	$: {
 		afsender_land.valid = afsender_land.value.length > 0;
 		afsender_land.hasValue = afsender_land.value.length > 0;
-	}
-	let varekode = { value: '', valid: false, hasValue: false };
-	$: {
-		varekode.valid = varekode.value.length > 0;
-		varekode.hasValue = varekode.value.length > 0;
 	}
 	let antal_pakker = { value: '1', valid: true, hasValue: true };
 	$: {
@@ -103,13 +105,12 @@
 		afsender_navn.valid &&
 		afsender_adresse.valid &&
 		afsender_land.valid &&
-		varekode.valid &&
 		antal_pakker.valid &&
 		valuta.valid &&
 		transport_pris.valid &&
 		vaegt.valid &&
 		vareBeskrivelseData.every(
-			(item) => item.antal.valid && item.beskrivelse.valid && item.pris.valid
+			(item) => item.antal.valid && item.beskrivelse.valid && item.varekode.valid && item.pris.valid
 		);
 
 	async function parseTracking() {
@@ -169,7 +170,6 @@
 			afsenderNavn: afsender_navn.value,
 			afsenderAdresse: afsender_adresse.value,
 			afsenderLand: afsender_land.value,
-			vareKode: varekode.value,
 			valuta: valuta.value, // same key / value
 			fragtPris: transport_pris.value,
 			gave, // same key / value
@@ -349,6 +349,7 @@
 						<tr>
 							<th>Antal</th>
 							<th>Vare beskrivelse</th>
+							<th>Vare kode</th>
 							<th>Vare pris</th>
 						</tr>
 					</thead>
@@ -371,6 +372,15 @@
 										bind:value={vareBeskrivelseData[index]['beskrivelse']['value']}
 										type="text"
 										class="input input-bordered {vareBeskrivelseData[index]['beskrivelse'].hasValue
+											? 'input-success'
+											: ''}"
+									/></td
+								>
+								<td
+									><input
+										bind:value={vareBeskrivelseData[index]['varekode']['value']}
+										type="text"
+										class="input input-bordered {vareBeskrivelseData[index]['varekode'].hasValue
 											? 'input-success'
 											: ''}"
 									/></td
@@ -407,6 +417,7 @@
 										vareBeskrivelseData.push({
 											antal: { value: 1, valid: true, hasValue: true },
 											beskrivelse: { value: '', valid: false, hasValue: false },
+											varekode: { value: '', valid: false, hasValue: false },
 											pris: { value: '', valid: false, hasValue: false }
 										});
 										vareBeskrivelseData = vareBeskrivelseData;
@@ -450,17 +461,7 @@
 					{/each}
 				</select>
 			</div>
-			<div class="md:col-span-3">
-				<label for="varekode" class="label">Varekode</label>
-				<input
-					bind:value={varekode['value']}
-					type="text"
-					id="varekode"
-					placeholder="Varekode"
-					class="input input-bordered {varekode.hasValue ? 'input-success' : ''} w-full"
-				/>
-			</div>
-			<div class="md:col-span-3">
+			<div class="md:col-span-6">
 				<label for="vaegt" class="label">Vægt</label>
 				<label class="input-group justify-mid">
 					<input
@@ -472,7 +473,7 @@
 							? vaegt.valid
 								? 'input-success'
 								: 'input-error'
-							: ''}"
+							: ''} w-full"
 					/>
 					<select
 						bind:value={unit}
@@ -519,7 +520,9 @@
 						</a>
 					{/each}
 				{:else}
-					<p class="text-gray-500">Ingen enhedsdukumenter endnu. Udfyld felterne og tryk "Opret PDF".</p>
+					<p class="text-gray-500">
+						Ingen enhedsdukumenter endnu. Udfyld felterne og tryk "Opret PDF".
+					</p>
 				{/if}
 			</div>
 		</div>

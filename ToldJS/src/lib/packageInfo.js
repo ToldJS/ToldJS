@@ -60,10 +60,6 @@ export async function createPackageInfo(userInfo) {
   templatePackageInfo["Text-vcYrmOBi0r"] = toKomma(vekselKurs.toString().substring(0, 7));
   templatePackageInfo["Text-Ig2RP-DMyu"] = toKomma(vekselKurs.toString().substring(0, 7));
 
-  // Varekode
-  templatePackageInfo["Text-lIGpxzVG9K"] = userInfo.vareKode;
-  templatePackageInfo["Text-MZHN36Cq6o"] = userInfo.vareKode;
-
   // Vægt
   templatePackageInfo["Text-Z-0qnHPoNw"] = toKomma((userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924).toString());
   templatePackageInfo["Text-bNe-IGw-2l"] = toKomma((userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924).toString());
@@ -118,6 +114,12 @@ export async function createPackageInfo(userInfo) {
   templatePackageInfo["Text-PiYzs293Y0"] = "";
   templatePackageInfo["Text-Rw3KyxekGY"] = "";
 
+  templatePackageInfo["Text-LETnSee-lw"] = "";
+  templatePackageInfo["Text-SmAH_sbVkX"] = "";
+
+  templatePackageInfo["Text-lIGpxzVG9K"] = "";
+  templatePackageInfo["Text-MZHN36Cq6o"] = "";
+
   let packageInfo = []
   for (let i = 0; i < userInfo.varer.length; i++) {
     const tempPackageInfo = structuredClone(templatePackageInfo);
@@ -128,6 +130,9 @@ export async function createPackageInfo(userInfo) {
 
     tempPackageInfo["Text-LETnSee-lw"] = toKomma(vare.pris.value + " " + userInfo.valuta);
     tempPackageInfo["Text-SmAH_sbVkX"] = toKomma(vare.pris.value + " " + userInfo.valuta);
+
+    tempPackageInfo["Text-lIGpxzVG9K"] = vare.varekode.value;
+    tempPackageInfo["Text-MZHN36Cq6o"] = vare.varekode.value;
 
     tempPackageInfo["Text-PiYzs293Y0"] = (i + 1).toString();
     tempPackageInfo["Text-Rw3KyxekGY"] = (i + 1).toString();

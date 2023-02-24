@@ -5,14 +5,12 @@ export interface IUserPackageInfo {
   modtagerNavn: string;
   modtagerAdresse: string;
   valuta: string;
-  vareBeskrivelse?: string;
-  vareKode: string;
   vaegt: string;
   vaegtEnhed: "kg" | "lb";
   gave: boolean;
   trackingNumber: string;
   fragtPris: string;
-  varer: { antal: {value: number, valid: boolean, hasValue: boolean}, beskrivelse: {value: string, valid: boolean, hasValue: boolean}, pris: {value: string, valid: boolean, hasValue: boolean} }[]
+  varer: { antal: {value: number, valid: boolean, hasValue: boolean}, beskrivelse: {value: string, valid: boolean, hasValue: boolean}, varekode: {value: string, valid: boolean, hasValue: boolean}, pris: {value: string, valid: boolean, hasValue: boolean} }[]
 }
 
 export interface IReturnPackageInfo {
