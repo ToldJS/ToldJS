@@ -488,7 +488,7 @@
 					</select>
 				</label>
 			</div>
-			<div class="md:row-span-3">
+			<div class="md:col-span-1">
 				<label class="label cursor-pointer flex-row items-center">
 					<span class="label-text mb-1">Gave: </span>
 					<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary m-1" />
