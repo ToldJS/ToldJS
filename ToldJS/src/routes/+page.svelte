@@ -219,7 +219,7 @@
 </svelte:head>
 
 <main>
-	<div class="mb-10">
+	<div class="mb-10 ">
 		{#if error}
 			<div class="mb-8 alert alert-error shadow-lg">
 				<div>
@@ -259,10 +259,10 @@
 			</div>
 		{/if}
 
-		<h1 class="text-3xl font-bold">Toldpapirgenerator</h1>
+		<h1 class="text-3xl font-bold">Toldpapirsværktøj</h1>
 		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
-			<div class="md:col-span-6">
-				<label for="tracking_number" class="label">Tracking nummer</label>
+			<div class="md:col-span-6">  
+				<label for="tracking_number" class="label">Tracking nummer</label>                                            
 				<input
 					on:keydown={(e) => {
 						if (trackingNumber && e.code == 'Enter') parseTracking();
@@ -270,13 +270,13 @@
 					bind:value={trackingNumber}
 					type="text"
 					id="tracking_number"
-					placeholder="Tracking number"
+					placeholder="Tracking nummer"
 					class="input input-bordered {trackingNumber ? 'input-success' : ''}"
 				/>
 				<button
 					on:click={() => parseTracking()}
 					disabled={!trackingNumber}
-					class="btn btn-primary {isLoadingTracking ? 'loading' : ''}">Get info</button
+					class="btn btn-primary {isLoadingTracking ? 'loading' : ''}">Hent Info</button
 				>
 			</div>
 			<div class="md:col-span-3">
@@ -349,7 +349,7 @@
 						<tr>
 							<th>Antal</th>
 							<th>Vare beskrivelse</th>
-							<th>Vare kode</th>
+							<th>Varekode</th>
 							<th>Vare pris</th>
 						</tr>
 					</thead>
@@ -435,12 +435,12 @@
 				</table>
 			</div>
 			<div class="md:col-span-4">
-				<label for="transport_pris" class="label">Transport pris</label>
+				<label for="transport_pris" class="label">Fragt pris</label>
 				<input
 					bind:value={transport_pris['value']}
 					type="text"
 					id="transport_pris"
-					placeholder="Transport værdi"
+					placeholder="Fragt pris"
 					class="input input-bordered {transport_pris.hasValue
 						? transport_pris.valid
 							? 'input-success'
@@ -462,13 +462,13 @@
 				</select>
 			</div>
 			<div class="md:col-span-6">
-				<label for="vaegt" class="label">Vægt</label>
+				<label for="vaegt" class="label">Vægt i alt</label>
 				<label class="input-group justify-mid">
 					<input
 						bind:value={vaegt['value']}
 						type="text"
 						id="vaegt"
-						placeholder="Vægt"
+						placeholder="Vægt i alt"
 						class="input input-bordered {vaegt.hasValue
 							? vaegt.valid
 								? 'input-success'
@@ -488,7 +488,7 @@
 					</select>
 				</label>
 			</div>
-			<div class="md:col-span-3">
+			<div class="md:row-span-3">
 				<label class="label cursor-pointer flex-row items-center">
 					<span class="label-text mb-1">Gave: </span>
 					<input bind:checked={gave} type="checkbox" class="checkbox checkbox-primary m-1" />
@@ -521,7 +521,7 @@
 					{/each}
 				{:else}
 					<p class="text-gray-500">
-						Ingen enhedsdukumenter endnu. Udfyld felterne og tryk "Opret PDF".
+						Ingen enhedsdokumenter her. Udfyld felterne, og tryk på "Opret PDF".
 					</p>
 				{/if}
 			</div>

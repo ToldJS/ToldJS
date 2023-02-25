@@ -61,8 +61,13 @@ export async function createPackageInfo(userInfo) {
   templatePackageInfo["Text-Ig2RP-DMyu"] = toKomma(vekselKurs.toString().substring(0, 7));
 
   // Vægt
-  templatePackageInfo["Text-Z-0qnHPoNw"] = toKomma((userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924).toString());
-  templatePackageInfo["Text-bNe-IGw-2l"] = toKomma((userInfo.vaegtEnhed == "kg" ? userInfo.vaegt : toNum(userInfo.vaegt) * 0.4535924).toString());
+
+  var num = userInfo.vaegtEnhed == "kg" ? toNum(userInfo.vaegt) : toNum(userInfo.vaegt) * 0.4535924;
+  var roundedNum = num >= 1 ? Math.round(num).toString() : num.toString().substring(0, 7); 
+
+  templatePackageInfo["Text-Z-0qnHPoNw"] = toKomma(roundedNum);
+  templatePackageInfo["Text-bNe-IGw-2l"] = toKomma(roundedNum);
+  
 
   // Procedure koder
   templatePackageInfo["Text-VCTP6H0oqb"] = "4000";
