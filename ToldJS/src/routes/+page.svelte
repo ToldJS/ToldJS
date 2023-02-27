@@ -280,7 +280,7 @@
 				>
 			</div>
 			<div class="md:col-span-3">
-				<div class="tooltip" data-tip="Navnet af pakkemodtageren, for eksempel dig selv">
+				<div class="tooltip" data-tip="Navnet af pakkemodtageren, for eksempel dig selv. Det skal være modtagerens FULDE navn">
 					<label for="modtager_navn" class="label">Modtager navn <i class="ml-4 bi bi-info-circle" /></label>
 				</div>
 				<input
@@ -352,9 +352,11 @@
 					<thead>
 						<tr>
 							<th>Antal</th>
-							<th>Vare beskrivelse</th>
-							<th>Varekode</th>
-							<th>Vare pris</th>
+							<th>Vare beskrivelse<i class="ml-4 bi bi-info-circle"/></th>
+								<div class="tooltip" data-tip="Varekoden er den kode fra varen, som du burde få fra din fragtmand. Hvis ikke kan du finde varekoden, så klik på info tegnet">
+								<th>Varekode<a target="_blank" href="https://tarif.skat.dk/arctictariff-public-web/#!/taric/duty/calculate"><i class="ml-4 bi bi-info-circle" /></a></th>
+							</div>
+								<th>Vare pris</th>
 						</tr>
 					</thead>
 					<tbody>
