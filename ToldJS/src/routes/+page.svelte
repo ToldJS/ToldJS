@@ -261,8 +261,8 @@
 
 		<h1 class="text-3xl font-bold">Toldpapirsværktøj</h1>
 		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
-			<div class="md:col-span-6">  
-				<label for="tracking_number" class="label">Tracking nummer</label>                                            
+			<div class="md:col-span-6">
+				<label for="tracking_number" class="label">Tracking nummer</label>
 				<input
 					on:keydown={(e) => {
 						if (trackingNumber && e.code == 'Enter') parseTracking();
@@ -280,7 +280,9 @@
 				>
 			</div>
 			<div class="md:col-span-3">
-				<label for="modtager_navn" class="label">Modtager navn</label>
+				<div class="tooltip" data-tip="Navnet af pakkemodtageren, for eksempel dig selv">
+					<label for="modtager_navn" class="label">Modtager navn <i class="ml-4 bi bi-info-circle" /></label>
+				</div>
 				<input
 					bind:value={modtager_navn['value']}
 					type="text"
@@ -292,7 +294,9 @@
 				/>
 			</div>
 			<div class="md:col-span-3">
-				<label for="modtager_adresse" class="label">Modtager addresse</label>
+				<div class="tooltip" data-tip="Adressen af pakkemodtageren, i formatet 'Vejnavn Husnummer, [Etagebetegnelse. ] [Dørbetegnelse, ] Bynavn, Postnummer, Postnummerområde'">
+					<label for="modtager_adresse" class="label">Modtager adresse <i class="ml-4 bi bi-info-circle" /></label>
+				</div>
 				<input
 					bind:value={modtager_adresse['value']}
 					type="text"
