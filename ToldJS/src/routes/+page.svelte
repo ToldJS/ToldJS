@@ -353,10 +353,10 @@
 						<tr>
 							<th>Antal</th>
 							<th>Vare beskrivelse<i class="ml-4 bi bi-info-circle"/></th>
-								<div class="tooltip" data-tip="Varekoden er den kode fra varen, som du burde få fra din fragtmand. Hvis ikke kan du finde varekoden, så klik på info tegnet">
-								<th>Varekode<a target="_blank" href="https://tarif.skat.dk/arctictariff-public-web/#!/taric/duty/calculate"><i class="ml-4 bi bi-info-circle" /></a></th>
+							<div class="tooltip" data-tip="Varekoden er en 10-cifret kode, som du burde få fra din kurer. Hvis du ikke kan finde varekoden, så kan du søge efter varekoder på linket.">
+								<th>Varekode<a target="_blank" rel="noreferrer" href="/varekoder"><i class="ml-4 bi bi-info-circle" /></a></th>
 							</div>
-								<th>Vare pris</th>
+							<th>Vare pris</th>
 						</tr>
 					</thead>
 					<tbody>
