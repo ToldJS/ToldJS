@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@splinetool/runtime": "^0.9.249",
 		"daisyui": "^2.50.2",
 		"pako": "^2.1.0",
 		"pdf-lib": "^1.17.1",
