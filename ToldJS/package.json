@@ -7,7 +7,7 @@
 		"dv": "vite",
 		"host": "vite --host",
 		"preview": "vite preview",
-		"build": "vite build --output public",
+		"build": "vite build --base=/public",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
