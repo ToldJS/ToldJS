@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createPackageInfo } from '$lib/packageInfo';
-	import type { IApiResult } from '../types/web';
+	import type { IApiResult } from '../../types/web';
 	import type { PageData } from './$types';
 	import { LANDEKODER } from '../../data/landekoder';
 	import { formatBytes } from '$lib/format';

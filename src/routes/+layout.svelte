@@ -2,8 +2,6 @@
 	import '../app.css';
 </script>
 
-<html data-theme="postlort" lang="da" />
-
 <div class="navbar bg-base-100">
 	<div class="navbar-start">
 		<div class="dropdown">
@@ -30,7 +28,9 @@
 				<li><a href="/om-os">Om Projektet</a></li>
 			</ul>
 		</div>
-		<a href="/" class="btn btn-ghost"><img class="h-14" src="/ToldJS_White.png" alt="ToldJS Logo" /></a>
+		<a href="/" class="btn btn-ghost"
+			><img class="h-14" src="/ToldJS_White.png" alt="ToldJS Logo" /></a
+		>
 	</div>
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
