@@ -1,5 +1,9 @@
 export const HYPPIGE_LANDEKODER = [
     {
+        "Kode": "GB",
+        "Navn": "Det Forenede Kongerige"
+    },
+    {
         "Kode": "US",
         "Navn": "Amerikas Forenede Stater"
     },
@@ -8,13 +12,13 @@ export const HYPPIGE_LANDEKODER = [
         "Navn": "Canada"
     },
     {
-        "Kode": "GB",
-        "Navn": "Det Forenede Kongerige"
-    },
-    {
         "Kode": "NO",
         "Navn": "Norge"
     },
+    {
+        "Kode": "GL",
+        "Navn": "Grønland"
+    }
 ];
 
 export const ANDRE_LANDEKODER = [

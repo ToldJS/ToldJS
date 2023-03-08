@@ -7,7 +7,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        postlort: {
+        postlort_dark: {
           "primary": "#30b7e2",
           "secondary": "#60c583",
           "accent": "#60c583",
@@ -16,6 +16,17 @@ module.exports = {
           "info": "#30b7e2",
           "success": "#60c583",
           "warning": "#FBBD23",
+          "error": "#df4a4c",
+        },
+        postlort_light: {
+          "primary": "#30b7e2",
+          "secondary": "#60c583",
+          "accent": "#60c583",
+          "neutral": "#e7e5e4",
+          "base-100": "#f5f5f4",
+          "info": "#30b7e2",
+          "success": "#60c583",
+          "warning": "#fbbd23",
           "error": "#df4a4c",
         }
       },
