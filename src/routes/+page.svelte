@@ -1,4 +1,4 @@
-<div class="hero align-middle">
+<div class="hero">
 	<div class="hero-content text-center">
 	  	<div class="max-w-md">
 			<h1 class="text-5xl font-bold">Velkommen til ToldJS!</h1>
@@ -7,3 +7,4 @@
 		</div>
 	</div>
 </div>
+	
