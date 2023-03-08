@@ -1,14 +1,9 @@
-<script>
-	import { Application } from '@splinetool/runtime';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		const canvas = document.getElementById('document_canvas');
-		const app = new Application(canvas);
-		app.load('document.spline');
-	});
-</script>
-
-<div class="flex" style="width: 1000px !important; height: 1000px !important;">
-	<canvas id="document_canvas" />
+<div class="hero align-middle">
+	<div class="hero-content text-center">
+	  	<div class="max-w-md">
+			<h1 class="text-5xl font-bold">Velkommen til ToldJS!</h1>
+			<p class="py-6">ToldJS er en hjemmeside der hjælper med at udfylde dokumenterne til selvfortoldning. Grunden til selvfortoldning er at undgå det ekstra gebyr som postnord osv. pålægger en for at betale told.</p>
+			<a class="btn btn-primary" href="/generator">Åben generatoren</a>
+		</div>
+	</div>
 </div>
