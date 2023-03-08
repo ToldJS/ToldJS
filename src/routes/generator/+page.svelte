@@ -280,8 +280,13 @@
 				>
 			</div>
 			<div class="md:col-span-3">
-				<div class="tooltip" data-tip="Navnet af pakkemodtageren, for eksempel dig selv. Det skal være modtagerens FULDE navn">
-					<label for="modtager_navn" class="label">Modtager navn <i class="ml-4 bi bi-info-circle" /></label>
+				<div
+					class="tooltip"
+					data-tip="Navnet af pakkemodtageren, for eksempel dig selv. Det skal være modtagerens FULDE navn"
+				>
+					<label for="modtager_navn" class="label"
+						>Modtager navn <i class="ml-4 bi bi-info-circle" /></label
+					>
 				</div>
 				<input
 					bind:value={modtager_navn['value']}
@@ -294,8 +299,13 @@
 				/>
 			</div>
 			<div class="md:col-span-3">
-				<div class="tooltip" data-tip="Adressen af pakkemodtageren, i formatet 'Vejnavn Husnummer, [Etagebetegnelse. ] [Dørbetegnelse, ] Bynavn, Postnummer, Postnummerområde'">
-					<label for="modtager_adresse" class="label">Modtager adresse <i class="ml-4 bi bi-info-circle" /></label>
+				<div
+					class="tooltip"
+					data-tip="Adressen af pakkemodtageren, i formatet 'Vejnavn Husnummer, [Etagebetegnelse. ] [Dørbetegnelse, ] Bynavn, Postnummer, Postnummerområde'"
+				>
+					<label for="modtager_adresse" class="label"
+						>Modtager adresse <i class="ml-4 bi bi-info-circle" /></label
+					>
 				</div>
 				<input
 					bind:value={modtager_adresse['value']}
@@ -352,9 +362,16 @@
 					<thead>
 						<tr>
 							<th>Antal</th>
-							<th>Vare beskrivelse<i class="ml-4 bi bi-info-circle"/></th>
-							<div class="tooltip" data-tip="Varekoden er en 10-cifret kode, som du burde få fra din kurer. Hvis du ikke kan finde varekoden, så kan du søge efter varekoder på linket.">
-								<th>Varekode<a target="_blank" rel="noreferrer" href="/varekoder"><i class="ml-4 bi bi-info-circle" /></a></th>
+							<th>Vare beskrivelse</th>
+							<div
+								class="tooltip"
+								data-tip="Varekoden er en 10-cifret kode, som du kan spørge din transportør om at få (for eksempel postnord). Hvis du ikke kan finde varekoden, så kan du søge efter varekoder ved at trykke på info-ikonet."
+							>
+								<th
+									>Varekode <a target="_blank" rel="noreferrer" href="/varekoder"
+										><i class="ml-4 bi bi-info-circle" /></a
+									></th
+								>
 							</div>
 							<th>Vare pris</th>
 						</tr>
@@ -455,7 +472,14 @@
 				/>
 			</div>
 			<div class="md:col-span-2">
-				<label for="valuta" class="label">Valuta af priserne</label>
+				<div
+					class="tooltip"
+					data-tip="Dette er valutaen af alle prisangivelser på hele siden; varepriser og fragt prisen."
+				>
+					<label for="valuta" class="label"
+						>Valuta af priserne <i class="ml-4 bi bi-info-circle" /></label
+					>
+				</div>
 				<select
 					bind:value={valuta['value']}
 					id="valuta"
