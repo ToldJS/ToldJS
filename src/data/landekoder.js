@@ -1,4 +1,23 @@
-export const LANDEKODER = [
+export const HYPPIGE_LANDEKODER = [
+    {
+        "Kode": "US",
+        "Navn": "Amerikas Forenede Stater"
+    },
+    {
+        "Kode": "CA",
+        "Navn": "Canada"
+    },
+    {
+        "Kode": "GB",
+        "Navn": "Det Forenede Kongerige"
+    },
+    {
+        "Kode": "NO",
+        "Navn": "Norge"
+    },
+];
+
+export const ANDRE_LANDEKODER = [
     {
         "Kode": "AD",
         "Navn": "Andorra"
@@ -142,10 +161,6 @@ export const LANDEKODER = [
     {
         "Kode": "BZ",
         "Navn": "Belize"
-    },
-    {
-        "Kode": "CA",
-        "Navn": "Canada"
     },
     {
         "Kode": "CC",
@@ -306,10 +321,6 @@ export const LANDEKODER = [
     {
         "Kode": "GA",
         "Navn": "Gabon"
-    },
-    {
-        "Kode": "GB",
-        "Navn": "Det Forenede Kongerige"
     },
     {
         "Kode": "GD",
@@ -636,10 +647,6 @@ export const LANDEKODER = [
         "Navn": "Nederlandene"
     },
     {
-        "Kode": "NO",
-        "Navn": "Norge"
-    },
-    {
         "Kode": "NP",
         "Navn": "Nepal"
     },
@@ -926,10 +933,6 @@ export const LANDEKODER = [
     {
         "Kode": "UM",
         "Navn": "USA´s mindre øbesiddelser"
-    },
-    {
-        "Kode": "US",
-        "Navn": "Amerikas Forenede Stater"
     },
     {
         "Kode": "UY",

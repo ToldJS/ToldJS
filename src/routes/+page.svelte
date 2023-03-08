@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>ToldJS</title>
+</svelte:head>
+
 <div class="hero">
 	<div class="hero-content text-center">
 		<div class="max-w-md">
