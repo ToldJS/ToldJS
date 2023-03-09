@@ -2,8 +2,9 @@
 	import { createPackageInfo } from '$lib/packageInfo';
 	import type { IApiResult } from '../../types/web';
 	import type { PageData } from './$types';
-	import { LANDEKODER } from '../../data/landekoder';
+	import { ANDRE_LANDEKODER, HYPPIGE_LANDEKODER } from '../../data/landekoder';
 	import { formatBytes } from '$lib/format';
+	import { stringContainsAny } from '$lib/utils';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data);
@@ -215,6 +216,7 @@
 </script>
 
 <svelte:head>
+	<title>Generator - ToldJS</title>
 	<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.js"></script>
 </svelte:head>
 
@@ -351,9 +353,16 @@
 						: ''} w-full max-w-xs"
 				>
 					<option value="" disabled selected>Vælg afsender landet</option>
-					{#each LANDEKODER as country}
-						<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
-					{/each}
+					<optgroup label="Ofte valgte">
+						{#each HYPPIGE_LANDEKODER as country}
+							<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
+						{/each}
+					</optgroup>
+					<optgroup label="Andre">
+						{#each ANDRE_LANDEKODER.sort((a, b) => !stringContainsAny(a.Navn, ["Æ", "Å"]) ? a.Navn.localeCompare(b.Navn) : 1) as country}
+							<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
+						{/each}
+					</optgroup>
 				</select>
 			</div>
 			<div class="md:col-span-6">

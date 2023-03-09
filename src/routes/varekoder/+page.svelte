@@ -8,5 +8,9 @@
 	$: searchLink = `https://tarif.skat.dk/arctictariff-public-web/#!/taric/nomenclature/sbt?sd=${dateString}&ts=${searchString}&gnd=true&add=false&fnd=false&ql=da&l=da`;
 </script>
 
+<svelte:head>
+	<title>Varekoder - ToldJS</title>
+</svelte:head>
+
 <input bind:value={searchString} type="text" class="input input-bordered" />
 <a class="btn btn-primary" href={searchLink}>Søg</a>
