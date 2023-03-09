@@ -44,3 +44,9 @@
 <div class="container mx-auto prose">
 	<slot />
 </div>
+
+<footer class="footer footer-center p-4 bg-base-300 text-base-content">
+  <div>
+    <p>CVR nr: 43902113</p>
+  </div>
+</footer>

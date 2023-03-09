@@ -45,7 +45,7 @@
 		item.antal.valid = !isNaN(+item.antal.value) && item.antal.value > 0;
 		item.beskrivelse.valid = item.beskrivelse.value.length > 0;
 		item.beskrivelse.hasValue = item.beskrivelse.value.length > 0;
-		item.varekode.valid = item.varekode.value.length > 0;
+		item.varekode.valid = /^[0-9]*$/gm.test(item.varekode.value);
 		item.varekode.hasValue = item.varekode.value.length > 0;
 		item.pris.valid = /^[+-]?(\d*(\.|,))?\d+$/.test(item.pris.value);
 		item.pris.hasValue = item.pris.value.length > 0;
@@ -146,7 +146,7 @@
 			// if (apiResult.Destination) {
 			// 	modtager_land = apiResult.Destination;
 			// }
-			if (apiResult.Weight) {
+			if (apiResult.Weight && apiResult.Weight != null) {
 				vaegt['value'] = apiResult.Weight.toString();
 			}
 			if (apiResult.Unit) {
@@ -259,7 +259,7 @@
 			</div>
 		{/if}
 
-		<h1 class="text-3xl font-bold">Toldpapirsværktøj</h1>
+		<h1 class="text-3xl font-bold">Toldpapirsgenerator</h1>
 		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
 			<div class="md:col-span-6">
 				<label for="tracking_number" class="label">Tracking nummer</label>
@@ -285,14 +285,14 @@
 					data-tip="Navnet af pakkemodtageren, for eksempel dig selv. Det skal være modtagerens FULDE navn"
 				>
 					<label for="modtager_navn" class="label"
-						>Modtager navn <i class="ml-4 bi bi-info-circle" /></label
+						>Modtagerens fulde navn <i class="ml-4 bi bi-info-circle" /></label
 					>
 				</div>
 				<input
 					bind:value={modtager_navn['value']}
 					type="text"
 					id="modtager_navn"
-					placeholder="Modtager navn"
+					placeholder="Modtagerens fulde navn"
 					class="input input-bordered {modtager_navn.hasValue
 						? 'input-success'
 						: ''} w-full max-w-xs"
@@ -474,7 +474,7 @@
 			<div class="md:col-span-2">
 				<div
 					class="tooltip"
-					data-tip="Dette er valutaen af alle prisangivelser på hele siden; varepriser og fragt prisen."
+					data-tip="Dette er valutaen af alle prisangivelser på hele siden; vareprisen og fragt prisen."
 				>
 					<label for="valuta" class="label"
 						>Valuta af priserne <i class="ml-4 bi bi-info-circle" /></label
@@ -528,7 +528,7 @@
 				<button
 					on:click={createPdf}
 					disabled={!allFieldsFilled}
-					class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Opret PDF</button
+					class="btn btn-primary {isLoadingPdf ? 'loading' : ''}">Generer PDF</button
 				>
 				<h1 class="mt-8 text-3xl font-bold">Enhedsdokumenter</h1>
 				{#if finalPdfs}
