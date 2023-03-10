@@ -23,7 +23,7 @@
     }
 
   </script>
-  <form action="https://formsubmit.co/support@toldjs.dk" method="POST">
+  <form action="https://formsubmit.co/bf3a5850f13285e5dcae9ac19dd10980" method="POST">
   <div class="form-control m-5">
     <label class="input-group">
       <span class="bg-neutral">Email</span>
