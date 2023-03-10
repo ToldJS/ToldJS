@@ -26,9 +26,8 @@
 			>
 				<li><a href="/generator">Generator</a></li>
 				<li><a href="/om-os">Om Projektet</a></li>
-				<li><a class="bg-primary justify-items-end" href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noopener">Rapporter en fejl</a></li>
-				<li><a class="" href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noopener">Rapporter en fejl</a></li>
-				<li><a class="bg-primary" href="/kontakt-os">Kontakt os</a></li>
+				<li><a href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noopener">Rapporter en fejl</a></li>
+				<li><a class="bg-primary text-base-100" href="/kontakt-os">Kontakt os</a></li>
 			</ul>
 		</div>
 		<a href="/" class="btn btn-ghost"
@@ -44,8 +43,8 @@
 	</div>
 	<div class="navbar-end"> 
 		<ul class="menu menu-horizontal px-1">
-			<li><a class="" href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noopener">Rapporter en fejl</a></li>
-			<li><a class="bg-primary" href="/kontakt-os">Kontakt os</a></li>
+			<li><a href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noopener">Rapporter en fejl</a></li>
+			<li><a class="bg-primary text-base-100" href="/kontakt-os">Kontakt os</a></li>
 		</ul>
 	</div>
 </div>

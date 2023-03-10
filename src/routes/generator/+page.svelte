@@ -359,7 +359,7 @@
 						{/each}
 					</optgroup>
 					<optgroup label="Andre">
-						{#each ANDRE_LANDEKODER.sort((a, b) => !stringContainsAny(a.Navn, ["Æ", "Å"]) ? a.Navn.localeCompare(b.Navn) : 1) as country}
+						{#each ANDRE_LANDEKODER.sort( (a, b) => (!stringContainsAny( a.Navn, ['Æ', 'Å'] ) ? a.Navn.localeCompare(b.Navn) : 1) ) as country}
 							<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
 						{/each}
 					</optgroup>
