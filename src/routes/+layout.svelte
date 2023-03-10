@@ -4,7 +4,7 @@
 
 <div class="navbar bg-base-100">
 	<div class="navbar-start">
-		<div class="dropdown">
+		<div class="dropdown dropdown-bottom">
 			<label tabindex="0" class="btn btn-ghost lg:hidden">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
 			</label>
 			<ul
 				tabindex="0"
-				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
 			>
 				<li><a href="/generator">Generator</a></li>
 				<li><a href="/om-os">Om Projektet</a></li>
@@ -31,8 +31,10 @@
 			</ul>
 		</div>
 		<a href="/" class="btn btn-ghost"
-			><img class="h-14" src="/ToldJS_White.png" alt="ToldJS Logo" /></a
-		>
+		><img class="h-14" src="/ToldJS_White.png" alt="ToldJS Logo" /></a>
+	</div>
+	<div class="navbar-center">
+
 	</div>
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
