@@ -22,1020 +22,1036 @@ export const HYPPIGE_LANDEKODER = [
 ];
 
 export const ANDRE_LANDEKODER = [
-    {
-        "Kode": "AD",
-        "Navn": "Andorra"
-    },
-    {
-        "Kode": "AE",
-        "Navn": "De Forenede Arabiske Emirater"
-    },
-    {
-        "Kode": "AF",
-        "Navn": "Afghanistan"
-    },
-    {
-        "Kode": "AG",
-        "Navn": "Antigua og Barbuda"
-    },
-    {
-        "Kode": "AI",
-        "Navn": "Anguilla"
-    },
-    {
-        "Kode": "AL",
-        "Navn": "Albanien"
-    },
-    {
-        "Kode": "AM",
-        "Navn": "Armenien"
-    },
-    {
-        "Kode": "AO",
-        "Navn": "Angola"
-    },
-    {
-        "Kode": "AQ",
-        "Navn": "Antarktis"
-    },
-    {
-        "Kode": "AR",
-        "Navn": "Argentina"
-    },
-    {
-        "Kode": "AS",
-        "Navn": "Amerikansk Samoa"
-    },
-    {
-        "Kode": "AT",
-        "Navn": "Østrig"
-    },
-    {
-        "Kode": "AU",
-        "Navn": "Australien"
-    },
-    {
-        "Kode": "AW",
-        "Navn": "Aruba"
-    },
-    {
-        "Kode": "AZ",
-        "Navn": "Aserbajdsjan"
-    },
-    {
-        "Kode": "BA",
-        "Navn": "Bosnien-Hercegovina"
-    },
-    {
-        "Kode": "BB",
-        "Navn": "Barbados"
-    },
-    {
-        "Kode": "BD",
-        "Navn": "Bangladesh"
-    },
-    {
-        "Kode": "BE",
-        "Navn": "Belgien"
-    },
-    {
-        "Kode": "BF",
-        "Navn": "Burkina Faso"
-    },
-    {
-        "Kode": "BG",
-        "Navn": "Bulgarien"
-    },
-    {
-        "Kode": "BH",
-        "Navn": "Bahrain"
-    },
-    {
-        "Kode": "BI",
-        "Navn": "Burundi"
-    },
-    {
-        "Kode": "BJ",
-        "Navn": "Benin"
-    },
-    {
-        "Kode": "BL",
-        "Navn": "Saint Barthélemy"
-    },
-    {
-        "Kode": "BM",
-        "Navn": "Bermudaøerne"
-    },
-    {
-        "Kode": "BN",
-        "Navn": "Brunei"
-    },
-    {
-        "Kode": "BO",
-        "Navn": "Bolivia"
-    },
-    {
-        "Kode": "BQ",
-        "Navn": "Bonaire, Saint Eustatius og Saba"
-    },
-    {
-        "Kode": "BR",
-        "Navn": "Brasilien"
-    },
-    {
-        "Kode": "BS",
-        "Navn": "Bahamas"
-    },
-    {
-        "Kode": "BT",
-        "Navn": "Bhutan"
-    },
-    {
-        "Kode": "BV",
-        "Navn": "Bouvetøen"
-    },
-    {
-        "Kode": "BW",
-        "Navn": "Botswana"
-    },
-    {
-        "Kode": "BY",
-        "Navn": "Hviderusland"
-    },
-    {
-        "Kode": "BZ",
-        "Navn": "Belize"
-    },
-    {
-        "Kode": "CC",
-        "Navn": "Cocosøerne (eller Keelingøerne)"
-    },
-    {
-        "Kode": "CD",
-        "Navn": "Den demokratiske republik Congo"
-    },
-    {
-        "Kode": "CF",
-        "Navn": "Den Centralafrikanske Republik"
-    },
-    {
-        "Kode": "CG",
-        "Navn": "Congo"
-    },
-    {
-        "Kode": "CH",
-        "Navn": "Schweiz"
-    },
-    {
-        "Kode": "CI",
-        "Navn": "Elfenbenskysten"
-    },
-    {
-        "Kode": "CK",
-        "Navn": "Cookøerne"
-    },
-    {
-        "Kode": "CL",
-        "Navn": "Chile"
-    },
-    {
-        "Kode": "CM",
-        "Navn": "Cameroun"
-    },
-    {
-        "Kode": "CN",
-        "Navn": "Kina"
-    },
-    {
-        "Kode": "CO",
-        "Navn": "Colombia"
-    },
-    {
-        "Kode": "CR",
-        "Navn": "Costa Rica"
-    },
-    {
-        "Kode": "CS",
-        "Navn": "Serbien og Montenegro"
-    },
-    {
-        "Kode": "CU",
-        "Navn": "Cuba"
-    },
-    {
-        "Kode": "CV",
-        "Navn": "Cap Verde"
-    },
-    {
-        "Kode": "CW",
-        "Navn": "Curacao"
-    },
-    {
-        "Kode": "CX",
-        "Navn": "Juleøen"
-    },
-    {
-        "Kode": "CY",
-        "Navn": "Cypern"
-    },
-    {
-        "Kode": "CZ",
-        "Navn": "Tjekkiet"
-    },
-    {
-        "Kode": "DE",
-        "Navn": "Tyskland"
-    },
-    {
-        "Kode": "DJ",
-        "Navn": "Djibouti"
-    },
-    {
-        "Kode": "DK",
-        "Navn": "Danmark"
-    },
-    {
-        "Kode": "DM",
-        "Navn": "Dominica"
-    },
-    {
-        "Kode": "DO",
-        "Navn": "Den Dominikanske Republik"
-    },
-    {
-        "Kode": "DZ",
-        "Navn": "Algeriet"
-    },
-    {
-        "Kode": "EC",
-        "Navn": "Ecuador"
-    },
-    {
-        "Kode": "EE",
-        "Navn": "Estland"
-    },
-    {
-        "Kode": "EG",
-        "Navn": "Egypten"
-    },
-    {
-        "Kode": "EH",
-        "Navn": "Vestsahara"
-    },
-    {
-        "Kode": "ER",
-        "Navn": "Eritrea"
-    },
-    {
-        "Kode": "ES",
-        "Navn": "Spanien (undtagen XC, XL)"
-    },
-    {
-        "Kode": "ET",
-        "Navn": "Etiopien"
-    },
-    {
-        "Kode": "EU",
-        "Navn": "EU"
-    },
-    {
-        "Kode": "FI",
-        "Navn": "Finland"
-    },
-    {
-        "Kode": "FJ",
-        "Navn": "Fiji"
-    },
-    {
-        "Kode": "FK",
-        "Navn": "Falklandsøerne"
-    },
-    {
-        "Kode": "FM",
-        "Navn": "Mikronesiens Forenede Stater"
-    },
-    {
-        "Kode": "FO",
-        "Navn": "Færøerne"
-    },
-    {
-        "Kode": "FR",
-        "Navn": "Frankrig"
-    },
-    {
-        "Kode": "GA",
-        "Navn": "Gabon"
-    },
-    {
-        "Kode": "GD",
-        "Navn": "Grenada"
-    },
-    {
-        "Kode": "GE",
-        "Navn": "Georgien"
-    },
-    {
-        "Kode": "GH",
-        "Navn": "Ghana"
-    },
-    {
-        "Kode": "GI",
-        "Navn": "Gibraltar"
-    },
-    {
-        "Kode": "GL",
-        "Navn": "Grønland"
-    },
-    {
-        "Kode": "GM",
-        "Navn": "Gambia"
-    },
-    {
-        "Kode": "GN",
-        "Navn": "Guinea"
-    },
-    {
-        "Kode": "GQ",
-        "Navn": "Ækvatorialguinea"
-    },
-    {
-        "Kode": "GR",
-        "Navn": "Grækenland"
-    },
-    {
-        "Kode": "GS",
-        "Navn": "South Georgia og De Sydlige Sandwichøer"
-    },
-    {
-        "Kode": "GT",
-        "Navn": "Guatemala"
-    },
-    {
-        "Kode": "GU",
-        "Navn": "Guam"
-    },
-    {
-        "Kode": "GW",
-        "Navn": "Guinea-Bissau"
-    },
-    {
-        "Kode": "GY",
-        "Navn": "Guyana"
-    },
-    {
-        "Kode": "HK",
-        "Navn": "Hongkong"
-    },
-    {
-        "Kode": "HM",
-        "Navn": "Heardøen og McDonaldøerne"
-    },
-    {
-        "Kode": "HN",
-        "Navn": "Honduras"
-    },
-    {
-        "Kode": "HR",
-        "Navn": "Kroatien"
-    },
-    {
-        "Kode": "HT",
-        "Navn": "Haiti"
-    },
-    {
-        "Kode": "HU",
-        "Navn": "Ungarn"
-    },
-    {
-        "Kode": "ID",
-        "Navn": "Indonesien"
-    },
-    {
-        "Kode": "IE",
-        "Navn": "Irland"
-    },
-    {
-        "Kode": "IL",
-        "Navn": "Israel"
-    },
-    {
-        "Kode": "IN",
-        "Navn": "Indien"
-    },
-    {
-        "Kode": "IO",
-        "Navn": "Britiske områder i&nbsp;Det indiske Ocean"
-    },
-    {
-        "Kode": "IQ",
-        "Navn": "Irak"
-    },
-    {
-        "Kode": "IR",
-        "Navn": "Iran"
-    },
-    {
-        "Kode": "IS",
-        "Navn": "Island"
-    },
-    {
-        "Kode": "IT",
-        "Navn": "Italien"
-    },
-    {
-        "Kode": "JM",
-        "Navn": "Jamaica"
-    },
-    {
-        "Kode": "JO",
-        "Navn": "Jordan"
-    },
-    {
-        "Kode": "JP",
-        "Navn": "Japan"
-    },
-    {
-        "Kode": "KE",
-        "Navn": "Kenya"
-    },
-    {
-        "Kode": "KG",
-        "Navn": "Kirgisistan"
-    },
-    {
-        "Kode": "KH",
-        "Navn": "Cambodja (Kampuchea)"
-    },
-    {
-        "Kode": "KI",
-        "Navn": "Kiribati"
-    },
-    {
-        "Kode": "KM",
-        "Navn": "Comorerne (undtagen Mayotte)"
-    },
-    {
-        "Kode": "KN",
-        "Navn": "St. Kitts&nbsp;og Nevis"
-    },
-    {
-        "Kode": "KP",
-        "Navn": "Nordkorea"
-    },
-    {
-        "Kode": "KR",
-        "Navn": "Sydkorea"
-    },
-    {
-        "Kode": "KW",
-        "Navn": "Kuwait"
-    },
-    {
-        "Kode": "KY",
-        "Navn": "Caymanøerne"
-    },
-    {
-        "Kode": "KZ",
-        "Navn": "Kasakhstan"
-    },
-    {
-        "Kode": "LA",
-        "Navn": "Laos"
-    },
-    {
-        "Kode": "LB",
-        "Navn": "Libanon"
-    },
-    {
-        "Kode": "LC",
-        "Navn": "St. Lucia"
-    },
-    {
-        "Kode": "LI",
-        "Navn": "Liechtenstein"
-    },
-    {
-        "Kode": "LK",
-        "Navn": "Sri Lanka"
-    },
-    {
-        "Kode": "LR",
-        "Navn": "Liberia"
-    },
-    {
-        "Kode": "LS",
-        "Navn": "Lesotho"
-    },
-    {
-        "Kode": "LT",
-        "Navn": "Litauen"
-    },
-    {
-        "Kode": "LU",
-        "Navn": "Luxembourg"
-    },
-    {
-        "Kode": "LV",
-        "Navn": "Letland"
-    },
-    {
-        "Kode": "LY",
-        "Navn": "Libyen"
-    },
-    {
-        "Kode": "MA",
-        "Navn": "Marokko"
-    },
-    {
-        "Kode": "MD",
-        "Navn": "Moldova"
-    },
-    {
-        "Kode": "ME",
-        "Navn": "Montenegro"
-    },
-    {
-        "Kode": "MG",
-        "Navn": "Madagaskar"
-    },
-    {
-        "Kode": "MH",
-        "Navn": "Marshalløerne"
-    },
-    {
-        "Kode": "MK",
-        "Navn": "Den Tidligere Jugoslaviske Republik Makedonien"
-    },
-    {
-        "Kode": "ML",
-        "Navn": "Mali"
-    },
-    {
-        "Kode": "MM",
-        "Navn": "Myanmar"
-    },
-    {
-        "Kode": "MN",
-        "Navn": "Mongoliet"
-    },
-    {
-        "Kode": "MO",
-        "Navn": "Macao"
-    },
-    {
-        "Kode": "MP",
-        "Navn": "Nordmarianerne"
-    },
-    {
-        "Kode": "MR",
-        "Navn": "Mauretanien"
-    },
-    {
-        "Kode": "MS",
-        "Navn": "Montserrat"
-    },
-    {
-        "Kode": "MT",
-        "Navn": "Malta"
-    },
-    {
-        "Kode": "MU",
-        "Navn": "Mauritius"
-    },
-    {
-        "Kode": "MV",
-        "Navn": "Maldiverne"
-    },
-    {
-        "Kode": "MW",
-        "Navn": "Malawi"
-    },
-    {
-        "Kode": "MX",
-        "Navn": "Mexico"
-    },
-    {
-        "Kode": "MY",
-        "Navn": "Malaysia"
-    },
-    {
-        "Kode": "MZ",
-        "Navn": "Mozambique"
-    },
-    {
-        "Kode": "NA",
-        "Navn": "Namibia"
-    },
-    {
-        "Kode": "NC",
-        "Navn": "Ny Caledonien og tilhørende områder"
-    },
-    {
-        "Kode": "NE",
-        "Navn": "Niger"
-    },
-    {
-        "Kode": "NF",
-        "Navn": "Norfolk Island"
-    },
-    {
-        "Kode": "NG",
-        "Navn": "Nigeria"
-    },
-    {
-        "Kode": "NI",
-        "Navn": "Nicaragua"
-    },
-    {
-        "Kode": "NL",
-        "Navn": "Nederlandene"
-    },
-    {
-        "Kode": "NP",
-        "Navn": "Nepal"
-    },
-    {
-        "Kode": "NR",
-        "Navn": "Nauru"
-    },
-    {
-        "Kode": "NU",
-        "Navn": "Niue"
-    },
-    {
-        "Kode": "NZ",
-        "Navn": "New Zealand"
-    },
-    {
-        "Kode": "OM",
-        "Navn": "Oman"
-    },
-    {
-        "Kode": "PA",
-        "Navn": "Panama"
-    },
-    {
-        "Kode": "PE",
-        "Navn": "Peru"
-    },
-    {
-        "Kode": "PF",
-        "Navn": "Fransk Poynesien"
-    },
-    {
-        "Kode": "PG",
-        "Navn": "Papua Ny Guinea"
-    },
-    {
-        "Kode": "PH",
-        "Navn": "Filippinerne"
-    },
-    {
-        "Kode": "PK",
-        "Navn": "Pakistan"
-    },
-    {
-        "Kode": "PL",
-        "Navn": "Polen"
-    },
-    {
-        "Kode": "PM",
-        "Navn": "St. Pierre og Miquelon"
-    },
-    {
-        "Kode": "PN",
-        "Navn": "Pitcairnøerne"
-    },
-    {
-        "Kode": "PS",
-        "Navn": "Det besatte palæstinensiske område"
-    },
-    {
-        "Kode": "PT",
-        "Navn": "Portugal"
-    },
-    {
-        "Kode": "PW",
-        "Navn": "Palau"
-    },
-    {
-        "Kode": "PY",
-        "Navn": "Paraguay"
-    },
-    {
-        "Kode": "QA",
-        "Navn": "Qatar"
-    },
-    {
-        "Kode": "QP",
-        "Navn": "Åbent hav"
-    },
-    {
-        "Kode": "QQ",
-        "Navn": "Proviantering og bunkring"
-    },
-    {
-        "Kode": "QR",
-        "Navn": "Proviantering og bunkring i handelen mellem EU`s medlemsstater"
-    },
-    {
-        "Kode": "QS",
-        "Navn": "Proviantering og bunkring i handelen med tredjelande"
-    },
-    {
-        "Kode": "QU",
-        "Navn": "Lande og territorier, som ikke er nærmere præciseret"
-    },
-    {
-        "Kode": "QV",
-        "Navn": "Lande og territorier, som ikke er nærmere præciseret i handelen mellem EU`s medlemsstater"
-    },
-    {
-        "Kode": "QW",
-        "Navn": "Lande og territorier, som ikke er nærmere præciseret i handelen med tredjelande"
-    },
-    {
-        "Kode": "QX",
-        "Navn": "Lande og territorier, som af handel af handelsmæssige eller militære grunde ikke er nærmere præciseret"
-    },
-    {
-        "Kode": "QY",
-        "Navn": "Lande og territorier, som af handelsmæssige eller militære grunde ikke er nærmere præciseret i handelen mellem EU`s medlemsstater"
-    },
-    {
-        "Kode": "QZ",
-        "Navn": "Lande og territorier, som af handelsmæssige eller militære grunde ikke er nærmere præciseret i handelen med tredjelande"
-    },
-    {
-        "Kode": "RO",
-        "Navn": "Rumænien"
-    },
-    {
-        "Kode": "RU",
-        "Navn": "Den Russiske Føderation"
-    },
-    {
-        "Kode": "RW",
-        "Navn": "Rwanda"
-    },
-    {
-        "Kode": "SA",
-        "Navn": "Saudi Arabien"
-    },
-    {
-        "Kode": "SB",
-        "Navn": "Salomonøerne"
-    },
-    {
-        "Kode": "SC",
-        "Navn": "Seychellerne og tilhørende områder"
-    },
-    {
-        "Kode": "SD",
-        "Navn": "Sudan"
-    },
-    {
-        "Kode": "SE",
-        "Navn": "Sverige"
-    },
-    {
-        "Kode": "SG",
-        "Navn": "Singapore"
-    },
-    {
-        "Kode": "SH",
-        "Navn": "Saint Helena, Ascension og Tristan da Cunha"
-    },
-    {
-        "Kode": "SI",
-        "Navn": "Slovenien"
-    },
-    {
-        "Kode": "SJ",
-        "Navn": "Svalbard"
-    },
-    {
-        "Kode": "SK",
-        "Navn": "Slovakiet"
-    },
-    {
-        "Kode": "SL",
-        "Navn": "Sierra Leone"
-    },
-    {
-        "Kode": "SM",
-        "Navn": "San Marino"
-    },
-    {
-        "Kode": "SN",
-        "Navn": "Senegal"
-    },
-    {
-        "Kode": "SO",
-        "Navn": "Somalia"
-    },
-    {
-        "Kode": "SR",
-        "Navn": "Surinam"
-    },
-    {
-        "Kode": "SS",
-        "Navn": "Sydsudan"
-    },
-    {
-        "Kode": "ST",
-        "Navn": "Sao Tomé og Príncipe"
-    },
-    {
-        "Kode": "SV",
-        "Navn": "El Salvador"
-    },
-    {
-        "Kode": "SY",
-        "Navn": "Syrien"
-    },
-    {
-        "Kode": "SZ",
-        "Navn": "Swaziland"
-    },
-    {
-        "Kode": "SX",
-        "Navn": "Saint-Maarten (den hollandske del)"
-    },
-    {
-        "Kode": "TC",
-        "Navn": "Turks- og Caicosøerne"
-    },
-    {
-        "Kode": "TD",
-        "Navn": "Tchad"
-    },
-    {
-        "Kode": "TF",
-        "Navn": "De franske besiddelser i det sydlige Indiske Ocean"
-    },
-    {
-        "Kode": "TG",
-        "Navn": "Togo"
-    },
-    {
-        "Kode": "TH",
-        "Navn": "Thailand"
-    },
-    {
-        "Kode": "TJ",
-        "Navn": "Tadsjikistan"
-    },
-    {
-        "Kode": "TK",
-        "Navn": "Tokelau"
-    },
-    {
-        "Kode": "TL",
-        "Navn": "Østtimor"
-    },
-    {
-        "Kode": "TM",
-        "Navn": "Turkmenistan"
-    },
-    {
-        "Kode": "TN",
-        "Navn": "Tunesien"
-    },
-    {
-        "Kode": "TO",
-        "Navn": "Tonga"
-    },
-    {
-        "Kode": "TR",
-        "Navn": "Tyrkiet"
-    },
-    {
-        "Kode": "TT",
-        "Navn": "Trinidad og Tobago"
-    },
-    {
-        "Kode": "TV",
-        "Navn": "Tuvalu"
-    },
-    {
-        "Kode": "TW",
-        "Navn": "Taiwan"
-    },
-    {
-        "Kode": "TZ",
-        "Navn": "Tanzania"
-    },
-    {
-        "Kode": "UA",
-        "Navn": "Ukraine"
-    },
-    {
-        "Kode": "UG",
-        "Navn": "Uganda"
-    },
-    {
-        "Kode": "UM",
-        "Navn": "USA´s mindre øbesiddelser"
-    },
-    {
-        "Kode": "UY",
-        "Navn": "Uruguay"
-    },
-    {
-        "Kode": "UZ",
-        "Navn": "Usbekistan"
-    },
-    {
-        "Kode": "VA",
-        "Navn": "Vatikanstaten"
-    },
-    {
-        "Kode": "VC",
-        "Navn": "St Vincent og Grenadinerne"
-    },
-    {
-        "Kode": "VE",
-        "Navn": "Venezuela"
-    },
-    {
-        "Kode": "VG",
-        "Navn": "De Britiske Jomfruøer"
-    },
-    {
-        "Kode": "VI",
-        "Navn": "De Amerikanske Jomfruøer"
-    },
-    {
-        "Kode": "VN",
-        "Navn": "Vietnam"
-    },
-    {
-        "Kode": "VU",
-        "Navn": "Vanuatu"
-    },
-    {
-        "Kode": "WF",
-        "Navn": "Wallis- og Futunaøerne"
-    },
-    {
-        "Kode": "WS",
-        "Navn": "Samoa"
-    },
-    {
-        "Kode": "XA",
-        "Navn": "Am. Oceanien"
-    },
-    {
-        "Kode": "XC",
-        "Navn": "Ceuta"
-    },
-    {
-        "Kode": "XI",
-        "Navn": "Det Forenede Kongerige (Nordirland)"
-    },
-    {
-        "Kode": "XK",
-        "Navn": "Kosovo"
-    },
-    {
-        "Kode": "XL",
-        "Navn": "Melilla"
-    },
-    {
-        "Kode": "XO",
-        "Navn": "Australsk Oceanien"
-    },
-    {
-        "Kode": "XP",
-        "Navn": "Vestbredden/Gazastriben"
-    },
-    {
-        "Kode": "XR",
-        "Navn": "Polarområder"
-    },
-    {
-        "Kode": "XS",
-        "Navn": "Serbien"
-    },
-    {
-        "Kode": "YE",
-        "Navn": "Yemen"
-    },
-    {
-        "Kode": "YU",
-        "Navn": "Jugoslavien"
-    },
-    {
-        "Kode": "ZA",
-        "Navn": "Sydafrika"
-    },
-    {
-        "Kode": "ZM",
-        "Navn": "Zambia"
-    },
-    {
-        "Kode": "ZW",
-        "Navn": "Zimbabwe"
-    }
+	{
+		"Kode": "AF",
+		"Navn": "Afghanistan"
+	},
+	{
+		"Kode": "AL",
+		"Navn": "Albanien"
+	},
+	{
+		"Kode": "DZ",
+		"Navn": "Algeriet"
+	},
+	{
+		"Kode": "XA",
+		"Navn": "Am. Oceanien"
+	},
+	{
+		"Kode": "AS",
+		"Navn": "Amerikansk Samoa"
+	},
+	{
+		"Kode": "US",
+		"Navn": "Amerikas Forenede Stater"
+	},
+	{
+		"Kode": "AD",
+		"Navn": "Andorra"
+	},
+	{
+		"Kode": "AO",
+		"Navn": "Angola"
+	},
+	{
+		"Kode": "AI",
+		"Navn": "Anguilla"
+	},
+	{
+		"Kode": "AQ",
+		"Navn": "Antarktis"
+	},
+	{
+		"Kode": "AG",
+		"Navn": "Antigua og Barbuda"
+	},
+	{
+		"Kode": "AR",
+		"Navn": "Argentina"
+	},
+	{
+		"Kode": "AM",
+		"Navn": "Armenien"
+	},
+	{
+		"Kode": "AW",
+		"Navn": "Aruba"
+	},
+	{
+		"Kode": "AZ",
+		"Navn": "Aserbajdsjan"
+	},
+	{
+		"Kode": "AU",
+		"Navn": "Australien"
+	},
+	{
+		"Kode": "XO",
+		"Navn": "Australsk Oceanien"
+	},
+	{
+		"Kode": "BS",
+		"Navn": "Bahamas"
+	},
+	{
+		"Kode": "BH",
+		"Navn": "Bahrain"
+	},
+	{
+		"Kode": "BD",
+		"Navn": "Bangladesh"
+	},
+	{
+		"Kode": "BB",
+		"Navn": "Barbados"
+	},
+	{
+		"Kode": "BE",
+		"Navn": "Belgien"
+	},
+	{
+		"Kode": "BZ",
+		"Navn": "Belize"
+	},
+	{
+		"Kode": "BJ",
+		"Navn": "Benin"
+	},
+	{
+		"Kode": "BM",
+		"Navn": "Bermudaøerne"
+	},
+	{
+		"Kode": "BT",
+		"Navn": "Bhutan"
+	},
+	{
+		"Kode": "BO",
+		"Navn": "Bolivia"
+	},
+	{
+		"Kode": "BQ",
+		"Navn": "Bonaire, Saint Eustatius og Saba"
+	},
+	{
+		"Kode": "BA",
+		"Navn": "Bosnien-Hercegovina"
+	},
+	{
+		"Kode": "BW",
+		"Navn": "Botswana"
+	},
+	{
+		"Kode": "BV",
+		"Navn": "Bouvetøen"
+	},
+	{
+		"Kode": "BR",
+		"Navn": "Brasilien"
+	},
+	{
+		"Kode": "IO",
+		"Navn": "Britiske områder i&nbsp;Det indiske Ocean"
+	},
+	{
+		"Kode": "BN",
+		"Navn": "Brunei"
+	},
+	{
+		"Kode": "BG",
+		"Navn": "Bulgarien"
+	},
+	{
+		"Kode": "BF",
+		"Navn": "Burkina Faso"
+	},
+	{
+		"Kode": "BI",
+		"Navn": "Burundi"
+	},
+	{
+		"Kode": "KH",
+		"Navn": "Cambodja (Kampuchea)"
+	},
+	{
+		"Kode": "CM",
+		"Navn": "Cameroun"
+	},
+	{
+		"Kode": "CA",
+		"Navn": "Canada"
+	},
+	{
+		"Kode": "CV",
+		"Navn": "Cap Verde"
+	},
+	{
+		"Kode": "KY",
+		"Navn": "Caymanøerne"
+	},
+	{
+		"Kode": "XC",
+		"Navn": "Ceuta"
+	},
+	{
+		"Kode": "CL",
+		"Navn": "Chile"
+	},
+	{
+		"Kode": "CC",
+		"Navn": "Cocosøerne (eller Keelingøerne)"
+	},
+	{
+		"Kode": "CO",
+		"Navn": "Colombia"
+	},
+	{
+		"Kode": "KM",
+		"Navn": "Comorerne (undtagen Mayotte)"
+	},
+	{
+		"Kode": "CG",
+		"Navn": "Congo"
+	},
+	{
+		"Kode": "CK",
+		"Navn": "Cookøerne"
+	},
+	{
+		"Kode": "CR",
+		"Navn": "Costa Rica"
+	},
+	{
+		"Kode": "CU",
+		"Navn": "Cuba"
+	},
+	{
+		"Kode": "CW",
+		"Navn": "Curacao"
+	},
+	{
+		"Kode": "CY",
+		"Navn": "Cypern"
+	},
+	{
+		"Kode": "DK",
+		"Navn": "Danmark"
+	},
+	{
+		"Kode": "VI",
+		"Navn": "De Amerikanske Jomfruøer"
+	},
+	{
+		"Kode": "VG",
+		"Navn": "De Britiske Jomfruøer"
+	},
+	{
+		"Kode": "AE",
+		"Navn": "De Forenede Arabiske Emirater"
+	},
+	{
+		"Kode": "TF",
+		"Navn": "De franske besiddelser i det sydlige Indiske Ocean"
+	},
+	{
+		"Kode": "CF",
+		"Navn": "Den Centralafrikanske Republik"
+	},
+	{
+		"Kode": "DO",
+		"Navn": "Den Dominikanske Republik"
+	},
+	{
+		"Kode": "RU",
+		"Navn": "Den Russiske Føderation"
+	},
+	{
+		"Kode": "MK",
+		"Navn": "Den Tidligere Jugoslaviske Republik Makedonien"
+	},
+	{
+		"Kode": "CD",
+		"Navn": "Den demokratiske republik Congo"
+	},
+	{
+		"Kode": "GB",
+		"Navn": "Det Forenede Kongerige"
+	},
+	{
+		"Kode": "XI",
+		"Navn": "Det Forenede Kongerige (Nordirland)"
+	},
+	{
+		"Kode": "PS",
+		"Navn": "Det besatte palæstinensiske område"
+	},
+	{
+		"Kode": "DJ",
+		"Navn": "Djibouti"
+	},
+	{
+		"Kode": "DM",
+		"Navn": "Dominica"
+	},
+	{
+		"Kode": "EU",
+		"Navn": "EU"
+	},
+	{
+		"Kode": "EC",
+		"Navn": "Ecuador"
+	},
+	{
+		"Kode": "EG",
+		"Navn": "Egypten"
+	},
+	{
+		"Kode": "SV",
+		"Navn": "El Salvador"
+	},
+	{
+		"Kode": "CI",
+		"Navn": "Elfenbenskysten"
+	},
+	{
+		"Kode": "ER",
+		"Navn": "Eritrea"
+	},
+	{
+		"Kode": "EE",
+		"Navn": "Estland"
+	},
+	{
+		"Kode": "ET",
+		"Navn": "Etiopien"
+	},
+	{
+		"Kode": "FK",
+		"Navn": "Falklandsøerne"
+	},
+	{
+		"Kode": "FJ",
+		"Navn": "Fiji"
+	},
+	{
+		"Kode": "PH",
+		"Navn": "Filippinerne"
+	},
+	{
+		"Kode": "FI",
+		"Navn": "Finland"
+	},
+	{
+		"Kode": "FR",
+		"Navn": "Frankrig"
+	},
+	{
+		"Kode": "PF",
+		"Navn": "Fransk Poynesien"
+	},
+	{
+		"Kode": "FO",
+		"Navn": "Færøerne"
+	},
+	{
+		"Kode": "GA",
+		"Navn": "Gabon"
+	},
+	{
+		"Kode": "GM",
+		"Navn": "Gambia"
+	},
+	{
+		"Kode": "GE",
+		"Navn": "Georgien"
+	},
+	{
+		"Kode": "GH",
+		"Navn": "Ghana"
+	},
+	{
+		"Kode": "GI",
+		"Navn": "Gibraltar"
+	},
+	{
+		"Kode": "GD",
+		"Navn": "Grenada"
+	},
+	{
+		"Kode": "GR",
+		"Navn": "Grækenland"
+	},
+	{
+		"Kode": "GL",
+		"Navn": "Grønland"
+	},
+	{
+		"Kode": "GU",
+		"Navn": "Guam"
+	},
+	{
+		"Kode": "GT",
+		"Navn": "Guatemala"
+	},
+	{
+		"Kode": "GN",
+		"Navn": "Guinea"
+	},
+	{
+		"Kode": "GW",
+		"Navn": "Guinea-Bissau"
+	},
+	{
+		"Kode": "GY",
+		"Navn": "Guyana"
+	},
+	{
+		"Kode": "HT",
+		"Navn": "Haiti"
+	},
+	{
+		"Kode": "HM",
+		"Navn": "Heardøen og McDonaldøerne"
+	},
+	{
+		"Kode": "HN",
+		"Navn": "Honduras"
+	},
+	{
+		"Kode": "HK",
+		"Navn": "Hongkong"
+	},
+	{
+		"Kode": "BY",
+		"Navn": "Hviderusland"
+	},
+	{
+		"Kode": "IN",
+		"Navn": "Indien"
+	},
+	{
+		"Kode": "ID",
+		"Navn": "Indonesien"
+	},
+	{
+		"Kode": "IQ",
+		"Navn": "Irak"
+	},
+	{
+		"Kode": "IR",
+		"Navn": "Iran"
+	},
+	{
+		"Kode": "IE",
+		"Navn": "Irland"
+	},
+	{
+		"Kode": "IS",
+		"Navn": "Island"
+	},
+	{
+		"Kode": "IL",
+		"Navn": "Israel"
+	},
+	{
+		"Kode": "IT",
+		"Navn": "Italien"
+	},
+	{
+		"Kode": "JM",
+		"Navn": "Jamaica"
+	},
+	{
+		"Kode": "JP",
+		"Navn": "Japan"
+	},
+	{
+		"Kode": "JO",
+		"Navn": "Jordan"
+	},
+	{
+		"Kode": "YU",
+		"Navn": "Jugoslavien"
+	},
+	{
+		"Kode": "CX",
+		"Navn": "Juleøen"
+	},
+	{
+		"Kode": "KZ",
+		"Navn": "Kasakhstan"
+	},
+	{
+		"Kode": "KE",
+		"Navn": "Kenya"
+	},
+	{
+		"Kode": "CN",
+		"Navn": "Kina"
+	},
+	{
+		"Kode": "KG",
+		"Navn": "Kirgisistan"
+	},
+	{
+		"Kode": "KI",
+		"Navn": "Kiribati"
+	},
+	{
+		"Kode": "XK",
+		"Navn": "Kosovo"
+	},
+	{
+		"Kode": "HR",
+		"Navn": "Kroatien"
+	},
+	{
+		"Kode": "KW",
+		"Navn": "Kuwait"
+	},
+	{
+		"Kode": "QX",
+		"Navn": "Lande og territorier, som af handel af handelsmæssige eller militære grunde ikke er nærmere præciseret"
+	},
+	{
+		"Kode": "QZ",
+		"Navn": "Lande og territorier, som af handelsmæssige eller militære grunde ikke er nærmere præciseret i handelen med tredjelande"
+	},
+	{
+		"Kode": "QY",
+		"Navn": "Lande og territorier, som af handelsmæssige eller militære grunde ikke er nærmere præciseret i handelen mellem EU`s medlemsstater"
+	},
+	{
+		"Kode": "QU",
+		"Navn": "Lande og territorier, som ikke er nærmere præciseret"
+	},
+	{
+		"Kode": "QW",
+		"Navn": "Lande og territorier, som ikke er nærmere præciseret i handelen med tredjelande"
+	},
+	{
+		"Kode": "QV",
+		"Navn": "Lande og territorier, som ikke er nærmere præciseret i handelen mellem EU`s medlemsstater"
+	},
+	{
+		"Kode": "LA",
+		"Navn": "Laos"
+	},
+	{
+		"Kode": "LS",
+		"Navn": "Lesotho"
+	},
+	{
+		"Kode": "LV",
+		"Navn": "Letland"
+	},
+	{
+		"Kode": "LB",
+		"Navn": "Libanon"
+	},
+	{
+		"Kode": "LR",
+		"Navn": "Liberia"
+	},
+	{
+		"Kode": "LY",
+		"Navn": "Libyen"
+	},
+	{
+		"Kode": "LI",
+		"Navn": "Liechtenstein"
+	},
+	{
+		"Kode": "LT",
+		"Navn": "Litauen"
+	},
+	{
+		"Kode": "LU",
+		"Navn": "Luxembourg"
+	},
+	{
+		"Kode": "MO",
+		"Navn": "Macao"
+	},
+	{
+		"Kode": "MG",
+		"Navn": "Madagaskar"
+	},
+	{
+		"Kode": "MW",
+		"Navn": "Malawi"
+	},
+	{
+		"Kode": "MY",
+		"Navn": "Malaysia"
+	},
+	{
+		"Kode": "MV",
+		"Navn": "Maldiverne"
+	},
+	{
+		"Kode": "ML",
+		"Navn": "Mali"
+	},
+	{
+		"Kode": "MT",
+		"Navn": "Malta"
+	},
+	{
+		"Kode": "MA",
+		"Navn": "Marokko"
+	},
+	{
+		"Kode": "MH",
+		"Navn": "Marshalløerne"
+	},
+	{
+		"Kode": "MR",
+		"Navn": "Mauretanien"
+	},
+	{
+		"Kode": "MU",
+		"Navn": "Mauritius"
+	},
+	{
+		"Kode": "XL",
+		"Navn": "Melilla"
+	},
+	{
+		"Kode": "MX",
+		"Navn": "Mexico"
+	},
+	{
+		"Kode": "FM",
+		"Navn": "Mikronesiens Forenede Stater"
+	},
+	{
+		"Kode": "MD",
+		"Navn": "Moldova"
+	},
+	{
+		"Kode": "MN",
+		"Navn": "Mongoliet"
+	},
+	{
+		"Kode": "ME",
+		"Navn": "Montenegro"
+	},
+	{
+		"Kode": "MS",
+		"Navn": "Montserrat"
+	},
+	{
+		"Kode": "MZ",
+		"Navn": "Mozambique"
+	},
+	{
+		"Kode": "MM",
+		"Navn": "Myanmar"
+	},
+	{
+		"Kode": "NA",
+		"Navn": "Namibia"
+	},
+	{
+		"Kode": "NR",
+		"Navn": "Nauru"
+	},
+	{
+		"Kode": "NL",
+		"Navn": "Nederlandene"
+	},
+	{
+		"Kode": "NP",
+		"Navn": "Nepal"
+	},
+	{
+		"Kode": "NZ",
+		"Navn": "New Zealand"
+	},
+	{
+		"Kode": "NI",
+		"Navn": "Nicaragua"
+	},
+	{
+		"Kode": "NE",
+		"Navn": "Niger"
+	},
+	{
+		"Kode": "NG",
+		"Navn": "Nigeria"
+	},
+	{
+		"Kode": "NU",
+		"Navn": "Niue"
+	},
+	{
+		"Kode": "KP",
+		"Navn": "Nordkorea"
+	},
+	{
+		"Kode": "MP",
+		"Navn": "Nordmarianerne"
+	},
+	{
+		"Kode": "NF",
+		"Navn": "Norfolk Island"
+	},
+	{
+		"Kode": "NO",
+		"Navn": "Norge"
+	},
+	{
+		"Kode": "NC",
+		"Navn": "Ny Caledonien og tilhørende områder"
+	},
+	{
+		"Kode": "OM",
+		"Navn": "Oman"
+	},
+	{
+		"Kode": "PK",
+		"Navn": "Pakistan"
+	},
+	{
+		"Kode": "PW",
+		"Navn": "Palau"
+	},
+	{
+		"Kode": "PA",
+		"Navn": "Panama"
+	},
+	{
+		"Kode": "PG",
+		"Navn": "Papua Ny Guinea"
+	},
+	{
+		"Kode": "PY",
+		"Navn": "Paraguay"
+	},
+	{
+		"Kode": "PE",
+		"Navn": "Peru"
+	},
+	{
+		"Kode": "PN",
+		"Navn": "Pitcairnøerne"
+	},
+	{
+		"Kode": "XR",
+		"Navn": "Polarområder"
+	},
+	{
+		"Kode": "PL",
+		"Navn": "Polen"
+	},
+	{
+		"Kode": "PT",
+		"Navn": "Portugal"
+	},
+	{
+		"Kode": "QQ",
+		"Navn": "Proviantering og bunkring"
+	},
+	{
+		"Kode": "QS",
+		"Navn": "Proviantering og bunkring i handelen med tredjelande"
+	},
+	{
+		"Kode": "QR",
+		"Navn": "Proviantering og bunkring i handelen mellem EU`s medlemsstater"
+	},
+	{
+		"Kode": "QA",
+		"Navn": "Qatar"
+	},
+	{
+		"Kode": "RO",
+		"Navn": "Rumænien"
+	},
+	{
+		"Kode": "RW",
+		"Navn": "Rwanda"
+	},
+	{
+		"Kode": "BL",
+		"Navn": "Saint Barthélemy"
+	},
+	{
+		"Kode": "SH",
+		"Navn": "Saint Helena, Ascension og Tristan da Cunha"
+	},
+	{
+		"Kode": "SX",
+		"Navn": "Saint-Maarten (den hollandske del)"
+	},
+	{
+		"Kode": "SB",
+		"Navn": "Salomonøerne"
+	},
+	{
+		"Kode": "WS",
+		"Navn": "Samoa"
+	},
+	{
+		"Kode": "SM",
+		"Navn": "San Marino"
+	},
+	{
+		"Kode": "ST",
+		"Navn": "Sao Tomé og Príncipe"
+	},
+	{
+		"Kode": "SA",
+		"Navn": "Saudi Arabien"
+	},
+	{
+		"Kode": "CH",
+		"Navn": "Schweiz"
+	},
+	{
+		"Kode": "SN",
+		"Navn": "Senegal"
+	},
+	{
+		"Kode": "XS",
+		"Navn": "Serbien"
+	},
+	{
+		"Kode": "CS",
+		"Navn": "Serbien og Montenegro"
+	},
+	{
+		"Kode": "SC",
+		"Navn": "Seychellerne og tilhørende områder"
+	},
+	{
+		"Kode": "SL",
+		"Navn": "Sierra Leone"
+	},
+	{
+		"Kode": "SG",
+		"Navn": "Singapore"
+	},
+	{
+		"Kode": "SK",
+		"Navn": "Slovakiet"
+	},
+	{
+		"Kode": "SI",
+		"Navn": "Slovenien"
+	},
+	{
+		"Kode": "SO",
+		"Navn": "Somalia"
+	},
+	{
+		"Kode": "GS",
+		"Navn": "South Georgia og De Sydlige Sandwichøer"
+	},
+	{
+		"Kode": "ES",
+		"Navn": "Spanien (undtagen XC, XL)"
+	},
+	{
+		"Kode": "LK",
+		"Navn": "Sri Lanka"
+	},
+	{
+		"Kode": "VC",
+		"Navn": "St Vincent og Grenadinerne"
+	},
+	{
+		"Kode": "KN",
+		"Navn": "St. Kitts&nbsp;og Nevis"
+	},
+	{
+		"Kode": "LC",
+		"Navn": "St. Lucia"
+	},
+	{
+		"Kode": "PM",
+		"Navn": "St. Pierre og Miquelon"
+	},
+	{
+		"Kode": "SD",
+		"Navn": "Sudan"
+	},
+	{
+		"Kode": "SR",
+		"Navn": "Surinam"
+	},
+	{
+		"Kode": "SJ",
+		"Navn": "Svalbard"
+	},
+	{
+		"Kode": "SE",
+		"Navn": "Sverige"
+	},
+	{
+		"Kode": "SZ",
+		"Navn": "Swaziland"
+	},
+	{
+		"Kode": "ZA",
+		"Navn": "Sydafrika"
+	},
+	{
+		"Kode": "KR",
+		"Navn": "Sydkorea"
+	},
+	{
+		"Kode": "SS",
+		"Navn": "Sydsudan"
+	},
+	{
+		"Kode": "SY",
+		"Navn": "Syrien"
+	},
+	{
+		"Kode": "TJ",
+		"Navn": "Tadsjikistan"
+	},
+	{
+		"Kode": "TW",
+		"Navn": "Taiwan"
+	},
+	{
+		"Kode": "TZ",
+		"Navn": "Tanzania"
+	},
+	{
+		"Kode": "TD",
+		"Navn": "Tchad"
+	},
+	{
+		"Kode": "TH",
+		"Navn": "Thailand"
+	},
+	{
+		"Kode": "CZ",
+		"Navn": "Tjekkiet"
+	},
+	{
+		"Kode": "TG",
+		"Navn": "Togo"
+	},
+	{
+		"Kode": "TK",
+		"Navn": "Tokelau"
+	},
+	{
+		"Kode": "TO",
+		"Navn": "Tonga"
+	},
+	{
+		"Kode": "TT",
+		"Navn": "Trinidad og Tobago"
+	},
+	{
+		"Kode": "TN",
+		"Navn": "Tunesien"
+	},
+	{
+		"Kode": "TM",
+		"Navn": "Turkmenistan"
+	},
+	{
+		"Kode": "TC",
+		"Navn": "Turks- og Caicosøerne"
+	},
+	{
+		"Kode": "TV",
+		"Navn": "Tuvalu"
+	},
+	{
+		"Kode": "TR",
+		"Navn": "Tyrkiet"
+	},
+	{
+		"Kode": "DE",
+		"Navn": "Tyskland"
+	},
+	{
+		"Kode": "UM",
+		"Navn": "USA´s mindre øbesiddelser"
+	},
+	{
+		"Kode": "UG",
+		"Navn": "Uganda"
+	},
+	{
+		"Kode": "UA",
+		"Navn": "Ukraine"
+	},
+	{
+		"Kode": "HU",
+		"Navn": "Ungarn"
+	},
+	{
+		"Kode": "UY",
+		"Navn": "Uruguay"
+	},
+	{
+		"Kode": "UZ",
+		"Navn": "Usbekistan"
+	},
+	{
+		"Kode": "VU",
+		"Navn": "Vanuatu"
+	},
+	{
+		"Kode": "VA",
+		"Navn": "Vatikanstaten"
+	},
+	{
+		"Kode": "VE",
+		"Navn": "Venezuela"
+	},
+	{
+		"Kode": "XP",
+		"Navn": "Vestbredden/Gazastriben"
+	},
+	{
+		"Kode": "EH",
+		"Navn": "Vestsahara"
+	},
+	{
+		"Kode": "VN",
+		"Navn": "Vietnam"
+	},
+	{
+		"Kode": "WF",
+		"Navn": "Wallis- og Futunaøerne"
+	},
+	{
+		"Kode": "YE",
+		"Navn": "Yemen"
+	},
+	{
+		"Kode": "ZM",
+		"Navn": "Zambia"
+	},
+	{
+		"Kode": "ZW",
+		"Navn": "Zimbabwe"
+	},
+	{
+		"Kode": "GQ",
+		"Navn": "Ækvatorialguinea"
+	},
+	{
+		"Kode": "AT",
+		"Navn": "Østrig"
+	},
+	{
+		"Kode": "TL",
+		"Navn": "Østtimor"
+	}
+    {
+		"Kode": "QP",
+		"Navn": "Åbent hav"
+	},
 ]

@@ -221,7 +221,7 @@
 </svelte:head>
 
 <main>
-	<div class="mb-10 ">
+	<div class="mb-10">
 		{#if error}
 			<div class="mb-8 alert alert-error shadow-lg">
 				<div>
@@ -483,7 +483,7 @@
 			<div class="md:col-span-2">
 				<div
 					class="tooltip"
-					data-tip="Dette er valutaen af alle prisangivelser på hele siden; vareprisen og fragt prisen."
+					data-tip="Dette er valutaen af alle prisangivelser på hele siden; varepriser og fragt prisen."
 				>
 					<label for="valuta" class="label"
 						>Valuta af priserne <i class="ml-4 bi bi-info-circle" /></label
