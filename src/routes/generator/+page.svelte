@@ -186,7 +186,7 @@
 		}
 
 		let pdfs = [];
-		const data = await fetch('Enhedsdokument_6_7.pdf').then((res) => res.arrayBuffer());
+		const data = await fetch('Enhedsdokument.pdf').then((res) => res.arrayBuffer());
 
 		for (let i = 0; i < packageInfo.length; i++) {
 			const packageInfoNth = packageInfo[i];
@@ -413,7 +413,9 @@
 										bind:value={vareBeskrivelseData[index]['varekode']['value']}
 										type="text"
 										class="input input-bordered {vareBeskrivelseData[index]['varekode'].hasValue
+											? vareBeskrivelseData[index]['varekode'].valid
 											? 'input-success'
+											: 'input-error'
 											: ''}"
 									/></td
 								>
