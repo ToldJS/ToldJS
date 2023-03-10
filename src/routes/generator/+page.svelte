@@ -560,7 +560,7 @@
 					{/each}
 				{:else}
 					<p class="text-gray-500">
-						Ingen enhedsdokumenter her. Udfyld felterne, og tryk på "Opret PDF".
+						Ingen enhedsdokumenter her. Udfyld felterne, og tryk på "Generer PDF".
 					</p>
 				{/if}
 			</div>

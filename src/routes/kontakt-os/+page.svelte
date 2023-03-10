@@ -1,4 +1,11 @@
-  <script>
+  <script lang="ts">
+    import { sendEmail } from '$lib/sendEmail';
+    $: allFieldsFilled =
+		email.valid &&
+		navn.valid &&
+		besked.valid;
+
+    let sendingMessage = false;
     let email = { value: '', valid: false, hasValue: false };
     $: {
       email.valid = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value);
@@ -14,6 +21,12 @@
       besked.valid = besked.value.length > 0;
 		  besked.hasValue = besked.value.length > 0;
     }
+
+    const sendbeskedenflyvendeafsted = async (event: MouseEvent): Promise<void> => {
+      sendingMessage = true;
+      await sendEmail(navn, email, besked);
+    };
+
   </script>
   
   <div class="form-control m-5">
@@ -52,7 +65,7 @@
     </label>
     <textarea
     bind:value={besked['value']}
-    id="besked"s
+    id="besked"
     placeholder="Skriv din besked her..."
     class="textarea textarea-bordered {besked.hasValue
       ? 'textarea-success'
@@ -60,5 +73,9 @@
     />
   </div>
   <div class="text-center">
-    <button class="btn btn-primary text-center">Send besked</button>
+    <button 
+    on:click={sendbeskedenflyvendeafsted}
+    disabled={!allFieldsFilled}
+    class="btn btn-primary {sendingMessage ? 'loading' : ''}">Send besked
+  </button>
   </div>

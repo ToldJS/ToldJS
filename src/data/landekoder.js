@@ -1049,8 +1049,8 @@ export const ANDRE_LANDEKODER = [
 	{
 		"Kode": "TL",
 		"Navn": "Østtimor"
-	}
-    {
+	},
+  {
 		"Kode": "QP",
 		"Navn": "Åbent hav"
 	},
