@@ -22,18 +22,14 @@
 		  besked.hasValue = besked.value.length > 0;
     }
 
-    const sendbeskedenflyvendeafsted = async (event: MouseEvent): Promise<void> => {
-      sendingMessage = true;
-      await sendEmail(navn, email, besked);
-    };
-
   </script>
-  
+  <form action="https://formsubmit.co/support@toldjs.dk" method="POST">
   <div class="form-control m-5">
     <label class="input-group">
       <span class="bg-neutral">Email</span>
       <input 
       bind:value={email['value']}
+      name="Email"
       type="text" 
       id="email"
       placeholder="john@doe.dk" 
@@ -50,6 +46,7 @@
       <span class="bg-neutral">Navn</span>
       <input 
       bind:value={navn['value']}
+      name="Name"
       type="text" 
       id="navn"
       placeholder="John Doe" 
@@ -65,6 +62,7 @@
     </label>
     <textarea
     bind:value={besked['value']}
+    name="Message"
     id="besked"
     placeholder="Skriv din besked her..."
     class="textarea textarea-bordered {besked.hasValue
@@ -74,8 +72,10 @@
   </div>
   <div class="text-center">
     <button 
-    on:click={sendbeskedenflyvendeafsted}
+    type="submit"
     disabled={!allFieldsFilled}
-    class="btn btn-primary {sendingMessage ? 'loading' : ''}">Send besked
+    class="btn btn-primary">Send besked
   </button>
   </div>
+  <input type="hidden" name="_next" value="https://toldjs.dk">
+  </form>
