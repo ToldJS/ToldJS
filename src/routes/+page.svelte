@@ -7,7 +7,7 @@
 		<div class="max-w-md">
 			<h1 class="text-5xl font-bold">Velkommen til ToldJS!</h1>
 			<p class="pb-3">
-				ToldJS er en hjemmeside der hjælper med at udfylde dokumenterne til selvfortoldning. Men, hvorfor selvfortolde? Det er for at undgå det transportgebyr som postnord og andre pålægger for at fortolde en pakke.
+				ToldJS er en hjemmeside, der hjælper med at udfylde dokumenterne til selvfortoldning. Men hvorfor selvfortolde? Det er for at undgå det transportgebyr som Postnord, og andre pålægger dig for at fortolde en pakke.
 			</p>
 			<a class="btn btn-primary" href="/guide">Åben Guide</a>
 		</div>
