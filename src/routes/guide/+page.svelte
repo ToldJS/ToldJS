@@ -14,8 +14,7 @@
 </div>
 <div class="grid grid-cols-5 p-4 md:p-8">
 	<div
-		class="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start"
-	>
+		class="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start">
 		<button
 			on:click={() => (active = 'Info')}
 			class="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Info'
@@ -26,14 +25,12 @@
 			on:click={() => (active = 'Step 1')}
 			class="px-2 py-1 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Step 1'
 				? activeClasses
-				: inactiveClasses}">Step 1</button
-		>
+				: inactiveClasses}">Step 1</button>
 		<button
 			on:click={() => (active = 'Step 2')}
 			class="px-2 py-1 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Step 2'
 				? activeClasses
-				: inactiveClasses}">Step 2</button
-		>
+				: inactiveClasses}">Step 2</button>
 	</div>
 	{#if active == 'Info'}
 		<div class="">
