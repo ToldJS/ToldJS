@@ -1,3 +1,11 @@
+
+<div class="alert alert-info shadow-lg">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>Kontakt os på mail</span> <a href="mailto:kontakt@toldjs.dk"> kontakt@toldjs.dk</a> <span> eller ved brug af formularen</span>
+  </div>
+</div>
+
 <script lang="ts">
 	$: allFieldsFilled = email.valid && navn.valid && besked.valid;
 
@@ -67,5 +75,5 @@
 	<div class="text-center">
 		<button type="submit" disabled={!allFieldsFilled} class="btn btn-primary">Send besked </button>
 	</div>
-	<input type="hidden" name="_next" value="https://toldjs.dk" />
+	<input type="hidden" name="_next" value="https://toldjs.dk/kontakt-os/sendt" />
 </form>
