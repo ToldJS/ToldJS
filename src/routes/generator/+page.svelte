@@ -5,6 +5,7 @@
 	import { ANDRE_LANDEKODER, HYPPIGE_LANDEKODER } from '../../data/landekoder';
 	import { formatBytes } from '$lib/format';
 	import { stringContainsAny } from '$lib/utils';
+	import { copy } from 'svelte-copy';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data);
@@ -260,8 +261,7 @@
 				</div>
 			</div>
 		{/if}
-
-		<h1 class="text-3xl font-bold">Toldpapirsgenerator</h1>
+		<h2 class="text-3xl font-bold mt-3">Tolddokuments generator</h2>
 		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
 			<div class="md:col-span-6">
 				<label for="tracking_number" class="label">Tracking nummer</label>
@@ -414,8 +414,8 @@
 										type="text"
 										class="input input-bordered {vareBeskrivelseData[index]['varekode'].hasValue
 											? vareBeskrivelseData[index]['varekode'].valid
-											? 'input-success'
-											: 'input-error'
+												? 'input-success'
+												: 'input-error'
 											: ''}"
 									/></td
 								>
