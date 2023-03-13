@@ -22,8 +22,8 @@
 			</label>
 			<ul
 				tabindex="0"
-				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
-			>
+				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52">
+				<li><a href="/guide">Guide</a></li>
 				<li><a href="/generator">Generator</a></li>
 				<li><a href="/om-os">Om Projektet</a></li>
 				<li><a href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noreferrer">Rapporter en fejl</a></li>
@@ -38,6 +38,7 @@
 	</div>
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
+			<li><a href="/guide">Guide</a></li>
 			<li><a href="/generator">Generator</a></li>
 			<li><a href="/om-os">Om Projektet</a></li>
 		</ul>
