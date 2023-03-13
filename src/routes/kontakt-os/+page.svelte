@@ -67,5 +67,5 @@
 	<div class="text-center">
 		<button type="submit" disabled={!allFieldsFilled} class="btn btn-primary">Send besked </button>
 	</div>
-	<input type="hidden" name="_next" value="https://toldjs.dk" />
+	<input type="hidden" name="_next" value="https://toldjs.dk/kontakt-os/sendt" />
 </form>
