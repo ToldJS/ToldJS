@@ -9,7 +9,7 @@
 			<p class="pb-3">
 				ToldJS er en hjemmeside der hjælper med at udfylde dokumenterne til selvfortoldning. Men, hvorfor selvfortolde? Det er for at undgå det transportgebyr som postnord og andre pålægger for at fortolde en pakke.
 			</p>
-			<a class="btn btn-primary" href="/generator">Åben generatoren</a>
+			<a class="btn btn-primary" href="/guide">Åben Guide</a>
 		</div>
 	</div>
 </div>
