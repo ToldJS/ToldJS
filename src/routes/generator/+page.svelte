@@ -261,32 +261,6 @@
 				</div>
 			</div>
 		{/if}
-
-		<h1 class="text-3xl font-bold">Guide til selvfortoldning</h1>
-		<p>
-			Først skal du sende en email til din transportør om at du gerne vil selvfortolde. Derefter skal du opsamle noget information om din pakke. Udfyld felterne i generatoren på siden,
-			og download PDF dokumentet. Til sidst skal du aflevere dokumentet til toldekspeditionen, og betale tolden.
-		</p>
-		<div class="divider">1</div>
-		<h2 class="text-3xl font-bold mt-3">Email</h2>
-		<div class="card w-96 bg-neutral shadow-xl">
-			<div class="card-body ">
-				<div class="flex flex-row items-center">
-					<h2 class="card-title mt-0">Eksempel</h2>
-					<button class="btn btn-primary justify-self-end" use:copy={''}>Kopier</button>
-				</div>
-				<p class="m-0">Hej PostNord.</p>
-				<p class="m-0">
-					Jeg ønsker at selvfortolde min pakke med nr: XXXXXXXXX
-					Jeg vil også spørge om hvor lang tid det er muligt for jer at holde pakken, så jeg har bedst muligt tid til at få den fortoldet.
-				</p>
-				<p class="m-0">
-					Mvh. NAVN
-				</p>
-					
-			</div>
-		</div>
-		<div class="divider">2</div>
 		<h2 class="text-3xl font-bold mt-3">Tolddokuments generator</h2>
 		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
 			<div class="md:col-span-6">
@@ -591,21 +565,6 @@
 						Ingen enhedsdokumenter her. Udfyld felterne, og tryk på "Generer PDF".
 					</p>
 				{/if}
-			</div>
-		</div>
-		<div class="divider">3</div>
-		<h2 class="text-3xl font-bold mt-3">Aflevering af dokumentet</h2>
-		<div class="flex flex-row items-center">
-			<p>Nu da du har dine tolddokumenter skal du tage ned til en toldekspedition og aflevere papirerne. Her kan du se et kort over lokationerne:</p>
-			<div class="dropdown">
-				<label tabindex="0" class="btn m-3 bg-primary text-base-100">Kort</label>
-				<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-					<iframe
-						src="https://www.google.com/maps/d/embed?mid=1-Wmnv0sU-QEMNZ11zr78HPwC11lWxjg&ehbc=2E312F"
-						width="640"
-						height="480"
-					/>
-				</ul>
 			</div>
 		</div>
 	</div>
