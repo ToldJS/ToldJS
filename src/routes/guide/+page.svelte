@@ -13,14 +13,7 @@
 		content="Få hjælp til at komme i gang med at bruge vores platform. Her kan du finde en guide til at komme hurtigt i gang."
 	/>
 </svelte:head>
-
-<div class="p-4 text-center md:px-10 lg:px-32 xl:max-w-3xl">
-	<h2 class="text-2xl font-bold leading-none sm:text-4xl">Guide til selvfortoldning</h2>
-	<p class="my-4">
-		Få hjælp til at komme i gang med at bruge vores platform. Her kan du finde en guide til at komme
-		hurtigt i gang.
-	</p>
-</div>
+<h2 class="text-2xl font-bold leading-none sm:text-4xl">Guide til selvfortoldning</h2>
 <div class="grid grid-cols-5 p-4 md:p-8">
 	<div
 		class="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start"
@@ -57,13 +50,13 @@
 				Først skal du sende en email til din transportør om at du gerne vil selvfortolde. Derefter
 				skal du opsamle noget information om din pakke. Brug denne information til at udfylde
 				felterne i generatoren på siden, og download PDF dokumentet. Til sidst skal du aflevere
-				dokumentet til toldekspeditionen, og betale tolden. Alt dette er beskrevet i de næste steps.
+				dokumentet til toldekspeditionen, og betale tolden. Alt dette er beskrevet i de næste skridt.
 			</p>
 		{:else if active == 'Step 1'}
 			<h1 class="text-3xl font-bold">Email</h1>
 			<p>
 				Første step er at skrive en email til dit transportørfirma, hvor du siger at du gerne selv
-				vil fortolde din pakke. Den kan for eksempel se sådan ud:
+				vil fortolde din pakke. Postnords email til dette er: firmaimport@postnord.com     Den kan for eksempel se sådan ud:
 			</p>
 			<pre bind:this={emailTemplate}>
 Hej PostNord.
@@ -102,6 +95,7 @@ Mvh. NAVN
 				src="https://www.google.com/maps/d/embed?mid=1-Wmnv0sU-QEMNZ11zr78HPwC11lWxjg&ehbc=2E312F"
 				width="640"
 				height="480"
+				class="mb-14"
 			/>
 		{/if}
 	</div>
