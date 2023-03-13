@@ -6,6 +6,11 @@
 	const activeClasses = 'dark:border-violet-400 dark:text-gray-50';
 </script>
 
+<svelte:head>
+	<title>Guide - ToldJS</title>
+	<meta name="description" content="Få hjælp til at komme i gang med at bruge vores platform. Her kan du finde en guide til at komme hurtigt i gang." />
+</svelte:head>
+
 <div class="p-4 text-center md:px-10 lg:px-32 xl:max-w-3xl">
 	<h2 class="text-2xl font-bold leading-none sm:text-4xl">Guide til selvfortoldning</h2>
 	<p class="my-4">
