@@ -20,25 +20,25 @@
 	>
 		<button
 			on:click={() => (active = 'Info')}
-			class="p-2 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Info'
+			class="p-2 border-b-4 md:border-l-4 md:border-b-0 md:py-3 {active == 'Info'
 				? activeClasses
 				: inactiveClasses}">Info</button
 		>
 		<button
 			on:click={() => (active = 'Step 1')}
-			class="px-2 py-1 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Step 1'
+			class="px-2 py-1 border-b-4 md:border-l-4 md:border-b-0 md:py-3 {active == 'Step 1'
 				? activeClasses
 				: inactiveClasses}">Step 1</button
 		>
 		<button
 			on:click={() => (active = 'Step 2')}
-			class="px-2 py-1 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Step 2'
+			class="px-2 py-1 border-b-4 md:border-l-4 md:border-b-0 md:py-3 {active == 'Step 2'
 				? activeClasses
 				: inactiveClasses}">Step 2</button
 		>
 		<button
 			on:click={() => (active = 'Step 3')}
-			class="px-2 py-1 border-b-2 md:border-l-2 md:border-b-0 md:py-3 {active == 'Step 3'
+			class="px-2 py-1 border-b-4 md:border-l-4 md:border-b-0 md:py-3 {active == 'Step 3'
 				? activeClasses
 				: inactiveClasses}">Step 3</button
 		>
