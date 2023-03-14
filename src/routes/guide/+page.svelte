@@ -3,7 +3,7 @@
 	let active: 'Info' | 'Step 1' | 'Step 2' | 'Step 3' = 'Info';
 
 	const inactiveClasses = 'dark:border-gray-300 dark:text-gray-400';
-	const activeClasses = 'dark:border-violet-400 dark:text-gray-50';
+	const activeClasses = 'dark:border-primary dark:text-gray-50';
 </script>
 
 <svelte:head>
@@ -13,7 +13,7 @@
 		content="Få hjælp til at komme i gang med at bruge vores platform. Her kan du finde en guide til at komme hurtigt i gang."
 	/>
 </svelte:head>
-<h2 class="text-2xl font-bold leading-none sm:text-4xl">Guide til selvfortoldning</h2>
+<h1 class="leading-none">Guide til selvfortoldning</h1>
 <div class="grid grid-cols-5 p-4 md:p-8">
 	<div
 		class="flex justify-center px-4 col-span-full md:col-span-1 md:flex-col md:justify-start md:items-start"
@@ -45,7 +45,7 @@
 	</div>
 	<div class="col-span-full md:col-span-4">
 		{#if active == 'Info'}
-			<h1 class="text-3xl font-bold">Info</h1>
+			<h1>Info</h1>
 			<p>
 				Først skal du sende en email til din transportør om at du gerne vil selvfortolde. Derefter
 				skal du opsamle noget information om din pakke. Brug denne information til at udfylde
@@ -53,7 +53,7 @@
 				dokumentet til toldekspeditionen, og betale tolden. Alt dette er beskrevet i de næste skridt.
 			</p>
 		{:else if active == 'Step 1'}
-			<h1 class="text-3xl font-bold">Email</h1>
+			<h1>Email</h1>
 			<p>
 				Første step er at skrive en email til dit transportørfirma, hvor du siger at du gerne selv
 				vil fortolde din pakke. Postnords email til dette er: firmaimport@postnord.com     Den kan for eksempel se sådan ud:
@@ -73,7 +73,7 @@ Mvh. NAVN
 				}}>Kopier</button
 			>
 		{:else if active == 'Step 2'}
-			<h1 class="text-3xl font-bold">Generator</h1>
+			<h1>Generator</h1>
 			<p>
 				Når du har fået svar fra transportøren, skal du samle nogle oplysninger om din pakke. Du
 				skal bruge disse oplysninger til at udfylde felterne i generatoren på siden. Når du har
@@ -85,7 +85,7 @@ Mvh. NAVN
 				>Gå til generatoren</a
 			>
 		{:else if active == 'Step 3'}
-			<h1 class="text-3xl font-bold">Aflevering</h1>
+			<h1>Aflevering</h1>
 			<p>
 				Nu hvor du har dine tolddokumenter skal du tage ned til en toldekspedition og aflevere
 				papirerne. Her kan du se et kort over lokationerne:

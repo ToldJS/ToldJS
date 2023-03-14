@@ -260,7 +260,7 @@
 				</div>
 			</div>
 		{/if}
-		<h2 class="text-3xl font-bold mt-3">Tolddokuments generator</h2>
+		<h1 class="mt-3">Tolddokuments generator</h1>
 		<div class="grid gap-4 gap-y-2 grid-cols-1 md:grid-cols-6">
 			<div class="md:col-span-6">
 				<label for="tracking_number" class="label">Tracking nummer</label>
