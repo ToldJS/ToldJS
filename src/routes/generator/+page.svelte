@@ -5,7 +5,6 @@
 	import { ANDRE_LANDEKODER, HYPPIGE_LANDEKODER } from '../../data/landekoder';
 	import { formatBytes } from '$lib/format';
 	import { stringContainsAny } from '$lib/utils';
-	import { copy } from 'svelte-copy';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data);
