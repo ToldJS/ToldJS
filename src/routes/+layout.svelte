@@ -28,15 +28,25 @@
 				tabindex="0"
 				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
 			>
-				<li><a class="{path == 'guide' ? 'btn-primary text-black' : ''}" href="/guide">Guide</a></li>
-				<li><a class="{path == 'generator' ? 'btn-primary text-black' : ''}" href="/generator">Generator</a></li>
-				<li><a class="{path == 'om-os' ? 'btn-primary text-black' : ''}" href="/om-os">Om Projektet</a></li>
+				<li><a class={path == 'guide' ? 'btn-primary text-black' : ''} href="/guide">Guide</a></li>
+				<li>
+					<a class={path == 'generator' ? 'btn-primary text-black' : ''} href="/generator"
+						>Generator</a
+					>
+				</li>
+				<li>
+					<a class={path == 'om-os' ? 'btn-primary text-black' : ''} href="/om-os">Om Projektet</a>
+				</li>
 				<li>
 					<a href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noreferrer"
 						>Rapporter en fejl</a
 					>
 				</li>
-				<li><a class="{path == 'kontakt-os' ? 'btn-primary text-black' : ''}" href="/kontakt-os">Kontakt os</a></li>
+				<li>
+					<a class={path == 'kontakt-os' ? 'btn-primary text-black' : ''} href="/kontakt-os"
+						>Kontakt os</a
+					>
+				</li>
 			</ul>
 		</div>
 		<a href="/" class="btn btn-ghost"
@@ -46,9 +56,9 @@
 	<div class="navbar-center" />
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
-			<li><a class="{path == 'guide' ? 'text-primary' : ''}" href="/guide">Guide</a></li>
-			<li><a class="{path == 'generator' ? 'text-primary' : ''}" href="/generator">Generator</a></li>
-			<li><a class="{path == 'om-os' ? 'text-primary' : ''}" href="/om-os">Om Projektet</a></li>
+			<li><a class={path == 'guide' ? 'text-primary' : ''} href="/guide">Guide</a></li>
+			<li><a class={path == 'generator' ? 'text-primary' : ''} href="/generator">Generator</a></li>
+			<li><a class={path == 'om-os' ? 'text-primary' : ''} href="/om-os">Om Projektet</a></li>
 		</ul>
 	</div>
 	<div class="navbar-end hidden lg:flex">
