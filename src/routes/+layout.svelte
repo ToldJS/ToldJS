@@ -1,9 +1,37 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import { invalidateAll } from '$app/navigation';
+	import type { LayoutData } from './$types';
+	import { enhance, type SubmitFunction } from '$app/forms';
 
 	let path = '';
-	$: path = $page.url.pathname.split('/')[1];
+	$: path = $page.url.pathname;
+
+	export let data: LayoutData;
+	$: ({ supabase } = data);
+
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange(() => {
+			invalidateAll();
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
+	});
+
+	// Hvis brugeren slukker for javascript, så vil han stadig kunne logge ud
+	const submitLogout: SubmitFunction = async ({ cancel }) => {
+		const { error } = await supabase.auth.signOut();
+		if (error) {
+			console.log(error);
+		}
+		cancel();
+	};
 </script>
 
 <div class="navbar bg-base-100">
@@ -28,25 +56,39 @@
 				tabindex="0"
 				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
 			>
-				<li><a class={path == 'guide' ? 'btn-primary text-black' : ''} href="/guide">Guide</a></li>
+				<li><a class={path == '/guide' ? 'btn-primary text-black' : ''} href="/guide">Guide</a></li>
 				<li>
-					<a class={path == 'generator' ? 'btn-primary text-black' : ''} href="/generator"
+					<a class={path == '/generator' ? 'btn-primary text-black' : ''} href="/generator"
 						>Generator</a
 					>
 				</li>
 				<li>
-					<a class={path == 'om-os' ? 'btn-primary text-black' : ''} href="/om-os">Om Projektet</a>
+					<a class={path == '/om-os' ? 'btn-primary text-black' : ''} href="/om-os">Om Projektet</a>
 				</li>
 				<li>
-					<a href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noreferrer"
-						>Rapporter en fejl</a
-					>
-				</li>
-				<li>
-					<a class={path == 'kontakt-os' ? 'btn-primary text-black' : ''} href="/kontakt-os"
+					<a class={path == '/kontakt-os' ? 'btn-primary text-black' : ''} href="/kontakt-os"
 						>Kontakt os</a
 					>
 				</li>
+				{#if data.session}
+					<li>
+						<a class={path == '/konto' ? 'btn-primary text-black' : ''} href="/konto">Konto</a>
+					</li>
+					<form action="/konto/logud" method="POST" use:enhance={submitLogout}>
+						<button type="submit">Log ud</button>
+					</form>
+				{:else}
+					<li>
+						<a class={path == '/konto/logind' ? 'btn-primary text-black' : ''} href="/konto/logind"
+							>Log ind</a
+						>
+					</li>
+					<li>
+						<a class={path == '/konto/opret' ? 'btn-primary text-black' : ''} href="/konto/opret"
+							>Opret konto</a
+						>
+					</li>
+				{/if}
 			</ul>
 		</div>
 		<a href="/" class="btn btn-ghost"
@@ -56,19 +98,39 @@
 	<div class="navbar-center" />
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
-			<li><a class={path == 'guide' ? 'text-primary' : ''} href="/guide">Guide</a></li>
-			<li><a class={path == 'generator' ? 'text-primary' : ''} href="/generator">Generator</a></li>
-			<li><a class={path == 'om-os' ? 'text-primary' : ''} href="/om-os">Om Projektet</a></li>
+			<li><a class={path == '/guide' ? 'text-primary' : ''} href="/guide">Guide</a></li>
+			<li><a class={path == '/generator' ? 'text-primary' : ''} href="/generator">Generator</a></li>
+			<li><a class={path == '/om-os' ? 'text-primary' : ''} href="/om-os">Om Projektet</a></li>
+			<li>
+				<a class={path == '/kontakt-os' ? 'text-primary' : ''} href="/kontakt-os">Kontakt os</a>
+			</li>
 		</ul>
 	</div>
 	<div class="navbar-end hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
-			<li>
-				<a href="https://github.com/ToldJS/ToldJS/issues/new" target="_blank" rel="noreferrer"
-					>Rapporter en fejl</a
-				>
-			</li>
-			<li><a class="bg-primary text-base-100" href="/kontakt-os">Kontakt os</a></li>
+			{#if data.session}
+				<div class="dropdown dropdown-end">
+					<label tabindex="0" class="btn btn-ghost btn-circle">
+						<i class="text-3xl bi bi-person-fill" />
+					</label>
+					<ul
+						tabindex="0"
+						class="bg-base-200 menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
+					>
+						<li><a href="/konto">Konto</a></li>
+						<li>
+							<form action="/konto/logud" method="POST" use:enhance={submitLogout}>
+								<button type="submit">Log ud</button>
+							</form>
+						</li>
+					</ul>
+				</div>
+			{:else}
+				<li>
+					<a class={path == '/konto/logind' ? 'text-primary' : ''} href="/konto/logind">Log ind</a>
+				</li>
+				<li><a class="btn btn-primary text-black" href="/konto/opret">Opret konto</a></li>
+			{/if}
 		</ul>
 	</div>
 </div>
