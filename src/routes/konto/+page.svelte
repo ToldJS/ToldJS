@@ -3,17 +3,17 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	// create table public.orders (
-	// 	id uuid not null primary key default uuid_generate_v4(),
-	// 	created_at timestamptz not null default now(),
-	// 	user_id uuid not null references auth.users on delete cascade,
-	// 	price int8 not null,
 
-	// 	primary key (id)
-	// );
+	let orders: { [x: string]: any }[] | null = null;
+	async function loadOrders() {
+		const { data: resp, error: err } = await data.supabase.from('orders').select('name, created_at');
+		orders = resp;
+	}
 
-	// alter table public.orders enable row level security;
-
+	// Load orders when session is available
+	$: if (data.session) {
+		loadOrders();
+	}
 </script>
 
 <svelte:head>
@@ -22,6 +22,7 @@
 
 {#if data.session}
 	<p>Velkommen, {data.session.user.email}</p>
+	<pre>{JSON.stringify(orders, null, 2)}</pre>
 {:else}
 	<Redirect to="/konto/logind" />
 {/if}
