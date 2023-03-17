@@ -1,4 +1,4 @@
-import { error, redirect, type Actions } from "@sveltejs/kit";
+import { fail, redirect, type Actions } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 
 export const actions: Actions = {
@@ -12,9 +12,9 @@ export const actions: Actions = {
 
         if (err) {
             if (err instanceof AuthApiError) {
-                throw error(400, 'Ugyldig email eller adgangskode.')
+                return fail(400, { error: 'Ugyldig email eller adgangskode.' })
             }
-            throw error(500, 'Server error. Please try again later')
+            return fail(500, { error: 'Server error. Please try again later' })
         }
 
         throw redirect(303, '/konto/bekraeft')

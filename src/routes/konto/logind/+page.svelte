@@ -1,10 +1,20 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from '$app/forms';
+	import { createAlert } from '$lib/alerts';
 	import Redirect from '$lib/components/Redirect.svelte';
 	import type { Provider } from '@supabase/supabase-js';
-	import type { PageData } from './$types';
+	import type { ActionData, PageData } from './$types';
 
 	export let data: PageData;
+	export let form: ActionData;
+
+	$: if (form?.error) {
+		createAlert({
+			type: 'ERROR',
+			name: 'Fejl ved login',
+			body: form.error,
+		});
+	}
 
 	const signInViaProvider = async (provider: Provider) => {
 		const { data: result, error } = await data.supabase.auth.signInWithOAuth({
@@ -31,6 +41,10 @@
 	};
 </script>
 
+<svelte:head>
+	<title>Log ind - ToldJS</title>
+</svelte:head>
+
 {#if data.session}
 	<Redirect to="/konto" />
 {:else}
@@ -45,7 +59,7 @@
 			<button formaction="?/login&provider=discord" class="btn btn-ghost">Discord</button>
 			<button formaction="?/login&provider=github" class="btn btn-ghost">GitHub</button>
 		</form>
-		<form action="?/login" method="POST" class="space-y-4 md:space-y-6">
+		<form action="?/login" method="POST" class="space-y-4 md:space-y-6" use:enhance>
 			<div>
 				<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 					>Email</label

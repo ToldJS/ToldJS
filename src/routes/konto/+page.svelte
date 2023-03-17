@@ -16,6 +16,10 @@
 
 </script>
 
+<svelte:head>
+	<title>Konto - ToldJS</title>
+</svelte:head>
+
 {#if data.session}
 	<p>Velkommen, {data.session.user.email}</p>
 {:else}

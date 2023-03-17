@@ -1,9 +1,21 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+	import { createAlert } from '$lib/alerts';
 	import Redirect from '$lib/components/Redirect.svelte';
-	import type { PageData } from '../../$types';
+	import type { ActionData, PageData } from './$types';
 
 	export let data: PageData;
+	export let form: ActionData;
+	$: if (form?.error) createAlert({
+		type: 'ERROR',
+		name: 'Fejl ved oprettelse af konto',
+		body: form.error,
+	})
 </script>
+
+<svelte:head>
+	<title>Opret Konto - ToldJS</title>
+</svelte:head>
 
 {#if data.session}
 	<Redirect to="/konto" />
@@ -14,7 +26,7 @@
 		>
 			Opret konto
 		</h1>
-		<form action="?/register" method="POST" class="space-y-4 md:space-y-6">
+		<form action="?/register" method="POST" class="space-y-4 md:space-y-6" use:enhance>
 			<div>
 				<label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 					>Email</label

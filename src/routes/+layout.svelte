@@ -5,6 +5,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { LayoutData } from './$types';
 	import { enhance, type SubmitFunction } from '$app/forms';
+	import AlertBox from '$lib/components/alert/AlertBox.svelte';
 
 	let path = '';
 	$: path = $page.url.pathname;
@@ -110,8 +111,12 @@
 		<ul class="menu menu-horizontal px-1">
 			{#if data.session}
 				<div class="dropdown dropdown-end">
-					<label tabindex="0" class="btn btn-ghost btn-circle">
-						<i class="text-3xl bi bi-person-fill" />
+					<label tabindex="0" class="btn btn-circle avatar">
+						{#if data.session.user.user_metadata?.avatar_url}
+							<img src={data.session.user.user_metadata.avatar_url} alt="User avatar" />
+						{:else}
+							<i class="text-3xl bi bi-person-fill" />
+						{/if}
 					</label>
 					<ul
 						tabindex="0"
@@ -136,6 +141,7 @@
 </div>
 
 <div class="container mx-auto prose">
+	<AlertBox />
 	<slot />
 </div>
 

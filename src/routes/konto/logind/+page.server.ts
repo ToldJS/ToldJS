@@ -1,5 +1,5 @@
 import { AuthApiError, type Provider } from '@supabase/supabase-js';
-import { error, redirect, type Actions } from '@sveltejs/kit';
+import { fail, redirect, type Actions } from '@sveltejs/kit';
 
 const PROVIDERS = ['google', 'discord', 'github'];
 
@@ -8,14 +8,14 @@ export const actions: Actions = {
         const provider = url.searchParams.get('provider') as Provider;
         if (provider) {
             if (!PROVIDERS.includes(provider)) {
-                throw error(400, 'Provider not supported');
+                return fail(400, {error: 'Ugyldig OAuth udbyder.'});
             }
             const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
                 provider: provider
             });
             if (err) {
                 console.log(err);
-                throw error(400, 'Login failed');
+                return fail(400, { error: 'Der skete en uventet fejl.' });
             }
 
             throw redirect(303, data.url);
@@ -29,11 +29,10 @@ export const actions: Actions = {
         });
 
         if (err) {
-            console.log(err);
             if (err instanceof AuthApiError && err.status === 400) {
-                throw error(400, 'Ugyldig email eller adgangskode.')
+                return fail(400, { error: 'Ugyldig email eller adgangskode.' })
             }
-            throw error(500, 'Server error. Please try again later')
+            throw fail(500, { error: 'Server error. Please try again later.' })
         }
 
         throw redirect(303, '/konto')

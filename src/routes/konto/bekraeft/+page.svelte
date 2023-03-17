@@ -5,6 +5,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Bekræft din email - ToldJS</title>
+</svelte:head>
+
 {#if data.session}
 	<Redirect to="/konto" />
 {:else}
