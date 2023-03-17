@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Redirect from '$lib/components/Redirect.svelte';
-	import type { PageData } from './$types';
+	import type { PageData } from '../bekræft/$types';
 
 	export let data: PageData;
 </script>

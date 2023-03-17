@@ -108,8 +108,6 @@ Mvh. NAVN
 				<iframe
 					title="Kort over toldekspeditioner"
 					src="https://www.google.com/maps/d/embed?mid=1-Wmnv0sU-QEMNZ11zr78HPwC11lWxjg&ehbc=2E312F"
-					
-					class="mb-14"
 				/>
 			</div>
 		{/if}

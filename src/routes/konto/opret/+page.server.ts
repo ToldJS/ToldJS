@@ -12,13 +12,11 @@ export const actions: Actions = {
 
         if (err) {
             if (err instanceof AuthApiError) {
-                throw error(
-                    400, 'Ugyldig email eller adgangskode.')
+                throw error(400, 'Ugyldig email eller adgangskode.')
             }
-            throw error(
-                500, 'Server error. Please try again later')
+            throw error(500, 'Server error. Please try again later')
         }
 
-        throw redirect(303, '/konto/bekræft')
+        throw redirect(303, '/konto/bekraeft')
     }
 };
