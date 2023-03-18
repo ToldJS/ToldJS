@@ -4,8 +4,8 @@
 	let emailTemplate: HTMLPreElement;
 	let active: 'Info' | 'Step 1' | 'Step 2' | 'Step 3' = 'Info';
 
-	const inactiveClasses = 'dark:border-gray-300 dark:text-gray-400';
-	const activeClasses = 'dark:border-primary dark:text-gray-50';
+	const inactiveClasses = 'border-gray-300';
+	const activeClasses = 'border-primary';
 </script>
 
 <svelte:head>
