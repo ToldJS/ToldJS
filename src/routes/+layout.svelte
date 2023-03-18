@@ -33,6 +33,14 @@
 		}
 		cancel();
 	};
+
+	const submitUpdateTheme: SubmitFunction = async ({ action }) => {
+		const theme = action.searchParams.get('theme');
+
+		if (theme) {
+			document.documentElement.setAttribute('data-theme', theme);
+		}
+	};
 </script>
 
 <div class="navbar bg-base-100">
@@ -109,6 +117,70 @@
 	</div>
 	<div class="navbar-end hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
+			<div class="dropdown dropdown-end">
+				<label tabindex="0" class="btn btn-ghost"> Tema </label>
+				<ul
+					tabindex="0"
+					class="bg-base-200 menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
+				>
+					<form method="POST" use:enhance={submitUpdateTheme}>
+						<li>
+							<button
+								class="w-full mx-0 my-1 p-0 hover:scale-110"
+								formaction="/?/setTheme&theme=light"
+							>
+								<div
+									class="w-full overflow-hidden rounded-lg text-left outline outline-2 outline-offset-2 outline-base-content"
+								>
+									<div
+										data-theme="light"
+										class="w-full cursor-pointer bg-base-100 font-sans text-base-content"
+									>
+										<div class="grid grid-cols-5 grid-rows-3">
+											<div class="col-span-5 row-span-3 row-start-1 flex gap-1 py-3 px-4">
+												<div class="flex-grow text-sm font-bold">Lys</div>
+												<div class="flex flex-shrink-0 flex-wrap gap-1">
+													<div class="w-2 rounded bg-primary" />
+													<div class="w-2 rounded bg-secondary" />
+													<div class="w-2 rounded bg-accent" />
+													<div class="w-2 rounded bg-neutral" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</button>
+						</li>
+						<li>
+							<button
+								class="w-full mx-0 my-1 p-0 hover:scale-110"
+								formaction="/?/setTheme&theme=dark"
+							>
+								<div
+									class="w-full overflow-hidden rounded-lg text-left outline outline-2 outline-offset-2 outline-base-content"
+								>
+									<div
+										data-theme="dark"
+										class="w-full cursor-pointer bg-base-100 font-sans text-base-content"
+									>
+										<div class="grid grid-cols-5 grid-rows-3">
+											<div class="col-span-5 row-span-3 row-start-1 flex gap-1 py-3 px-4">
+												<div class="flex-grow text-sm font-bold">Mørk</div>
+												<div class="flex flex-shrink-0 flex-wrap gap-1">
+													<div class="w-2 rounded bg-primary" />
+													<div class="w-2 rounded bg-secondary" />
+													<div class="w-2 rounded bg-accent" />
+													<div class="w-2 rounded bg-neutral" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</button>
+						</li>
+					</form>
+				</ul>
+			</div>
 			{#if data.session}
 				<div class="dropdown dropdown-end">
 					<label tabindex="0" class="btn btn-circle avatar">
