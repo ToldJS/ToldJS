@@ -6,7 +6,9 @@
 
 	let orders: { [x: string]: any }[] | null = null;
 	async function loadOrders() {
-		const { data: resp, error: err } = await data.supabase.from('orders').select('name, created_at');
+		const { data: resp, error: err } = await data.supabase
+			.from('orders')
+			.select('name, created_at');
 		orders = resp;
 	}
 
@@ -22,7 +24,27 @@
 
 {#if data.session}
 	<p>Velkommen, {data.session.user.email}</p>
-	<pre>{JSON.stringify(orders, null, 2)}</pre>
+	<h2>Ordre</h2>
+	{#if orders}
+		<table class="table w-full">
+			<thead>
+				<tr>
+					<th>Navn</th>
+					<th>Oprettet</th>
+				</tr>
+			</thead>
+			<tbody>
+				{#each orders as order}
+					<tr>
+						<td>{order.name}</td>
+						<td>{order.created_at}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	{:else}
+		<p>Du har ingen ordre endnu.</p>
+	{/if}
 {:else}
 	<Redirect to="/konto/logind" />
 {/if}
