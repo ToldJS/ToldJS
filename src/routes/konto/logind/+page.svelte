@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from '$app/forms';
-	import { createAlert } from '$lib/alerts';
 	import Redirect from '$lib/components/Redirect.svelte';
+	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { Provider } from '@supabase/supabase-js';
 	import type { ActionData, PageData } from './$types';
 
@@ -9,11 +9,11 @@
 	export let form: ActionData;
 
 	$: if (form?.error) {
-		createAlert({
-			type: 'ERROR',
-			name: 'Fejl ved login',
-			body: form.error,
-		});
+		toastStore.trigger({
+			message: form.error,
+			background: 'variant-filled-error',
+			timeout: 5000,
+		})
 	}
 
 	const signInViaProvider = async (provider: Provider) => {

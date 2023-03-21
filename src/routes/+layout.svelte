@@ -1,14 +1,29 @@
 <script lang="ts">
+	import '../theme.postcss';
+	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.css';
-	import { page } from '$app/stores';
+
+	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
+	import {
+		storePopup,
+		AppBar,
+		AppShell,
+		Avatar,
+		Toast,
+		type PopupSettings,
+		popup
+	} from '@skeletonlabs/skeleton';
+	import type { LayoutData } from './$types';
 	import { onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
-	import type { LayoutData } from './$types';
 	import { enhance, type SubmitFunction } from '$app/forms';
-	import AlertBox from '$lib/components/alert/AlertBox.svelte';
 
-	let path = '';
-	$: path = $page.url.pathname;
+	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+	let accountPopupSettings: PopupSettings = {
+		event: 'click',
+		target: 'account-popup',
+	};
 
 	export let data: LayoutData;
 	$: ({ supabase } = data);
@@ -33,209 +48,67 @@
 		}
 		cancel();
 	};
-
-	const submitUpdateTheme: SubmitFunction = async ({ action }) => {
-		const theme = action.searchParams.get('theme');
-
-		if (theme) {
-			document.documentElement.setAttribute('data-theme', theme);
-		}
-	};
 </script>
 
-<div class="navbar bg-base-100">
-	<div class="navbar-start">
-		<div class="dropdown dropdown-bottom">
-			<label tabindex="0" class="btn btn-ghost lg:hidden">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-5 w-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h8m-8 6h16"
-					/></svg
-				>
-			</label>
+<AppShell>
+	<svelte:fragment slot="pageHeader">
+		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+			<svelte:fragment slot="lead">
+				<i class="text-2xl bi bi-list lg:hidden" />
+				<a href="/" class="hidden lg:flex lg:items-center">
+					<img src="/ToldJS_Black.png" class="h-12" alt="ToldJS Logo" />
+				</a>
+			</svelte:fragment>
+			<a href="/" class="flex items-center lg:hidden">
+				<img src="/ToldJS_Black.png" class="h-12" alt="ToldJS Logo" />
+			</a>
 			<ul
-				tabindex="0"
-				class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-neutral rounded-box w-52"
+				class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
 			>
-				<li><a class={path == '/guide' ? 'btn-primary text-black' : ''} href="/guide">Guide</a></li>
 				<li>
-					<a class={path == '/generator' ? 'btn-primary text-black' : ''} href="/generator"
+					<a href="/guide" class="block rounded text-blue-700 dark:text-white" aria-current="page"
+						>Guide</a
+					>
+				</li>
+				<li>
+					<a
+						href="/generator"
+						class="block text-gray-700 rounded hover:text-blue-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
 						>Generator</a
 					>
 				</li>
-				<li>
-					<a class={path == '/om-os' ? 'btn-primary text-black' : ''} href="/om-os">Om Projektet</a>
-				</li>
-				<li>
-					<a class={path == '/kontakt-os' ? 'btn-primary text-black' : ''} href="/kontakt-os"
-						>Kontakt os</a
-					>
-				</li>
-				{#if data.session}
-					<li>
-						<a class={path == '/konto' ? 'btn-primary text-black' : ''} href="/konto">Konto</a>
-					</li>
-					<form action="/konto/logud" method="POST" use:enhance={submitLogout}>
-						<button type="submit">Log ud</button>
-					</form>
-				{:else}
-					<li>
-						<a class={path == '/konto/logind' ? 'btn-primary text-black' : ''} href="/konto/logind"
-							>Log ind</a
-						>
-					</li>
-					<li>
-						<a class={path == '/konto/opret' ? 'btn-primary text-black' : ''} href="/konto/opret"
-							>Opret konto</a
-						>
-					</li>
-				{/if}
 			</ul>
-		</div>
-		<a href="/" class="btn btn-ghost"
-			><img class="h-14" src="/ToldJS_White.png" alt="ToldJS Logo" /></a
-		>
+			<svelte:fragment slot="trail">
+				{#if data.session}
+					<div use:popup={accountPopupSettings}>
+						<Avatar
+							src={data.session.user.user_metadata?.avatar_url}
+							border="border-2 border-surface-300-600-token hover:!border-primary-500"
+							cursor="cursor-pointer"
+						/>
+					</div>
+					<div class="card variant-filled-surface p-4 w-1/12" data-popup="account-popup">
+						<ul>
+							<li>
+								<a href="/konto">Konto</a>
+							</li>
+							<li>
+								<form action="/konto/logud" method="POST" use:enhance={submitLogout}>
+									<button class="button" type="submit">Log ud</button>
+								</form>
+							</li>
+						</ul>
+						
+						<div class="arrow variant-filled-surface" />
+					</div>
+				{:else}
+					<a href="konto/logind" class="btn btn-primary">Log ind</a>
+				{/if}
+			</svelte:fragment>
+		</AppBar>
+	</svelte:fragment>
+	<Toast />
+	<div class="container mx-auto">
+		<slot />
 	</div>
-	<div class="navbar-center" />
-	<div class="navbar-center hidden lg:flex">
-		<ul class="menu menu-horizontal px-1">
-			<li><a class={path == '/guide' ? 'text-primary' : ''} href="/guide">Guide</a></li>
-			<li><a class={path == '/generator' ? 'text-primary' : ''} href="/generator">Generator</a></li>
-			<li><a class={path == '/om-os' ? 'text-primary' : ''} href="/om-os">Om Projektet</a></li>
-			<li>
-				<a class={path == '/kontakt-os' ? 'text-primary' : ''} href="/kontakt-os">Kontakt os</a>
-			</li>
-		</ul>
-	</div>
-	<div class="navbar-end hidden lg:flex">
-		<ul class="menu menu-horizontal px-1">
-			<div class="dropdown dropdown-end">
-				<label tabindex="0" class="btn btn-ghost"> Tema </label>
-				<ul
-					tabindex="0"
-					class="bg-base-200 menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
-				>
-					<form method="POST" use:enhance={submitUpdateTheme}>
-						<li>
-							<button
-								class="w-full mx-0 my-1 p-0 hover:scale-110"
-								formaction="/?/setTheme&theme=light"
-							>
-								<div
-									class="w-full overflow-hidden rounded-lg text-left outline outline-2 outline-offset-2 outline-base-content"
-								>
-									<div
-										data-theme="light"
-										class="w-full cursor-pointer bg-base-100 font-sans text-base-content"
-									>
-										<div class="grid grid-cols-5 grid-rows-3">
-											<div class="col-span-5 row-span-3 row-start-1 flex gap-1 py-3 px-4">
-												<div class="flex-grow text-sm font-bold">Lys</div>
-												<div class="flex flex-shrink-0 flex-wrap gap-1">
-													<div class="w-2 rounded bg-primary" />
-													<div class="w-2 rounded bg-secondary" />
-													<div class="w-2 rounded bg-accent" />
-													<div class="w-2 rounded bg-neutral" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</button>
-						</li>
-						<li>
-							<button
-								class="w-full mx-0 my-1 p-0 hover:scale-110"
-								formaction="/?/setTheme&theme=dark"
-							>
-								<div
-									class="w-full overflow-hidden rounded-lg text-left outline outline-2 outline-offset-2 outline-base-content"
-								>
-									<div
-										data-theme="dark"
-										class="w-full cursor-pointer bg-base-100 font-sans text-base-content"
-									>
-										<div class="grid grid-cols-5 grid-rows-3">
-											<div class="col-span-5 row-span-3 row-start-1 flex gap-1 py-3 px-4">
-												<div class="flex-grow text-sm font-bold">Mørk</div>
-												<div class="flex flex-shrink-0 flex-wrap gap-1">
-													<div class="w-2 rounded bg-primary" />
-													<div class="w-2 rounded bg-secondary" />
-													<div class="w-2 rounded bg-accent" />
-													<div class="w-2 rounded bg-neutral" />
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</button>
-						</li>
-					</form>
-				</ul>
-			</div>
-			{#if data.session}
-				<div class="dropdown dropdown-end">
-					<label tabindex="0" class="btn btn-circle avatar">
-						{#if data.session.user.user_metadata?.avatar_url}
-							<img src={data.session.user.user_metadata.avatar_url} alt="User avatar" />
-						{:else}
-							<i class="text-3xl bi bi-person-fill" />
-						{/if}
-					</label>
-					<ul
-						tabindex="0"
-						class="bg-base-200 menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
-					>
-						<li><a href="/konto">Konto</a></li>
-						<li>
-							<form action="/konto/logud" method="POST" use:enhance={submitLogout}>
-								<button type="submit">Log ud</button>
-							</form>
-						</li>
-					</ul>
-				</div>
-			{:else}
-				<li>
-					<a class={path == '/konto/logind' ? 'text-primary' : ''} href="/konto/logind">Log ind</a>
-				</li>
-				<li><a class="btn btn-primary text-black" href="/konto/opret">Opret konto</a></li>
-			{/if}
-		</ul>
-	</div>
-</div>
-
-<div class="container mx-auto prose">
-	<AlertBox />
-	<slot />
-</div>
-
-<footer
-	class="footer items-center p-4 bg-neutral text-neutral-content fixed bottom-0"
-	style="max-height: 65px;"
->
-	<div class="items-center grid-flow-col">
-		<p>Copyright ToldJS © 2023 - CVR: 43902113</p>
-	</div>
-	<div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-		<a href="https://discord.gg/DM542T9mqZ"
-			><svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				viewBox="0 0 127.14 96.36"
-				class="fill-current"
-				><path
-					d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"
-				/></svg
-			></a
-		>
-	</div>
-</footer>
+</AppShell>

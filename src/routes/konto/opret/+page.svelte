@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { createAlert } from '$lib/alerts';
 	import Redirect from '$lib/components/Redirect.svelte';
+	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { ActionData, PageData } from './$types';
 
 	export let data: PageData;
 	export let form: ActionData;
-	$: if (form?.error) createAlert({
-		type: 'ERROR',
-		name: 'Fejl ved oprettelse af konto',
-		body: form.error,
+
+	$: if (form?.error) toastStore.trigger({
+		message: form.error,
+		background: 'variant-filled-error',
+		timeout: 5000,
 	})
 </script>
 
@@ -35,7 +36,7 @@
 					type="email"
 					name="email"
 					id="email"
-					class="input input-bordered"
+					class="input"
 					placeholder="name@company.com"
 					required
 				/>
@@ -49,7 +50,7 @@
 					name="password"
 					id="password"
 					placeholder="••••••••"
-					class="input input-bordered"
+					class="input"
 					required
 				/>
 			</div>
@@ -59,7 +60,7 @@
 						id="terms"
 						aria-describedby="terms"
 						type="checkbox"
-						class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+						class="checkbox"
 						required
 					/>
 				</div>
@@ -72,7 +73,7 @@
 					>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Opret konto</button>
+			<button type="submit" class="btn variant-filled">Opret konto</button>
 			<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 				Har du allerede en konto? <a
 					href="/konto/logind"
