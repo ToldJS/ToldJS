@@ -371,16 +371,7 @@
 						<tr>
 							<th>Antal</th>
 							<th>Vare beskrivelse</th>
-							<div
-								class="tooltip"
-								data-tip="Varekoden er en 10-cifret kode, som du kan spørge din transportør om at få (for eksempel postnord). Hvis du ikke kan finde varekoden, så kan du søge efter varekoder ved at trykke på info-ikonet."
-							>
-								<th
-									>Varekode <a target="_blank" rel="noreferrer" href="/varekoder"
-										><i class="ml-4 bi bi-info-circle" /></a
-									></th
-								>
-							</div>
+							<th>Varekode</th>
 							<th>Vare pris</th>
 						</tr>
 					</thead>
@@ -462,6 +453,7 @@
 									Tilføj vare
 								</button>
 							</td>
+							<td />
 							<td />
 						</tr>
 					</tfoot>
