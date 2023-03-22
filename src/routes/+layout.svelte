@@ -11,22 +11,33 @@
 		Avatar,
 		Toast,
 		type PopupSettings,
-		popup
+		popup,
+		LightSwitch,
+		Drawer,
+		drawerStore
 	} from '@skeletonlabs/skeleton';
 	import type { LayoutData } from './$types';
 	import { onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
 	import { enhance, type SubmitFunction } from '$app/forms';
+	import { page } from '$app/stores';
 
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	let accountPopupSettings: PopupSettings = {
 		event: 'click',
-		target: 'account-popup',
+		target: 'account-popup'
 	};
 
 	export let data: LayoutData;
 	$: ({ supabase } = data);
+
+	let path = '';
+	$: path = $page.url.pathname;
+
+	const activeItem = 'text-blue-700 dark:text-white';
+	const inactiveItem =
+		'text-gray-700 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white dark:border-gray-700';
 
 	onMount(() => {
 		const {
@@ -50,40 +61,55 @@
 	};
 </script>
 
+<Drawer width="w-auto">
+	<ul
+		class="flex flex-col p-4 mt-4 space-y-4"
+	>
+		<li>
+			<a href="/guide" class="block btn {path == '/guide' ? 'variant-filled-primary' : 'variant-filled'}">Guide</a>
+		</li>
+		<li>
+			<a href="/generator" class="block btn {path == '/generator' ? 'variant-filled-primary' : 'variant-filled'}"
+				>Generator</a
+			>
+		</li>
+	</ul>
+</Drawer>
+
 <AppShell>
 	<svelte:fragment slot="pageHeader">
-		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+		<AppBar
+			padding="p-0"
+			gridColumns="grid-cols-3"
+			slotLead="!justify-start"
+			slotDefault="place-self-center"
+			slotTrail="place-content-end"
+		>
 			<svelte:fragment slot="lead">
-				<i class="text-2xl bi bi-list lg:hidden" />
-				<a href="/" class="hidden lg:flex lg:items-center">
-					<img src="/ToldJS_Black.png" class="h-12" alt="ToldJS Logo" />
+				<button on:click={() => drawerStore.open()} class="pl-4 lg:hidden"><i class="text-2xl bi bi-list" /></button>
+				<a class="flex justify-center align-middle" href="/">
+					<img src="/ToldJS_Black.png" class="pl-4 h-12" alt="ToldJS Logo" />
 				</a>
 			</svelte:fragment>
-			<a href="/" class="flex items-center lg:hidden">
-				<img src="/ToldJS_Black.png" class="h-12" alt="ToldJS Logo" />
-			</a>
 			<ul
-				class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+				class="hidden lg:flex flex-row space-x-8 mt-0 text-sm font-medium"
 			>
 				<li>
-					<a href="/guide" class="block rounded text-blue-700 dark:text-white" aria-current="page"
-						>Guide</a
-					>
+					<a href="/guide" class="block {path == '/guide' ? activeItem : inactiveItem}">Guide</a>
 				</li>
 				<li>
-					<a
-						href="/generator"
-						class="block text-gray-700 rounded hover:text-blue-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+					<a href="/generator" class="block {path == '/generator' ? activeItem : inactiveItem}"
 						>Generator</a
 					>
 				</li>
 			</ul>
 			<svelte:fragment slot="trail">
+				<LightSwitch />
 				{#if data.session}
 					<div use:popup={accountPopupSettings}>
 						<Avatar
 							src={data.session.user.user_metadata?.avatar_url}
-							border="border-2 border-surface-300-600-token hover:!border-primary-500"
+							background="h-12 w-12"
 							cursor="cursor-pointer"
 						/>
 					</div>
@@ -98,11 +124,11 @@
 								</form>
 							</li>
 						</ul>
-						
+
 						<div class="arrow variant-filled-surface" />
 					</div>
 				{:else}
-					<a href="konto/logind" class="btn btn-primary">Log ind</a>
+					<a href="konto/logind" class="btn variant-filled-primary">Log ind</a>
 				{/if}
 			</svelte:fragment>
 		</AppBar>
