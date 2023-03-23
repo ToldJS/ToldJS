@@ -113,11 +113,12 @@
 				<LightSwitch />
 				{#if data.session}
 					<div use:popup={accountPopupSettings}>
-						<Avatar
+						<!-- <Avatar
 							src={data.session.user.user_metadata?.avatar_url}
 							background="h-12 w-12"
 							cursor="cursor-pointer"
-						/>
+						/> -->
+						<i class="pr-4 text-3xl bi bi-person cursor-pointer" />
 					</div>
 					<div class="card variant-filled-surface p-4 w-1/12" data-popup="account-popup">
 						<ul>

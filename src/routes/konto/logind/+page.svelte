@@ -12,8 +12,8 @@
 		toastStore.trigger({
 			message: form.error,
 			background: 'variant-filled-error',
-			timeout: 5000,
-		})
+			timeout: 5000
+		});
 	}
 
 	const signInViaProvider = async (provider: Provider) => {
@@ -55,9 +55,20 @@
 			Log ind
 		</h1>
 		<form action="?/login" method="POST" use:enhance={submitProviderLogin}>
-			<button formaction="?/login&provider=google" class="btn btn-ghost">Google</button>
-			<button formaction="?/login&provider=discord" class="btn btn-ghost">Discord</button>
-			<button formaction="?/login&provider=github" class="btn btn-ghost">GitHub</button>
+			<div class="logo-cloud grid-cols-1 lg:!grid-cols-3 gap-1">
+				<button formaction="?/login&provider=google" class="logo-item">
+					<span><i class="bi bi-google" /></span>
+					<span>Google</span>
+				</button>
+				<button formaction="?/login&provider=discord" class="logo-item">
+					<span><i class="bi bi-discord" /></span>
+					<span>Discord</span>
+				</button>
+				<button formaction="?/login&provider=github" class="logo-item">
+					<span><i class="bi bi-github" /></span>
+					<span>GitHub</span>
+				</button>
+			</div>
 		</form>
 		<form action="?/login" method="POST" class="space-y-4 md:space-y-6" use:enhance>
 			<div>
