@@ -109,7 +109,6 @@
 				</li>
 			</ul>
 			<svelte:fragment slot="trail">
-				<LightSwitch class="mr-2"/>
 				<LightSwitch />
 				{#if data.session}
 					<div use:popup={accountPopupSettings}>
@@ -120,7 +119,7 @@
 						/> -->
 						<i class="pr-4 text-3xl bi bi-person cursor-pointer" />
 					</div>
-					<div class="card variant-filled-surface p-4 w-1/12" data-popup="account-popup">
+					<div class="card variant-filled-surface p-4" data-popup="account-popup">
 						<ul>
 							<li>
 								<a href="/konto">Konto</a>
