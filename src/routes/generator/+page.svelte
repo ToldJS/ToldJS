@@ -150,6 +150,7 @@
 					<th>Beskrivelse</th>
 					<th>Varekode</th>
 					<th>Pris</th>
+					<th />
 				</tr>
 			</thead>
 			<tbody>
@@ -159,9 +160,9 @@
 							<input
 								bind:value={data.varer[i].antal}
 								type="number"
-								class="input {!result.success &&
-									data.varer[i].antal &&
-									result.error.format()?.varer[i]?.antal?._errors}"
+								class="input {!result.success && result.error.format()?.varer?.[i]?.antal?._errors
+									? 'variant-filled-error'
+									: ''}"
 							/>
 						</td>
 						<td>
@@ -169,15 +170,18 @@
 								bind:value={data.varer[i].beskrivelse}
 								type="text"
 								class="input {!result.success &&
-									data.varer[i].beskrivelse &&
-									result.error.format()?.varer[i]?.beskrivelse?._errors}"
+								data.varer[i].beskrivelse &&
+								result.error.format()?.varer?.[i]?.beskrivelse?._errors
+									? 'variant-filled-error'
+									: ''}"
 							/>
 						</td>
 						<td>
 							<input
 								bind:value={data.varer[i].varekode}
 								type="number"
-								class="input {!result.success && result.error.format()?.varer[i]?.varekode?._errors
+								class="input {!result.success &&
+								result.error.format()?.varer?.[i]?.varekode?._errors
 									? 'variant-filled-error'
 									: ''}"
 							/>
@@ -186,14 +190,49 @@
 							<input
 								bind:value={data.varer[i].pris}
 								type="number"
-								class="input {!result.success && result.error.format()?.varer[i]?.pris?._errors
+								class="input {!result.success && result.error.format()?.varer?.[i]?.pris?._errors
 									? 'variant-filled-error'
 									: ''}"
 							/>
 						</td>
+						<td>
+							<button
+								on:click={() => {
+									data.varer.splice(i, 1);
+									data.varer = data.varer;
+								}}
+								on:keypress={() => {}}
+								class="btn variant-ghost-surface"
+								disabled={!(Object.keys(data.varer).length > 1)}
+							>
+								<i class="bi bi-x-lg" />
+							</button>
+						</td>
 					</tr>
 				{/each}
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5" class="">
+						<button
+							on:click={() => {
+								data.varer.push({
+									antal: 1,
+									beskrivelse: '',
+									varekode: 0,
+									pris: 1
+								});
+								data.varer = data.varer;
+							}}
+							on:keypress={() => {}}
+							class="w-full btn gap-2 variant-ghost-surface"
+						>
+							<i class="text-xl text-primary bi bi-plus-circle" />
+							Tilføj vare
+						</button>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 	</Step>
 </Stepper>
