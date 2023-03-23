@@ -2,8 +2,7 @@
 	<title>ToldJS</title>
 </svelte:head>
 
-<div class="">
-	<div class="text-center">
+	<div class="items-center">
 		<div class="max-w-md">
 			<h1 class="text-5xl font-bold">Velkommen til ToldJS!</h1>
 			<p class="pb-3">
@@ -26,4 +25,3 @@
 		der eksisterer er Toldstyrelsen egen guide. Denne guide har vi dog fundet misledende, så man
 		ender med et forkert udfyldt dokument.
 	</p>
-</div>

@@ -14,7 +14,8 @@
 		popup,
 		LightSwitch,
 		Drawer,
-		drawerStore
+		drawerStore,
+		autoModeWatcher
 	} from '@skeletonlabs/skeleton';
 	import type { LayoutData } from './$types';
 	import { onMount } from 'svelte';
@@ -61,6 +62,9 @@
 	};
 </script>
 
+<!--  Automatisk dark/light mode ift. brugerens OS  -->
+<!--  <svelte:head>{@html `<script>${autoModeWatcher.toString()} autoModeWatcher();</script>`}</svelte:head>  -->
+
 <Drawer width="w-auto">
 	<ul
 		class="flex flex-col p-4 mt-4 space-y-4"
@@ -88,7 +92,8 @@
 			<svelte:fragment slot="lead">
 				<button on:click={() => drawerStore.open()} class="pl-4 lg:hidden"><i class="text-2xl bi bi-list" /></button>
 				<a class="flex justify-center align-middle" href="/">
-					<img src="/ToldJS_Black.png" class="pl-4 h-12" alt="ToldJS Logo" />
+					<img src="/ToldJS_Black.png" class="m-2 pl-2 max-h-12 block dark:hidden" alt="ToldJS Logo" />
+					<img src="/ToldJS_White.png" class="m-2 pl-2 max-h-12 dark:block hidden" alt="ToldJS Logo" />
 				</a>
 			</svelte:fragment>
 			<ul
@@ -104,6 +109,7 @@
 				</li>
 			</ul>
 			<svelte:fragment slot="trail">
+				<LightSwitch class="mr-2"/>
 				<LightSwitch />
 				{#if data.session}
 					<div use:popup={accountPopupSettings}>
