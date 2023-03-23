@@ -109,7 +109,7 @@
 				</li>
 			</ul>
 			<svelte:fragment slot="trail">
-				<LightSwitch class="mr-2"/>
+				<LightSwitch />
 				{#if data.session}
 					<div use:popup={accountPopupSettings}>
 						<!-- <Avatar
