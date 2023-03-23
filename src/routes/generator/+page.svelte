@@ -45,11 +45,10 @@
 
 	let result = schema.safeParse(data);
 	$: result = schema.safeParse(data);
-	$: if (!result.success) console.log(result.error.format());
 </script>
 
 <h1 class="mt-3">Tolddokuments generator</h1>
-<Stepper buttonCompleteLabel="Generer PDF" buttonNextLabel="Næste" buttonBackLabel="Tilbage">
+<Stepper stepTerm="Trin" buttonCompleteLabel="Generer PDF" buttonNextLabel="Næste" buttonBackLabel="Tilbage">
 	<Step>
 		<svelte:fragment slot="header">Tracking (Virker ikke endnu)</svelte:fragment>
 
