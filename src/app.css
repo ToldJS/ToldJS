@@ -1,9 +1,9 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css');
 
-html, body { 
-  @apply h-full overflow-hidden; 
-  background-color:hsla(224,78%,7%,1);
-  background-image:
-  radial-gradient(at 0% 100%, hsla(194,75%,54%,0.21) 0px, transparent 50%),
-  radial-gradient(at 100% 0%, hsla(194,75%,54%,0.47) 0px, transparent 50%);
+html,
+body {
+	@apply h-full overflow-hidden;
+	background-color: rgb(200, 199, 194);
+	background-image: radial-gradient(at 0% 100%, hsla(194, 75%, 54%, 0.21) 0px, transparent 50%),
+		radial-gradient(at 100% 0%, hsla(194, 75%, 54%, 0.47) 0px, transparent 50%);
 }

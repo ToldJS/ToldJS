@@ -3,6 +3,8 @@
 </svelte:head>
 
 <div class="flex flex-col items-center">
+	<img src="/World-map-25.svg" class="absolute ml-10 my-6 hidden lg:block z-0" alt="" />
+	<img src="/World-map-50.svg" class="absolute ml-10 my-6 dark:hidden lg:block z-0" alt="" />
 	<div class="z-10 flex flex-col items-center">
 		<div class="text-center mb-5 mx-3 ">
 			<div class="max-w-md">
