@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { stringContainsAny } from '$lib/utils';
 	import { CodeBlock, Step, Stepper } from '@skeletonlabs/skeleton';
 	import { z } from 'zod';
 	import type { PageData } from './$types';
@@ -164,7 +163,7 @@ Mvh. NAVN`;
 					{/each}
 				</optgroup>
 				<optgroup label="Andre">
-					{#each ANDRE_LANDEKODER.sort( (a, b) => (!stringContainsAny( a.Navn, ['Æ', 'Å'] ) ? a.Navn.localeCompare(b.Navn) : 1) ) as country}
+					{#each ANDRE_LANDEKODER.sort( (a, b) => (!a.Navn.containsAny( ['Æ', 'Å'] ) ? a.Navn.localeCompare(b.Navn) : 1) ) as country}
 						<option value={country['Kode'] + '__' + country['Navn']}>{country['Navn']}</option>
 					{/each}
 				</optgroup>
@@ -322,7 +321,8 @@ Mvh. NAVN`;
 	</Step>
 	<Step>
 		<svelte:fragment slot="header">Resultat</svelte:fragment>
-		Nu er du klar til at lave din PDF. Tryk på knappen herunder for at lave PDF'en.
-		(dette step er her for at man ikke kan trykke "Generer PDF" uden validate varer. Man kan ikke "locke" "Generer PDF knappen" uden at have et step imellem)
+		Nu er du klar til at lave din PDF. Tryk på knappen herunder for at lave PDF'en. (dette step er her
+		for at man ikke kan trykke "Generer PDF" uden validate varer. Man kan ikke "locke" "Generer PDF knappen"
+		uden at have et step imellem)
 	</Step>
 </Stepper>

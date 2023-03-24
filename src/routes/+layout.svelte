@@ -3,6 +3,8 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.css';
 
+	import '../lib/utils';
+
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import {
 		storePopup,
