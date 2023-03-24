@@ -83,6 +83,7 @@
 <AppShell>
 	<svelte:fragment slot="pageHeader">
 		<AppBar
+			background="bg-translucent backdrop-blur-sm shadow-nav"
 			padding="p-0"
 			gridColumns="grid-cols-3"
 			slotLead="!justify-start"
