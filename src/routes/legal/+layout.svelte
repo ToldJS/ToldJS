@@ -1,12 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
-	$: activeTab = $page.url.pathname.split('/')[2] || 'Oversigt';
-	$: console.log(activeTab);
+	$: activeTab = decodeURI($page.url.pathname.split('/')[2] || 'oversigt').toTitleCase();
 
-	const inactiveStyles =
+	onMount(() => {
+		document.title = `Legal - ${activeTab} - ToldJS`;
+	});
+
+	const cInactive =
 		'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300';
-	const activeStyles =
+	const cActive =
 		'inline-block p-4 text-primary-500 border-b-2 border-primary-500 rounded-t-lg active';
 </script>
 
@@ -15,19 +19,20 @@
 >
 	<ul class="flex flex-wrap">
 		<li class="mr-2">
-			<a href="/legal" class="unstyled {activeTab === 'Oversigt' ? activeStyles : inactiveStyles}">Oversigt</a>
+			<a href="/legal" class="unstyled {activeTab === 'Oversigt' ? cActive : cInactive}">Oversigt</a
+			>
 		</li>
 		<li class="mr-2">
 			<a
 				href="/legal/privatlivspolitik"
-				class="unstyled {activeTab === 'privatlivspolitik' ? activeStyles : inactiveStyles}"
+				class="unstyled {activeTab === 'Privatlivspolitik' ? cActive : cInactive}"
 				>Privatlivspolitik</a
 			>
 		</li>
 		<li>
 			<a
 				href="/legal/servicevilkår"
-				class="unstyled {activeTab === 'servicevilk%C3%A5r' ? activeStyles : inactiveStyles}">Servicevilkår</a
+				class="unstyled {activeTab === 'Servicevilkår' ? cActive : cInactive}">Servicevilkår</a
 			>
 		</li>
 	</ul>
