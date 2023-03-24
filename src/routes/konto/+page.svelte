@@ -33,7 +33,7 @@
 {#if orders}
 	<input
 		type="text"
-		class="input input-bordered w-full"
+		class="input"
 		placeholder="Søg..."
 		bind:value={$searchStore.search}
 	/>
