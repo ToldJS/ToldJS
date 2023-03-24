@@ -11,7 +11,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "translucent": "rgba(0, 0, 0, 0.3)"
+        "translucent-dark": "rgba(0, 0, 0, 0.3)",
+        "translucent-light": "rgba(255, 255, 255, 0.3)",
       },
       boxShadow: {
         "nav": "inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.1)"
