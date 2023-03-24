@@ -6,7 +6,7 @@
 	</div>
 	<div class="card p-4 space-y-4">
 		<h3>Servicevilkår</h3>
-		<p>Beskriver vores forpligtelser overfor dig som bruger.</p>
+		<p>Beskriver dine forpligtelser overfor os som bruger.</p>
 		<a href="/legal/servicevilkår">Læs vores servicevilkår</a>
 	</div>
 </div>
