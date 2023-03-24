@@ -36,9 +36,9 @@
 	let path = '';
 	$: path = $page.url.pathname;
 
-	const activeItem = 'text-blue-700 dark:text-white';
+	const activeItem = 'text-primary-500 dark:text-white';
 	const inactiveItem =
-		'text-gray-700 hover:text-blue-700 dark:text-gray-400 dark:hover:text-white dark:border-gray-700';
+		'text-gray-700 hover:text-primary-500 dark:text-gray-400 dark:hover:text-white dark:border-gray-700';
 
 	onMount(() => {
 		const {
@@ -83,7 +83,7 @@
 <AppShell>
 	<svelte:fragment slot="pageHeader">
 		<AppBar
-			background="bg-translucent backdrop-blur-sm shadow-nav"
+			background="bg-translucent-light dark:bg-translucent-dark backdrop-blur-sm shadow-nav"
 			padding="p-0"
 			gridColumns="grid-cols-3"
 			slotLead="!justify-start"
@@ -106,6 +106,16 @@
 				<li>
 					<a href="/generator" class="block {path == '/generator' ? activeItem : inactiveItem}"
 						>Generator</a
+					>
+				</li>
+				<li>
+					<a href="/om-os" class="block {path == '/om-os' ? activeItem : inactiveItem}"
+						>Om projektet</a
+					>
+				</li>
+				<li>
+					<a href="/kontakt-os" class="block {path == '/kontakt-os' ? activeItem : inactiveItem}"
+						>Kontakt os</a
 					>
 				</li>
 			</ul>

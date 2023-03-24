@@ -17,7 +17,7 @@
 				<a class="btn variant-filled-primary" href="/guide">Åben Guide</a>
 			</div>
 		</div>
-		<div class="card variant-ghost max-w-screen-md m-5">
+		<div class="card variant-ghost-primary dark:variant-ghost max-w-screen-md m-5">
 			<h1 class="text-3xl font-bold mt-5 text-center">Hvad er selvfortoldning?</h1>
 			<p class="mx-5 my-3">
 				At selvfortolde betyder at man selv udfylder de dokumenter der skal til for at fortolde en
