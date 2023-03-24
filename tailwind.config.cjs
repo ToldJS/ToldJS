@@ -17,6 +17,6 @@ module.exports = {
         "nav": "inset 0 -1px 0 0 hsla(0, 0%, 100%, 0.1)"
       }
     },
-    plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms'), ...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')()],
-  }
+  },
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms'), ...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')()],
 }
