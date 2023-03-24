@@ -7,3 +7,7 @@ body {
 	background-image: radial-gradient(at 0% 100%, hsla(194, 75%, 54%, 0.21) 0px, transparent 50%),
 		radial-gradient(at 100% 0%, hsla(194, 75%, 54%, 0.47) 0px, transparent 50%);
 }
+
+.variant-card {
+    @apply bg-primary-500/20 dark:bg-surface-500/20 ring-[1px] ring-primary-500 dark:ring-surface-500 ring-inset;
+}
