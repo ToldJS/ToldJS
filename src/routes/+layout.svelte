@@ -15,7 +15,8 @@
 		LightSwitch,
 		Drawer,
 		drawerStore,
-		autoModeWatcher
+		autoModeWatcher,
+		Modal
 	} from '@skeletonlabs/skeleton';
 	import type { LayoutData } from './$types';
 	import { onMount } from 'svelte';
@@ -77,8 +78,19 @@
 				>Generator</a
 			>
 		</li>
+		<li>
+			<a href="/om-os" class="block btn {path == '/om-os' ? 'variant-filled-primary' : 'variant-filled'}">Om projektet</a>
+		</li>
+		<li>
+			<a href="/kontakt-os" class="block btn {path == '/kontakt-os' ? 'variant-filled-primary' : 'variant-filled'}"
+				>Kontakt os</a
+			>
+		</li>
 	</ul>
 </Drawer>
+
+<Modal />
+<Toast />
 
 <AppShell>
 	<svelte:fragment slot="pageHeader">
@@ -130,14 +142,14 @@
 						/> -->
 						<i class="pr-4 text-3xl bi bi-person cursor-pointer" />
 					</div>
-					<div class="card variant-filled-surface p-4" data-popup="account-popup">
+					<div class="flex flex-col space-y-4 card variant-filled-surface p-4 w-32 lg:w-64" data-popup="account-popup">
 						<ul>
 							<li>
-								<a href="/konto">Konto</a>
+								<a class="btn variant-filled w-20 lg:w-40" href="/konto">Konto</a>
 							</li>
 							<li>
 								<form action="/konto/logud" method="POST" use:enhance={submitLogout}>
-									<button class="button" type="submit">Log ud</button>
+									<button class="btn variant-filled w-20 lg:w-40" type="submit">Log ud</button>
 								</form>
 							</li>
 						</ul>
@@ -150,7 +162,7 @@
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-	<Toast />
+
 	<div class="container mx-auto">
 		<slot />
 	</div>

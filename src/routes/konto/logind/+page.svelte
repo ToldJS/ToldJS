@@ -97,7 +97,7 @@
 					required
 				/>
 			</div>
-			<button type="submit" class="btn btn-primary">Log ind</button>
+			<button type="submit" class="btn variant-filled-primary">Log ind</button>
 			<p class="text-sm font-light text-gray-500 dark:text-gray-400">
 				Har du ikke en konto endnu? <a
 					href="/konto/opret"
