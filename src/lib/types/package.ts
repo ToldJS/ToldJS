@@ -1,17 +1,32 @@
-export interface IUserPackageInfo {
-  afsenderNavn: string;
-  afsenderAdresse: string;
-  afsenderLand: string;
-  modtagerNavn: string;
-  modtagerAdresse: string;
-  valuta: string;
-  vaegt: string;
-  vaegtEnhed: "kg" | "lb";
-  gave: boolean;
-  trackingNumber: string;
-  fragtPris: string;
-  varer: { antal: {value: number, valid: boolean, hasValue: boolean}, beskrivelse: {value: string, valid: boolean, hasValue: boolean}, varekode: {value: string, valid: boolean, hasValue: boolean}, pris: {value: string, valid: boolean, hasValue: boolean} }[]
-}
+import { z } from "zod";
+
+export const inputSchema = z.object({
+  modtager: z.object({
+    navn: z.string().nonempty(),
+    addresse: z.string().nonempty()
+  }),
+  afsender: z.object({
+    navn: z.string().nonempty(),
+    addresse: z.string().nonempty(),
+    land: z.string().nonempty()
+  }),
+  pakkeinfo: z.object({
+    valuta: z.string().nonempty(),
+    fragtpris: z.string().regex(/^[+]?(\d*(\.|,))?\d+$/),
+    vægt: z.string().regex(/^[+]?(\d*(\.|,))?\d+$/),
+    vægtEnhed: z.enum(['kg', 'lb']),
+    gave: z.boolean()
+  }),
+  varer: z
+    .object({
+      antal: z.number().int().min(1),
+      beskrivelse: z.string().nonempty(),
+      varekode: z.string().nonempty(),
+      pris: z.string().regex(/^[+]?(\d*(\.|,))?\d+$/)
+    })
+    .array()
+});
+export type inputSchema = z.infer<typeof inputSchema>;
 
 export interface IReturnPackageInfo {
   "Paragraph-XBmZnk_Srq": string,
@@ -58,6 +73,8 @@ export interface IReturnPackageInfo {
   "Text-JpYnmqUvjD": string,
   "Text-RrwGZzfWmv": string,
   "Text-E2Pi5dt9Lo": string,
+  "Text-8W0o1rIqF-": string,
+  "Text-zSF-wJqykx": string
 }
 
 export interface IReturnInfo {
