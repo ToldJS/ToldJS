@@ -60,7 +60,7 @@
             </p>
         </section>
 	</div>
-	<aside class="col-span-1 sticky top-10 hidden xl:block space-y-4 w-72">
+	<aside class="sticky hidden xl:block space-y-4 w-72">
 		<TableOfContents target=".legal-content" label="Indhold" />
 	</aside>
 </div>
