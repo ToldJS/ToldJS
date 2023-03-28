@@ -73,9 +73,6 @@
 		class="flex flex-col p-4 mt-4 space-y-4"
 	>
 		<li>
-			<a href="/guide" class="block btn {path == '/guide' ? 'variant-filled-primary' : 'variant-filled'}">Guide</a>
-		</li>
-		<li>
 			<a href="/generator" class="block btn {path == '/generator' ? 'variant-filled-primary' : 'variant-filled'}"
 				>Generator</a
 			>
@@ -114,9 +111,6 @@
 			<ul
 				class="hidden lg:flex flex-row space-x-8 mt-0 text-sm font-medium"
 			>
-				<li>
-					<a href="/guide" class="block {path == '/guide' ? activeItem : inactiveItem}">Guide</a>
-				</li>
 				<li>
 					<a href="/generator" class="block {path == '/generator' ? activeItem : inactiveItem}"
 						>Generator</a

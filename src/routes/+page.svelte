@@ -14,7 +14,7 @@
 					hvorfor selvfortolde? Det er for at undgå det transportgebyr som Postnord, og andre
 					pålægger dig for at fortolde en pakke.
 				</p>
-				<a class="btn variant-filled-primary" href="/guide">Åben Guide</a>
+				<a class="btn variant-filled-primary" href="/generator">Åben Generator</a>
 			</div>
 		</div>
 		<div class="card variant-card max-w-screen-md m-5">
