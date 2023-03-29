@@ -4,7 +4,7 @@
 	/* Reference name */
 	font-family: 'OpenSans';
 	/* For multiple files use commas, ex: url(), url(), ... */
-	src: url('./fonts/OpenSans.ttf');
+	src: url('/fonts/OpenSans.ttf');
 }
 
 html,
