@@ -1,8 +1,5 @@
-/**
- * @param {string} valuta
- * @returns {Promise<[number, Error | null]>}
- */
-export async function getCurrencyRate(valuta) {
+
+export async function getCurrencyRate(valuta: string): Promise<[number, Error | null]> {
   if (valuta.toLowerCase() === "dkk") {
     return [1, null];
   }
@@ -11,6 +8,6 @@ export async function getCurrencyRate(valuta) {
   if (!data[valuta.toLowerCase()]) {
     return [0, Error("Jeg kunne ikke finde vekselkursen for " + valuta + ".")];
   }
-  let result = data[valuta.toLowerCase()].inverseRate;
+  const result = data[valuta.toLowerCase()].inverseRate;
   return [result, null];
 }

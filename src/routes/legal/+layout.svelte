@@ -38,6 +38,6 @@
 	</ul>
 </div>
 
-<div class="mt-12">
+<div class="mt-4">
 	<slot />
 </div>

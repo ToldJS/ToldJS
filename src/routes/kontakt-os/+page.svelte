@@ -1,11 +1,3 @@
-
-<div class="alert alert-info shadow-lg">
-  <div>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-    <span>Kontakt os på mail</span> <a href="mailto:kontakt@toldjs.dk"> kontakt@toldjs.dk</a> <span> eller ved brug af formularen</span>
-  </div>
-</div>
-
 <script lang="ts">
 	$: allFieldsFilled = email.valid && navn.valid && besked.valid;
 
@@ -29,51 +21,62 @@
 	}
 </script>
 
+<div class="alert shadow-lg">
+	<div>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 24 24"
+			class="stroke-current flex-shrink-0 w-6 h-6"
+			><path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="2"
+				d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+			/></svg
+		>
+		<span>Kontakt os på mail</span> <a href="mailto:kontakt@toldjs.dk"> kontakt@toldjs.dk</a>
+		<span> eller ved brug af formularen</span>
+	</div>
+</div>
+
 <form action="https://formsubmit.co/bf3a5850f13285e5dcae9ac19dd10980" method="POST">
-	<div class="form-control m-5">
-		<label class="input-group">
-			<span class="bg-neutral">Email</span>
-			<input
-				bind:value={email['value']}
-				name="Email"
-				type="text"
-				id="email"
-				placeholder="john@doe.dk"
-				class="input input-bordered {email.hasValue
-					? email.valid
-						? 'input-success'
-						: 'input-error'
-					: ''} w-full"
-			/>
-		</label>
-	</div>
-	<div class="form-control m-5">
-		<label class="input-group">
-			<span class="bg-neutral">Navn</span>
-			<input
-				bind:value={navn['value']}
-				name="Name"
-				type="text"
-				id="navn"
-				placeholder="John Doe"
-				class="input input-bordered {navn.hasValue ? 'input-success' : ''} w-full"
-			/>
-		</label>
-	</div>
-	<div class="form-control m-5">
-		<label class="label">
-			<span class="label-text">Besked</span>
-		</label>
+	<label class="label">
+		<span>Email</span>
+		<input
+			bind:value={email['value']}
+			name="Email"
+			type="text"
+			id="email"
+			placeholder="john@doe.dk"
+			class="input {email.hasValue ? (email.valid ? 'input-success' : 'input-error') : ''}"
+		/>
+	</label>
+	<label class="label">
+		<span>Navn</span>
+		<input
+			bind:value={navn['value']}
+			name="Name"
+			type="text"
+			id="navn"
+			placeholder="John Doe"
+			class="input {navn.hasValue ? 'input-success' : ''}"
+		/>
+	</label>
+	<label class="label">
+		<span>Besked</span>
 		<textarea
 			bind:value={besked['value']}
 			name="Message"
 			id="besked"
 			placeholder="Skriv din besked her..."
-			class="textarea textarea-bordered {besked.hasValue ? 'textarea-success' : ''} w-full h-24"
+			class="textarea textarea-bordered {besked.hasValue ? 'textarea-success' : ''}"
 		/>
-	</div>
+	</label>
 	<div class="text-center">
-		<button type="submit" disabled={!allFieldsFilled} class="btn btn-primary">Send besked </button>
+		<button type="submit" disabled={!allFieldsFilled} class="btn variant-filled-primary"
+			>Send besked
+		</button>
 	</div>
 	<input type="hidden" name="_next" value="https://toldjs.dk/kontakt-os/sendt" />
 </form>

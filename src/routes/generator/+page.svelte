@@ -1,12 +1,17 @@
 <script lang="ts">
-	import { CodeBlock, Step, Stepper } from '@skeletonlabs/skeleton';
-	import { z } from 'zod';
+	import { CodeBlock, Step, Stepper, toastStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { ANDRE_LANDEKODER, HYPPIGE_LANDEKODER } from '../../data/landekoder';
+	import { formatBytes } from '$lib/format';
+	import { createPackageInfo } from '$lib/packageInfo';
+	import { inputSchema } from '$lib/types/package';
+	import { BarLoader } from 'svelte-loading-spinners';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data.currencies);
 
+	let loadingPdf: boolean = false;
+	let resultPdf: { item: string; url: string; size: string }[] | null = null;
 	const emailTemplate = `Hej PostNord.
 
 Jeg ønsker at selvfortolde min pakke med nr: XXXXXXXXX
@@ -14,35 +19,7 @@ Jeg vil også spørge om hvor lang tid det er muligt for jer at holde pakken, s�
 
 Mvh. NAVN`;
 
-	const schema = z.object({
-		modtager: z.object({
-			navn: z.string().nonempty(),
-			addresse: z.string().nonempty()
-		}),
-		afsender: z.object({
-			navn: z.string().nonempty(),
-			addresse: z.string().nonempty(),
-			land: z.string().nonempty()
-		}),
-		pakkeinfo: z.object({
-			valuta: z.string().nonempty(),
-			fragtpris: z.number().int().min(1),
-			vægt: z.number().int().min(1),
-			vægtEnhed: z.enum(['kg', 'lb']),
-			gave: z.boolean()
-		}),
-		varer: z
-			.object({
-				antal: z.number().int().min(1),
-				beskrivelse: z.string().nonempty(),
-				varekode: z.number().int(),
-				pris: z.number().int().min(1)
-			})
-			.array()
-	});
-	type schema = z.infer<typeof schema>;
-
-	let information: schema = {
+	let information: inputSchema = {
 		modtager: {
 			navn: '',
 			addresse: ''
@@ -54,8 +31,8 @@ Mvh. NAVN`;
 		},
 		pakkeinfo: {
 			valuta: '',
-			fragtpris: 1,
-			vægt: 1,
+			fragtpris: '1',
+			vægt: '1',
 			vægtEnhed: 'kg',
 			gave: false
 		},
@@ -63,18 +40,69 @@ Mvh. NAVN`;
 			{
 				antal: 1,
 				beskrivelse: '',
-				varekode: 0,
-				pris: 1
+				varekode: 'xxxx',
+				pris: '1'
 			}
 		]
 	};
 
-	let result = schema.safeParse(information);
-	$: result = schema.safeParse(information);
+	let result = inputSchema.safeParse(information);
+	$: result = inputSchema.safeParse(information);
+
+	async function createPdf() {
+		loadingPdf = true;
+		resultPdf = null;
+
+		const [packageInfo, errors] = await createPackageInfo(information);
+
+		if (errors) {
+			toastStore.trigger({
+				message: errors.message,
+				background: 'variant-filled-error',
+				timeout: 5000
+			});
+			loadingPdf = false;
+			return;
+		}
+
+		let pdfs = [];
+		const templatePdfBuffer = await fetch('Enhedsdokument.pdf').then((res) => res.arrayBuffer());
+
+		for (let i = 0; i < packageInfo.length; i++) {
+			const packageInfoNth = packageInfo[i];
+			const actualInfo = packageInfoNth['packageInfo'];
+
+			// @ts-ignore
+			const templatePdf = await window.PDFLib.PDFDocument.load(templatePdfBuffer);
+			const form = templatePdf.getForm();
+
+			let key: keyof typeof actualInfo;
+			for (key in actualInfo) {
+				const value = String(actualInfo[key]);
+				form.getTextField(key).setText(value);
+			}
+
+			const finalPdfBytes = await templatePdf.save();
+			var blob = new Blob([finalPdfBytes], { type: 'application/pdf' });
+			pdfs.push({
+				item: packageInfoNth['desc'],
+				url: window.URL.createObjectURL(blob),
+				size: formatBytes(blob.size)
+			});
+		}
+		resultPdf = pdfs;
+		loadingPdf = false;
+	}
 </script>
+
+<svelte:head>
+	<title>Generator - ToldJS</title>
+	<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.js"></script>
+</svelte:head>
 
 <h1 class="mt-3">Tolddokuments generator</h1>
 <Stepper
+	on:complete={createPdf}
 	stepTerm="Trin"
 	buttonCompleteLabel="Generer PDF"
 	buttonNextLabel="Næste"
@@ -188,7 +216,7 @@ Mvh. NAVN`;
 			<span>Fragt pris</span>
 			<input
 				bind:value={information.pakkeinfo.fragtpris}
-				type="number"
+				type="text"
 				class="input {!result.success && result.error.format()?.pakkeinfo?.fragtpris?._errors
 					? 'input-error'
 					: ''}"
@@ -200,7 +228,7 @@ Mvh. NAVN`;
 			<div class="input-group input-group-divider grid-cols-[1fr_auto]">
 				<input
 					bind:value={information.pakkeinfo.vægt}
-					type="number"
+					type="text"
 					class="input {!result.success && result.error.format()?.pakkeinfo?.vægt?._errors
 						? 'input-error'
 						: ''}"
@@ -263,7 +291,7 @@ Mvh. NAVN`;
 						<td>
 							<input
 								bind:value={information.varer[i].varekode}
-								type="number"
+								type="text"
 								class="input {!result.success &&
 								result.error.format()?.varer?.[i]?.varekode?._errors
 									? 'variant-filled-error'
@@ -273,7 +301,7 @@ Mvh. NAVN`;
 						<td>
 							<input
 								bind:value={information.varer[i].pris}
-								type="number"
+								type="text"
 								class="input {!result.success && result.error.format()?.varer?.[i]?.pris?._errors
 									? 'variant-filled-error'
 									: ''}"
@@ -303,8 +331,8 @@ Mvh. NAVN`;
 								information.varer.push({
 									antal: 1,
 									beskrivelse: '',
-									varekode: 0,
-									pris: 1
+									varekode: 'xxxx',
+									pris: '1'
 								});
 								information.varer = information.varer;
 							}}
@@ -321,8 +349,46 @@ Mvh. NAVN`;
 	</Step>
 	<Step>
 		<svelte:fragment slot="header">Resultat</svelte:fragment>
-		Nu er du klar til at lave din PDF. Tryk på knappen herunder for at lave PDF'en. (dette step er her
-		for at man ikke kan trykke "Generer PDF" uden validate varer. Man kan ikke "locke" "Generer PDF knappen"
-		uden at have et step imellem)
+		{#if loadingPdf}
+			<BarLoader color={"#30b7e2"} />
+		{:else if resultPdf}
+			{#each resultPdf as pdf}
+				<h3 class="mb-2">{pdf.item}</h3>
+				<a class="unstyled download-button" href={pdf.url} download="Enhedsdokument.pdf">
+					<div class="download-primary variant-filled-primary">
+						<span class="bi bi-cloud-arrow-down" />
+						Download PDF
+					</div>
+					<div class="download-secondary">
+						<span class="bi bi-download" />
+						Size: {pdf.size}
+					</div>
+				</a>
+			{/each}
+		{:else}
+			Nu er du klar til at lave din PDF. Tryk på knappen herunder for at lave PDF'en.
+		{/if}
 	</Step>
 </Stepper>
+
+<style>
+	.download-button {
+		height: 50px;
+		display: inline-block;
+		font-size: 20px;
+		font-weight: 500;
+		text-align: center;
+		text-decoration: none;
+		overflow: hidden;
+	}
+	.download-button .download-primary,
+	.download-button .download-secondary {
+		display: block;
+		padding: 0 25px;
+		line-height: 50px;
+		transition: margin 0.4s;
+	}
+	.download-button:hover .download-primary {
+		margin-top: -50px;
+	}
+</style>
