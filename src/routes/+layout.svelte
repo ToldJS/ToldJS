@@ -176,7 +176,7 @@
 		</AppBar>
 	</svelte:fragment>
 
-	<div id="scrollContainer" class="container mx-auto">
+	<div id="scrollContainer" class="page-container">
 		<slot />
 	</div>
 

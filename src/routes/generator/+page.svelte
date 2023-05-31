@@ -4,14 +4,18 @@
 	import { ANDRE_LANDEKODER, HYPPIGE_LANDEKODER } from '../../data/landekoder';
 	import { formatBytes } from '$lib/format';
 	import { createPackageInfo } from '$lib/packageInfo';
-	import { inputSchema } from '$lib/types/package';
+	import { inputSchema, type IReturnInfo } from '$lib/types/package';
 	import { BarLoader } from 'svelte-loading-spinners';
 
 	export let data: PageData;
 	const CURRENCIES: string[] = Object.keys(data.currencies);
 
+	let loadingSaving: boolean = false;
 	let loadingPdf: boolean = false;
-	let resultPdf: { item: string; url: string; size: string }[] | null = null;
+	let resultPdf: {
+		packageInfo: IReturnInfo[];
+		pdfs: { item: string; url: string; size: string }[];
+	} | null = null;
 	const emailTemplate = `Hej PostNord.
 
 Jeg ønsker at selvfortolde min pakke med nr: XXXXXXXXX
@@ -87,11 +91,33 @@ Mvh. NAVN`;
 			pdfs.push({
 				item: packageInfoNth['desc'],
 				url: window.URL.createObjectURL(blob),
-				size: formatBytes(blob.size)
+				size: formatBytes(blob.size),
+				data: packageInfoNth
 			});
 		}
-		resultPdf = pdfs;
+		resultPdf = { packageInfo: packageInfo, pdfs: pdfs };
 		loadingPdf = false;
+	}
+
+	async function saveDocuments() {
+		if (!data.session) return console.log('No session');
+		if (!resultPdf) return console.log('No resultPdf');
+
+		loadingSaving = true;
+		const response = await fetch('/generator', {
+			method: 'POST',
+			body: JSON.stringify({ data: resultPdf.packageInfo })
+		});
+		if (!response.ok) {
+			toastStore.trigger({
+				message: 'Der skete en fejl, prøv igen senere.',
+				background: 'variant-filled-error',
+				timeout: 5000
+			});
+			loadingSaving = false;
+			return;
+		}
+		loadingSaving = false;
 	}
 </script>
 
@@ -348,11 +374,22 @@ Mvh. NAVN`;
 		</table>
 	</Step>
 	<Step>
-		<svelte:fragment slot="header">Resultat</svelte:fragment>
+		<svelte:fragment slot="header">
+			<div class="flex flex-row">
+				<div>Resultat</div>
+				{#if data.session && resultPdf}
+					<button
+						disabled={loadingSaving}
+						on:click={saveDocuments}
+						class="ml-4 chip variant-filled-primary">Gem i konto</button
+					>
+				{/if}
+			</div>
+		</svelte:fragment>
 		{#if loadingPdf}
-			<BarLoader color={"#30b7e2"} />
+			<BarLoader color={'#30b7e2'} />
 		{:else if resultPdf}
-			{#each resultPdf as pdf}
+			{#each resultPdf.pdfs as pdf}
 				<h3 class="mb-2">{pdf.item}</h3>
 				<a class="unstyled download-button" href={pdf.url} download="Enhedsdokument.pdf">
 					<div class="download-primary variant-filled-primary">

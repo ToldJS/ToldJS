@@ -16,5 +16,51 @@ body {
 }
 
 .variant-card {
-    @apply bg-primary-500/20 dark:bg-surface-500/20 ring-[1px] ring-primary-500 dark:ring-surface-500 ring-inset;
+	@apply bg-primary-500/20 dark:bg-surface-500/20 ring-[1px] ring-primary-500 dark:ring-surface-500 ring-inset;
+}
+
+.page-container {
+	width: 100%;
+}
+@media (min-width: 640px) {
+	.page-container {
+		max-width: 640px;
+	}
+}
+@media (min-width: 768px) {
+	.page-container {
+		max-width: 768px;
+	}
+}
+@media (min-width: 1024px) {
+	.page-container {
+		max-width: 1024px;
+	}
+}
+@media (min-width: 1280px) {
+	.page-container {
+		max-width: 1280px;
+	}
+}
+@media (min-width: 1536px) {
+	.page-container {
+		max-width: 1536px;
+	}
+}
+.page-container {
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-container > :not([hidden]) ~ :not([hidden]) {
+	--tw-space-y-reverse: 0;
+	margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(5rem * var(--tw-space-y-reverse));
+}
+.page-container {
+	padding: 2.5rem 1rem;
+}
+@media (min-width: 768px) {
+	.page-container {
+		padding: 5rem 2.5rem;
+	}
 }

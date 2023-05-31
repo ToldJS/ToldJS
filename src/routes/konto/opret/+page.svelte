@@ -68,7 +68,7 @@
 					<label for="terms" class="font-light text-gray-500 dark:text-gray-300"
 						>Jeg accepterer <a
 							class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-							href="/legal/terms">vilkår og betingelser</a
+							href="/legal/servicevilkår">vilkår og betingelser</a
 						></label
 					>
 				</div>
