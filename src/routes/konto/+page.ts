@@ -3,16 +3,16 @@ import type { PageLoad } from "./$types";
 
 
 export const load: PageLoad = async ({ parent }) => {
-    const { supabase, session } = await parent();
+  const { supabase, session } = await parent();
 
-    if (!session) {
-      throw redirect(303, "/konto/logind");
-    }
+  if (!session) {
+    throw redirect(303, "/konto/logind");
+  }
 
-    const { data: tableData } = await supabase.from("orders").select("*");
+  const { data: tableData } = await supabase.from("documents").select("*");
 
-    return {
-        user: session.user,
-        orders: tableData,
-    };
+  return {
+    user: session.user,
+    documents: tableData,
+  };
 };

@@ -4,7 +4,7 @@ import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { PUBLIC_SUPABASE_URL, PUBLIC_SENTRY_DSN } from '$env/static/public';
 import { PRIVATE_SUPABASE_SERVICE_KEY } from '$env/static/private'
 import type { Handle, HandleServerError } from '@sveltejs/kit';
-import type { Database } from '$lib/database';
+import type { Database } from '$lib/types/db';
 
 SentryNode.init({
     dsn: PUBLIC_SENTRY_DSN

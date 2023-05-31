@@ -12,7 +12,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"update-types": "npx supabase gen types typescript --project-id \"gnjwgpggafkgwcyokjik\" --schema public > src/lib/types/db.ts"
 	},
 	"devDependencies": {
 		"@skeletonlabs/skeleton": "^1.0.0",
